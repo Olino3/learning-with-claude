@@ -11,7 +11,6 @@ class ConfigDSL
   end
   
   def method_missing(method_name, *args, &block)
-    method_str = method_name.to_s
     
     if block
       # Nested configuration
