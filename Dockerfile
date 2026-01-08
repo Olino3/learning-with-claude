@@ -18,11 +18,31 @@ RUN apt-get update && apt-get install -y \
     less \
     sqlite3 \
     libsqlite3-dev \
+    postgresql-client \
+    libpq-dev \
+    redis-tools \
     && rm -rf /var/lib/apt/lists/*
 
 # Install commonly used gems for learning
 # These will be available in all containers
-RUN gem install bundler pry irb rspec sinatra
+RUN gem install bundler pry irb rspec
+
+# Install Sinatra and related web development gems
+RUN gem install sinatra sinatra-contrib thin puma \
+    rack rack-test webrick \
+    tilt erubis
+
+# Install database gems for Sinatra tutorials
+RUN gem install sqlite3 sequel activerecord pg
+
+# Install authentication and security gems
+RUN gem install bcrypt rack-protection
+
+# Install WebSocket support for real-time apps
+RUN gem install faye-websocket eventmachine
+
+# Install testing gems
+RUN gem install rack-test minitest capybara
 
 # Install advanced gems for profiling, performance, and concurrency
 # memory_profiler - Memory usage profiling

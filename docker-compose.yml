@@ -71,12 +71,83 @@ services:
       - RUBY_GC_HEAP_GROWTH_FACTOR=1.1
       - RUBY_GC_HEAP_INIT_SLOTS=10000
 
+  # Sinatra web application container
+  # Use this for running Sinatra tutorials and labs
+  sinatra-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sinatra-web
+    volumes:
+      - .:/app
+      - ruby-bundle:/usr/local/bundle
+    working_dir: /app
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    ports:
+      # Map host ports to container ports for web applications
+      - "4567:4567"  # Default Sinatra port
+      - "9292:9292"  # Rack default port
+      - "3000:3000"  # Alternative web port
+    networks:
+      - ruby-network
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/sinatra_dev
+      - REDIS_URL=redis://redis:6379/0
+      - RACK_ENV=development
+    depends_on:
+      - postgres
+      - redis
+
+  # PostgreSQL database for Sinatra labs
+  postgres:
+    image: postgres:16-alpine
+    container_name: sinatra-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=sinatra_dev
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - ruby-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: sinatra-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - ruby-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
 volumes:
   # Shared volume for gem installations
   ruby-bundle:
     driver: local
   # Separate volume for advanced labs
   ruby-advanced-bundle:
+    driver: local
+  # PostgreSQL data persistence
+  postgres-data:
+    driver: local
+  # Redis data persistence
+  redis-data:
     driver: local
 
 networks:
