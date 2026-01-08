@@ -223,7 +223,6 @@ puts "-" * 40
 
 age = 25
 has_license = true
-has_car = false
 
 # AND conditions
 if age >= 16 && has_license
