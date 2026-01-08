@@ -68,7 +68,6 @@ puts "-" * 70
 def create_context
   local_var = "I'm local!"
   @instance_var = "I'm an instance variable"
-  @@class_var = "I'm a class variable"
   
   binding
 end

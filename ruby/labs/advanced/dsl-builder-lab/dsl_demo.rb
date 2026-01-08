@@ -96,7 +96,7 @@ puts
 
 # Complex query with joins
 query2 = QueryBuilder.from(:posts)
-  .select(:posts.*, :users.name)
+  .select("posts.*", "users.name")
   .join(:users, on: "posts.user_id = users.id")
   .where(published: true)
   .where("posts.view_count > 100")
