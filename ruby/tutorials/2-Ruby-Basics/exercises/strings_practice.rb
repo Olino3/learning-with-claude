@@ -10,7 +10,6 @@ puts "-" * 40
 
 name = "Alice"
 age = 30
-city = "Seattle"
 
 # Basic interpolation
 puts "Name: #{name}"
