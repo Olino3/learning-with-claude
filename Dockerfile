@@ -24,6 +24,13 @@ RUN apt-get update && apt-get install -y \
 # These will be available in all containers
 RUN gem install bundler pry irb rspec sinatra
 
+# Install advanced gems for profiling, performance, and concurrency
+# memory_profiler - Memory usage profiling
+# benchmark-ips - Iterations per second benchmarking
+# stackprof - CPU profiling
+# rubocop - Code quality and style checking
+RUN gem install memory_profiler benchmark-ips stackprof rubocop
+
 # Set environment variables for better Ruby experience
 ENV RUBYOPT="-W0"
 ENV BUNDLE_PATH="/usr/local/bundle"
