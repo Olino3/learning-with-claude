@@ -25,14 +25,45 @@ This repository uses Git commits to track your learning progress. Each commit re
 
 ## 🚀 Getting Started
 
-1. Start with the tutorials in the `/tutorials` directory
-2. Practice concepts with labs in the `/labs` directory
-3. Deepen your understanding with materials in the `/reading` directory
+### Setting Up Your Environment
+
+This repository includes a containerized Ruby development environment—no local Ruby installation required!
+
+**Quick Start:**
+```bash
+# From the repository root
+tilt up
+# Or: make up
+```
+
+The environment provides:
+- **ruby-scripts** container: For running Ruby scripts and applications
+- **ruby-repl** container: Interactive Ruby interpreter (IRB)
+- Ruby 3.3 with common gems pre-installed
+- Live code reloading via Tilt
+
+**Common Commands:**
+```bash
+make shell                                    # Open bash shell
+make repl                                     # Start IRB
+make run-script SCRIPT=scripts/hello.rb       # Run a script
+```
+
+For detailed instructions, see [Tutorial 1: Getting Started](/ruby/tutorials/1-Getting-Started/README.md)
+
+### Learning Path
+
+1. **Start with Tutorial 1**: `/tutorials/1-Getting-Started` - Learn to use the environment
+2. **Practice concepts**: Work through labs in the `/labs` directory
+3. **Deepen understanding**: Explore materials in the `/reading` directory
 
 ## 📝 Prerequisites
 
-- Ruby installed on your system (recommended: Ruby 3.0+)
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+- [Tilt](https://docs.tilt.dev/install.html) (optional but recommended)
 - A text editor or IDE
 - Basic understanding of programming concepts (helpful but not required)
+
+No Ruby installation needed—everything runs in containers! ✨
 
 Happy learning! 🎉
