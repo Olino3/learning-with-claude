@@ -174,13 +174,13 @@ Try to accomplish this task in IRB:
 my_age = 25
 my_age + 10
 
-def future_age(years)
-  my_age + years
+def future_age(current_age, years)
+  current_age + years
 end
 
-future_age(5)
-future_age(10)
-future_age(20)
+future_age(my_age, 5)
+future_age(my_age, 10)
+future_age(my_age, 20)
 ```
 
 ## ✅ Success Criteria
