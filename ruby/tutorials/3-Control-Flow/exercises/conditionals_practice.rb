@@ -240,7 +240,7 @@ if (age >= 18 && has_license) || admin
 end
 
 # Ruby word operators (lower precedence)
-proceed = true and false  # Variable gets true, then 'and false' is evaluated
+# Example: `proceed = true and false` would assign true to proceed, then evaluate `and false`
 proceed = true && false   # Variable gets false
 
 puts "Proceed (and): #{proceed}"
