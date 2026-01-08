@@ -1,0 +1,14 @@
+<h2>Recent Posts</h2>
+
+<div class="posts-grid">
+  <% @posts.each do |post| %>
+    <article class="post-card">
+      <h3><a href="/posts/<%= post[:id] %>"><%= post[:title] %></a></h3>
+      <p class="meta">
+        By <%= post[:author] %> on <%= format_date(post[:date]) %>
+      </p>
+      <p class="excerpt"><%= post[:excerpt] %></p>
+      <a href="/posts/<%= post[:id] %>" class="read-more">Read More →</a>
+    </article>
+  <% end %>
+</div>

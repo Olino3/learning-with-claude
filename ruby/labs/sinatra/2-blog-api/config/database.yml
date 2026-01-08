@@ -1,0 +1,41 @@
+# Database configuration for Blog API
+#
+# This file configures the database connections for different environments.
+# By default, it uses SQLite for development and testing.
+# For production, you should use PostgreSQL or MySQL.
+
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: blog_api_dev.db
+
+test:
+  <<: *default
+  database: blog_api_test.db
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: <%= ENV['DATABASE_NAME'] || 'blog_api_production' %>
+  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
+
+# Alternative PostgreSQL setup for development
+# Uncomment to use PostgreSQL instead of SQLite
+#
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: blog_api_dev
+#   pool: 5
+#   username: postgres
+#   password: postgres
+#   host: localhost
+#   port: 5432

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App - Sinatra Lab 4</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/">💬 Real-time Chat</a>
+      </div>
+      <div class="navbar-menu">
+        <% if logged_in? %>
+          <span class="navbar-user">👤 <%= h(current_username) %></span>
+          <a href="/rooms">Rooms</a>
+          <a href="/logout" class="btn btn-secondary">Logout</a>
+        <% else %>
+          <a href="/" class="btn btn-primary">Join Chat</a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Built with <strong>Sinatra + WebSockets</strong> |
+        Lab 4: Real-time Chat |
+        <a href="https://github.com/sinatra/sinatra" target="_blank">Learn More</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<div class="chat-container">
+  <div class="chat-sidebar">
+    <div class="sidebar-header">
+      <h2>#<%= h(@room.name) %></h2>
+      <p><%= h(@room.description) %></p>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Online Users (<span id="user-count">0</span>)</h3>
+      <div id="users-list" class="users-list">
+        <div class="loading">Loading...</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Connection</h3>
+      <div id="connection-status" class="connection-status disconnected">
+        <span class="status-dot"></span>
+        <span class="status-text">Connecting...</span>
+      </div>
+    </div>
+
+    <div class="sidebar-actions">
+      <a href="/rooms" class="btn btn-secondary btn-block">← All Rooms</a>
+    </div>
+  </div>
+
+  <div class="chat-main">
+    <div class="chat-header">
+      <h1>#<%= h(@room.name) %></h1>
+      <span class="room-description"><%= h(@room.description) %></span>
+    </div>
+
+    <div id="messages" class="messages-container">
+      <% @messages.each do |msg| %>
+        <div class="message">
+          <div class="message-header">
+            <strong class="message-username"><%= h(msg.username) %></strong>
+            <span class="message-time"><%= format_time(msg.created_at) %></span>
+          </div>
+          <div class="message-content"><%= h(msg.content) %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="chat-input-container">
+      <form id="message-form" class="message-form">
+        <input type="text" id="message-input" class="message-input"
+               placeholder="Type a message... (Enter to send)"
+               autocomplete="off" autofocus>
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/js/chat.js"></script>
+<script>
+  // Initialize chat with room data
+  const chatConfig = {
+    username: '<%= h(current_username) %>',
+    roomName: '<%= h(@room.name) %>',
+    roomId: <%= @room.id %>,
+    wsUrl: 'ws://localhost:9292'
+  };
+
+  // Start chat when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeChat(chatConfig);
+  });
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @title || 'My Sinatra Blog' %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">My Sinatra Blog</a></h1>
+      <nav>
+        <a href="/" class="<%= active_page('/') %>">Home</a>
+        <a href="/about" class="<%= active_page('/about') %>">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <%= yield %>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <%= Time.now.year %> My Sinatra Blog. Built with ❤️ and Ruby.</p>
+    </div>
+  </footer>
+</body>
+</html>

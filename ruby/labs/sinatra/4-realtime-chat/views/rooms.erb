@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="rooms-page">
+    <div class="page-header">
+      <h1>Chat Rooms</h1>
+      <p class="subtitle">Choose a room to start chatting</p>
+    </div>
+
+    <div class="rooms-list">
+      <% @rooms.each do |room| %>
+        <a href="/rooms/<%= room.id %>" class="room-card">
+          <div class="room-header">
+            <h2>#<%= h(room.name) %></h2>
+            <span class="room-arrow">→</span>
+          </div>
+          <p class="room-description"><%= h(room.description) %></p>
+          <div class="room-stats">
+            <span class="stat">
+              📝 <%= room.messages.count %> messages
+            </span>
+            <span class="stat">
+              📅 Created <%= format_date(room.created_at) %>
+            </span>
+          </div>
+        </a>
+      <% end %>
+    </div>
+
+    <div class="info-box">
+      <h3>How to Use</h3>
+      <ul>
+        <li>Click on a room to join the conversation</li>
+        <li>Type your message and press Enter to send</li>
+        <li>Your messages appear instantly for all users in the room</li>
+        <li>See who else is online in the room</li>
+      </ul>
+    </div>
+  </div>
+</div>
