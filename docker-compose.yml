@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Container for running Ruby scripts
+  # Use this for executing .rb files and running applications
+  ruby-scripts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ruby-scripts
+    volumes:
+      # Mount the entire repository for live code updates
+      - .:/app
+      # Persist gem installations
+      - ruby-bundle:/usr/local/bundle
+    working_dir: /app
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    networks:
+      - ruby-network
+
+  # Interactive Ruby REPL container
+  # Use this for experimenting with Ruby code interactively
+  ruby-repl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ruby-repl
+    volumes:
+      # Mount the entire repository for access to code examples
+      - .:/app
+      # Persist gem installations
+      - ruby-bundle:/usr/local/bundle
+    working_dir: /app
+    # Start with an interactive Ruby shell (IRB)
+    command: irb
+    stdin_open: true
+    tty: true
+    networks:
+      - ruby-network
+
+volumes:
+  # Shared volume for gem installations
+  ruby-bundle:
+    driver: local
+
+networks:
+  ruby-network:
+    driver: bridge
