@@ -1,8 +1,8 @@
 # Ruby Development Environment
 # This Dockerfile creates a development environment for learning Ruby
-# It includes Ruby 3.3 and common development tools
+# It includes Ruby 3.4.7 and common development tools
 
-FROM ruby:3.3-slim
+FROM ruby:3.4.7-slim
 
 # Set working directory
 WORKDIR /app
