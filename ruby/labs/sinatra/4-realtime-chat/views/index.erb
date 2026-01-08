@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="welcome-section">
+    <div class="welcome-card">
+      <h1>Welcome to Real-time Chat! 💬</h1>
+      <p class="lead">
+        Join the conversation and connect with others in real-time using WebSockets.
+      </p>
+
+      <% if @error %>
+        <div class="alert alert-error">
+          <%= h(@error) %>
+        </div>
+      <% end %>
+
+      <form action="/username" method="post" class="username-form">
+        <div class="form-group">
+          <label for="username">Choose a username to get started:</label>
+          <input type="text" id="username" name="username" class="form-control"
+                 placeholder="Enter your username" required autofocus
+                 minlength="2" maxlength="20">
+          <small class="form-text">2-20 characters, will be visible to other users</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">
+          Join Chat →
+        </button>
+      </form>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Messaging</h3>
+        <p>Real-time message delivery with WebSocket technology</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">🏠</div>
+        <h3>Multiple Rooms</h3>
+        <p>Join different chat rooms for various topics</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">👥</div>
+        <h3>User Presence</h3>
+        <p>See who's online in each room</p>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">💾</div>
+        <h3>Message History</h3>
+        <p>View previous messages when you join</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rooms-preview">
+    <h2>Available Chat Rooms</h2>
+    <div class="rooms-grid">
+      <% @rooms.each do |room| %>
+        <div class="room-preview-card">
+          <h3>#<%= h(room.name) %></h3>
+          <p><%= h(room.description) %></p>
+          <div class="room-stats">
+            <span>📝 <%= room.messages.count %> messages</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p class="text-center" style="margin-top: 2rem; color: #666;">
+      Enter a username above to join the chat!
+    </p>
+  </div>
+</div>
