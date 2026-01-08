@@ -26,7 +26,7 @@ If you're a Python developer, you'll notice several differences:
 | Comments | `# comment` | `# comment` (same!) |
 | Multi-line comments | `"""..."""` (docstring) | `=begin...=end` (rarely used) |
 | Type checking | `type()` | `.class` |
-| Truthiness | `0`, `[]`, `""` are truthy | Only `false` and `nil` are falsy |
+| Truthiness | `0`, `[]`, `""` are falsy (most other values are truthy) | Only `false` and `nil` are falsy |
 
 ## 📝 Ruby Syntax Essentials
 
