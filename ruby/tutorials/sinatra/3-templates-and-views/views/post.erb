@@ -1,0 +1,16 @@
+<article class="post-full">
+  <h2><%= @post[:title] %></h2>
+
+  <p class="meta">
+    <strong>Author:</strong> <%= @post[:author] %> |
+    <strong>Published:</strong> <%= format_date(@post[:date]) %>
+  </p>
+
+  <div class="content">
+    <%= @post[:content] %>
+  </div>
+
+  <div class="actions">
+    <a href="/" class="button">← Back to all posts</a>
+  </div>
+</article>
