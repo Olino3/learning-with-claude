@@ -231,6 +231,8 @@ Write idiomatic, clean Ruby code following community conventions.
 
 ## 📊 Tutorial Overview
 
+### Core Tutorials (1-10)
+
 | # | Tutorial | Topics | Difficulty |
 |---|----------|--------|------------|
 | 1 | Getting Started | Environment setup, scripts, REPL | ⭐ Beginner |
@@ -243,6 +245,145 @@ Write idiomatic, clean Ruby code following community conventions.
 | 8 | Error Handling | Exceptions, rescue, retry | ⭐⭐ Intermediate |
 | 9 | File I/O | Files, reading, writing | ⭐⭐ Intermediate |
 | 10 | Ruby Idioms | Best practices, style | ⭐⭐⭐ Intermediate |
+
+### Intermediate Tutorials (11-16)
+
+| # | Tutorial | Topics | Difficulty |
+|---|----------|--------|------------|
+| 11 | Advanced Blocks & Closures | Procs, lambdas, closures | ⭐⭐⭐ Intermediate |
+| 12 | Ruby Object Model | Inheritance, singleton, eigenclass | ⭐⭐⭐⭐ Intermediate |
+| 13 | Advanced Mixins | Module composition, prepend | ⭐⭐⭐ Intermediate |
+| 14 | Metaprogramming | method_missing, define_method | ⭐⭐⭐⭐ Intermediate |
+| 15 | Advanced Error Handling | Custom exceptions, retry patterns | ⭐⭐⭐ Intermediate |
+| 16 | Idiomatic Ruby | Enumerable, duck typing, patterns | ⭐⭐⭐ Intermediate |
+
+### Advanced Tutorials (17-22)
+
+| # | Tutorial | Topics | Difficulty |
+|---|----------|--------|------------|
+| 17 | Advanced Metaprogramming & DSLs | instance_eval, Binding, Refinements | ⭐⭐⭐⭐⭐ Advanced |
+| 18 | Concurrency and Parallelism | Threads, Ractors, Fibers, GVL | ⭐⭐⭐⭐⭐ Advanced |
+| 19 | MRI Internals | GC, ObjectSpace, YARV bytecode | ⭐⭐⭐⭐⭐ Advanced |
+| 20 | Advanced Functional Programming | Currying, lazy evaluation, method objects | ⭐⭐⭐⭐ Advanced |
+| 21 | Performance Profiling & Optimization | Benchmarking, profiling, optimization | ⭐⭐⭐⭐ Advanced |
+| 22 | Design Patterns (Ruby Edition) | Decorator, Service Objects, Singleton | ⭐⭐⭐⭐ Advanced |
+
+---
+
+## 🎓 Advanced Ruby Track
+
+The advanced tutorials (17-22) dive deep into Ruby's most powerful features - the techniques used by framework authors and library developers. These are for developers ready to:
+
+- Build frameworks and DSLs
+- Optimize performance-critical code
+- Understand Ruby's internals
+- Write professional, production-ready Ruby
+
+### Tutorial 17: Advanced Metaprogramming & DSLs
+**Status:** ✅ Complete
+
+Master the metaprogramming techniques that power Rails, RSpec, and other Ruby frameworks.
+
+👉 **[Start Tutorial 17](advanced/17-Advanced-Metaprogramming-DSLs/README.md)**
+
+**You'll learn:**
+- `instance_eval` and `class_eval` for context manipulation
+- `Binding` to capture execution context
+- `Refinements` for scoped monkey-patching
+- Building production-ready DSLs
+
+---
+
+### Tutorial 18: Concurrency and Parallelism
+**Status:** ✅ Complete
+
+Understand Ruby's concurrency model, from threads to Ractors.
+
+👉 **[Start Tutorial 18](advanced/18-Concurrency-and-Parallelism/README.md)**
+
+**You'll learn:**
+- The Global VM Lock (GVL) and its implications
+- Threads for I/O-bound concurrency
+- Ractors for CPU-bound parallelism (Ruby 3.0+)
+- Fibers for cooperative concurrency
+- Thread safety and avoiding deadlocks
+
+---
+
+### Tutorial 19: MRI Internals
+**Status:** ✅ Complete
+
+Explore how Ruby works under the hood.
+
+👉 **[Start Tutorial 19](advanced/19-MRI-Internals/README.md)**
+
+**You'll learn:**
+- Object representation in memory
+- Garbage collection tuning
+- ObjectSpace for memory inspection
+- YARV bytecode and AST
+- Finding and fixing memory leaks
+
+---
+
+### Tutorial 20: Advanced Functional Programming
+**Status:** ✅ Complete
+
+Master Ruby's functional programming capabilities.
+
+👉 **[Start Tutorial 20](advanced/20-Advanced-Functional-Programming/README.md)**
+
+**You'll learn:**
+- Currying and partial application
+- Method objects as first-class citizens
+- Lazy evaluation with `Enumerable#lazy`
+- Functional composition patterns
+- Immutable data structures
+
+---
+
+### Tutorial 21: Performance Profiling and Optimization
+**Status:** ✅ Complete
+
+Learn to make Ruby code fast.
+
+👉 **[Start Tutorial 21](advanced/21-Performance-Profiling-Optimization/README.md)**
+
+**You'll learn:**
+- Benchmarking with `Benchmark` and `benchmark-ips`
+- Memory profiling with `memory_profiler`
+- CPU profiling with `stackprof`
+- Understanding YARV bytecode for optimization
+- Common optimization strategies
+
+---
+
+### Tutorial 22: Design Patterns (Ruby Edition)
+**Status:** ✅ Complete
+
+Apply design patterns the Ruby way.
+
+👉 **[Start Tutorial 22](advanced/22-Design-Patterns/README.md)**
+
+**You'll learn:**
+- Proxy/Decorator with `SimpleDelegator`
+- Service Objects and Interactors
+- Singleton pattern
+- Observer pattern with `Observable`
+- Factory and Builder patterns
+
+---
+
+## 💎 Advanced Labs
+
+After completing the advanced tutorials, apply your knowledge with hands-on labs:
+
+- **[Lab 1: DSL Builder](../labs/advanced/dsl-builder-lab/)** - Build configuration, routing, and query DSLs
+- **[Lab 2: Concurrent Processor](../labs/advanced/concurrent-processor-lab/)** - Worker pools, Ractors, Fibers
+- **[Lab 3: Performance Optimizer](../labs/advanced/performance-optimizer-lab/)** - Benchmark and optimize
+- **[Lab 4: Mini Framework](../labs/advanced/mini-framework-lab/)** - Build a web framework
+
+---
 
 ## 🎓 For Python Developers
 
