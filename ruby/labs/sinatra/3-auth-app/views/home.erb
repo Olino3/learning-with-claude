@@ -1,0 +1,69 @@
+<div class="hero">
+  <h1>Welcome to Auth App</h1>
+  <p class="lead">
+    A secure authentication system built with Sinatra, demonstrating
+    user registration, login, session management, and security best practices.
+  </p>
+
+  <div class="hero-actions">
+    <% if authenticated? %>
+      <a href="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+    <% else %>
+      <a href="/register" class="btn btn-primary btn-lg">Get Started</a>
+      <a href="/login" class="btn btn-secondary btn-lg">Login</a>
+    <% end %>
+  </div>
+</div>
+
+<div class="features">
+  <h2>Features</h2>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Secure Authentication</h3>
+      <p>BCrypt password hashing with industry-standard security practices.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🍪</div>
+      <h3>Session Management</h3>
+      <p>Cookie-based sessions with "remember me" functionality.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>CSRF Protection</h3>
+      <p>Built-in cross-site request forgery protection for all forms.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">👤</div>
+      <h3>User Profiles</h3>
+      <p>Manage your profile information and change your password.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <h3>Protected Routes</h3>
+      <p>Authorization filters ensure only authenticated users can access private pages.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">✨</div>
+      <h3>Modern UI</h3>
+      <p>Clean, responsive design that works on all devices.</p>
+    </div>
+  </div>
+</div>
+
+<div class="tech-stack">
+  <h2>Built With</h2>
+  <div class="tech-list">
+    <span class="tech-badge">Sinatra</span>
+    <span class="tech-badge">Sequel ORM</span>
+    <span class="tech-badge">BCrypt</span>
+    <span class="tech-badge">SQLite</span>
+    <span class="tech-badge">Rack::Protection</span>
+  </div>
+</div>
