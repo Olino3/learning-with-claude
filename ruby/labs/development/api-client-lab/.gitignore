@@ -1,0 +1,22 @@
+# Coverage
+coverage/
+
+# Ruby
+*.gem
+.bundle
+vendor/
+Gemfile.lock
+
+# Redis
+dump.rdb
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# IDEs
+.idea/
+.vscode/
+*.swp

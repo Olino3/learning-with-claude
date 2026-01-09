@@ -1,0 +1,32 @@
+# Coverage
+coverage/
+.coverage
+
+# RSpec
+.rspec_status
+spec/examples.txt
+
+# Output files
+*.json
+*.csv
+!spec/fixtures/**
+
+# Ruby
+*.gem
+*.rbc
+.bundle
+vendor/
+Gemfile.lock
+
+# VCR cassettes (optional - can be committed)
+# spec/fixtures/vcr_cassettes/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo

@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+
+require 'web_scraper'
+require 'optparse'
+
+# CLI for web scraper
+class ScraperCLI
+  def initialize(args)
+    @args = args
+    @options = {
+      parser_type: :blog,
+      output: nil,
+      limit: nil,
+      format: :json
+    }
+  end
+
+  def run
+    parse_options
+    validate_arguments
+
+    parser_type = @args.shift.to_sym
+    url = @args.shift
+
+    scraper = WebScraper.new(parser_type: parser_type)
+    puts "Scraping #{url} with #{parser_type} parser..."
+
+    articles = scraper.scrape(url)
+    articles = articles.take(@options[:limit]) if @options[:limit]
+
+    if @options[:output]
+      scraper.save_to_file(articles, @options[:output], format: @options[:format])
+      puts "Saved #{articles.size} articles to #{@options[:output]}"
+    else
+      display_articles(scraper, articles)
+    end
+  rescue StandardError => e
+    puts "Error: #{e.message}"
+    puts e.backtrace if ENV['DEBUG']
+    exit 1
+  end
+
+  private
+
+  def parse_options
+    OptionParser.new do |opts|
+      opts.banner = 'Usage: scraper [parser_type] [url] [options]'
+
+      opts.on('-o', '--output FILE', 'Save to file') do |file|
+        @options[:output] = file
+      end
+
+      opts.on('-l', '--limit N', Integer, 'Limit results') do |n|
+        @options[:limit] = n
+      end
+
+      opts.on('-f', '--format FORMAT', 'Output format (json/csv)') do |fmt|
+        @options[:format] = fmt.to_sym
+      end
+
+      opts.on('-h', '--help', 'Show help') do
+        puts opts
+        exit
+      end
+    end.parse!(@args)
+  end
+
+  def validate_arguments
+    if @args.size < 2
+      puts 'Error: Parser type and URL required'
+      puts 'Example: scraper blog https://example.com'
+      exit 1
+    end
+  end
+
+  def display_articles(scraper, articles)
+    puts "\nFound #{articles.size} articles:\n\n"
+
+    articles.each_with_index do |article, index|
+      decorated = scraper.decorate(article)
+      puts "#{index + 1}. #{decorated.to_terminal}"
+      puts '-' * 60
+      puts
+    end
+  end
+end
+
+ScraperCLI.new(ARGV).run

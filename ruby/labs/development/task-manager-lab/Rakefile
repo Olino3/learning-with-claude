@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
+
+# Default task: run tests and rubocop
+task default: %i[spec rubocop]
+
+# RSpec task
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+  t.rspec_opts = ['--format documentation', '--color']
+end
+
+# Rubocop task
+RuboCop::RakeTask.new do |t|
+  t.options = ['--display-cop-names']
+end
+
+# Task to run tests with coverage
+desc 'Run tests with coverage report'
+task :coverage do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['spec'].invoke
+  puts "\nCoverage report generated in coverage/index.html"
+end
+
+# Task to clean up generated files
+desc 'Clean up generated files'
+task :clean do
+  FileUtils.rm_f('tasks.json')
+  FileUtils.rm_rf('coverage')
+  FileUtils.rm_f('.rspec_status')
+  puts 'Cleaned up generated files'
+end
+
+desc 'Display project information'
+task :info do
+  puts 'Task Manager Lab - TDD Project'
+  puts '=' * 40
+  puts 'Available rake tasks:'
+  puts '  rake          - Run tests and rubocop'
+  puts '  rake spec     - Run RSpec tests'
+  puts '  rake rubocop  - Run Rubocop linter'
+  puts '  rake coverage - Run tests with coverage'
+  puts '  rake clean    - Clean up generated files'
+  puts '  rake info     - Show this information'
+end

@@ -1,0 +1,46 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+
+# Allow longer lines in specs
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+# Allow longer methods in specs
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'spec/**/*'
+
+# Allow longer blocks in specs (for describe/context blocks)
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'Rakefile'
+
+# Prefer double quotes for consistency
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Allow both lambda styles
+Style/Lambda:
+  Enabled: false
+
+# Documentation is good but not required for this lab
+Style/Documentation:
+  Enabled: false
+
+# Allow more complex examples in specs
+Metrics/AbcSize:
+  Exclude:
+    - 'spec/**/*'
+
+# Allow semantic blocks
+Style/BlockDelimiters:
+  Enabled: false

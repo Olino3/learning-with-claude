@@ -1,0 +1,31 @@
+# Task Manager specific
+tasks.json
+test_*.json
+
+# RSpec
+.rspec_status
+spec/examples.txt
+
+# Coverage reports
+coverage/
+.coverage
+
+# Ruby
+*.gem
+*.rbc
+.bundle
+.config
+vendor/
+.yardoc
+Gemfile.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
