@@ -36,6 +36,22 @@ intermediate-lab/
 
 ## 🚀 Running the Lab
 
+### Option 1: Progressive Building (Recommended)
+
+Follow the step-by-step guide to build the system incrementally:
+
+👉 **[Follow the Progressive Steps Guide](STEPS.md)**
+
+This guide breaks down the lab into 6 manageable steps:
+1. Basic Models - Create User, Post, Comment classes
+2. Add Timestamps - Include module for created_at/updated_at
+3. Add Validation - Use lambdas and closures for validation rules
+4. Add Slugs - Use prepend for automatic slug generation
+5. Add Metaprogramming - Dynamic finder methods
+6. Add Query Builder - Chainable query interface
+
+### Option 2: Run Complete System
+
 ```bash
 cd ruby/labs/intermediate-lab
 ruby blog_system.rb

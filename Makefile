@@ -39,13 +39,13 @@ help:
 up:
 	@echo "Starting Ruby development environment with Tilt..."
 	@echo "Note: This requires Tilt to be installed (https://tilt.dev)"
-	@echo "If you don't have Tilt, use: docker-compose up -d"
+	@echo "If you don't have Tilt, use: docker compose up -d"
 	tilt up
 
 # Alternative: Start without Tilt
 up-docker:
 	@echo "Starting Ruby development environment with Docker Compose..."
-	docker-compose up -d
+	docker compose up -d
 	@echo ""
 	@echo "✅ Environment started!"
 	@echo "   Run 'make shell' to open a shell"
@@ -54,38 +54,38 @@ up-docker:
 # Stop all containers
 down:
 	@echo "Stopping development environment..."
-	docker-compose down
+	docker compose down
 
 # Restart containers
 restart:
 	@echo "Restarting development environment..."
-	docker-compose restart
+	docker compose restart
 
 # View logs
 logs:
-	docker-compose logs -f
+	docker compose logs -f
 
 # Build or rebuild containers
 build:
 	@echo "Building containers..."
-	docker-compose build
+	docker compose build
 
 # Clean up containers and volumes
 clean:
 	@echo "Cleaning up containers and volumes..."
-	docker-compose down -v
+	docker compose down -v
 	@echo "✅ Cleanup complete!"
 
 # Open bash shell in ruby-scripts container
 shell:
 	@echo "Opening bash shell in ruby-scripts container..."
-	docker-compose exec ruby-scripts bash
+	docker compose exec ruby-scripts bash
 
 # Start interactive Ruby REPL
 repl:
 	@echo "Starting Ruby REPL (IRB)..."
 	@echo "Type 'exit' to quit the REPL"
-	docker-compose exec ruby-scripts irb
+	docker compose exec ruby-scripts irb
 
 # Run a specific Ruby script
 # Usage: make run-script SCRIPT=scripts/hello.rb

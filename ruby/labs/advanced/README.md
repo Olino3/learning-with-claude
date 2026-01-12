@@ -18,7 +18,7 @@ Build powerful Domain Specific Languages:
 
 **Concepts**: `instance_eval`, `method_missing`, `define_method`, method chaining
 
-👉 **[Start Lab 1](dsl-builder-lab/README.md)**
+👉 **[Start Lab 1](dsl-builder-lab/README.md)** | **[Progressive Steps Guide](dsl-builder-lab/STEPS.md)**
 
 ---
 
@@ -32,7 +32,7 @@ Build high-performance concurrent processors:
 
 **Concepts**: Threads, Mutexes, Ractors, Fibers, thread safety
 
-👉 **[Start Lab 2](concurrent-processor-lab/README.md)**
+👉 **[Start Lab 2](concurrent-processor-lab/README.md)** | **[Progressive Steps Guide](concurrent-processor-lab/STEPS.md)**
 
 ---
 
@@ -46,7 +46,7 @@ Master performance analysis and optimization:
 
 **Concepts**: Benchmark, memory profiling, optimization patterns
 
-👉 **[Start Lab 3](performance-optimizer-lab/README.md)**
+👉 **[Start Lab 3](performance-optimizer-lab/README.md)** | **[Progressive Steps Guide](performance-optimizer-lab/STEPS.md)**
 
 ---
 
@@ -61,7 +61,7 @@ Build a minimal web framework:
 
 **Concepts**: Singleton, Factory, Service Objects, Decorator, Builder
 
-👉 **[Start Lab 4](mini-framework-lab/README.md)**
+👉 **[Start Lab 4](mini-framework-lab/README.md)** | **[Progressive Steps Guide](mini-framework-lab/STEPS.md)**
 
 ---
 
