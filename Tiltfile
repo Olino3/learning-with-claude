@@ -4,9 +4,10 @@
 # Load the docker-compose configuration
 docker_compose('./docker-compose.yml')
 
-# Watch for changes in Ruby files and automatically sync them to containers
+# Watch for changes in Ruby and Dart files and automatically sync them to containers
 # This enables live reloading without rebuilding containers
 watch_file('./ruby/')
+watch_file('./dart/')
 watch_file('./scripts/')
 watch_file('./Dockerfile')
 
@@ -50,6 +51,24 @@ dc_resource('sinatra-web',
     ]
 )
 
+# Configure the dart-scripts container
+dc_resource('dart-scripts',
+    labels=['dart-dev'],
+    links=[
+        link('https://dart.dev/guides', 'Dart Documentation'),
+        link('https://api.dart.dev/', 'Dart API Reference')
+    ]
+)
+
+# Configure the dart-repl container
+dc_resource('dart-repl',
+    labels=['dart-interactive'],
+    links=[
+        link('https://dart.dev/guides', 'Dart Documentation'),
+        link('https://dart.dev/tools/dart-repl', 'Dart REPL Guide')
+    ]
+)
+
 # Configure database and cache services
 dc_resource('postgres',
     labels=['database'],
@@ -64,18 +83,25 @@ dc_resource('redis',
 # Print helpful instructions when Tilt starts
 print("""
 ╔══════════════════════════════════════════════════════════════╗
-║          Ruby Learning Environment with Tilt                 ║
+║       Ruby & Dart Learning Environment with Tilt             ║
 ╚══════════════════════════════════════════════════════════════╝
 
-🚀 Your Ruby development environment is starting!
+🚀 Your multi-language development environment is starting!
 
 📦 Available Services:
-  • ruby-scripts - For running Ruby scripts and applications
-  • ruby-repl    - Interactive Ruby interpreter (IRB)
-  • ruby-advanced - For advanced profiling and concurrency
-  • sinatra-web  - For running Sinatra web applications
-  • postgres     - PostgreSQL database (port 5432)
-  • redis        - Redis cache/session store (port 6379)
+  Ruby:
+    • ruby-scripts - For running Ruby scripts and applications
+    • ruby-repl    - Interactive Ruby interpreter (IRB)
+    • ruby-advanced - For advanced profiling and concurrency
+    • sinatra-web  - For running Sinatra web applications
+
+  Dart:
+    • dart-scripts - For running Dart scripts and applications
+    • dart-repl    - Interactive Dart REPL
+
+  Infrastructure:
+    • postgres     - PostgreSQL database (port 5432)
+    • redis        - Redis cache/session store (port 6379)
 
 🌐 Web Application Ports:
   • http://localhost:4567 - Default Sinatra port
@@ -83,18 +109,30 @@ print("""
   • http://localhost:3000 - Alternative web port
 
 🔧 Quick Commands:
-  • Run a script:     docker-compose exec ruby-scripts ruby scripts/hello.rb
-  • Open IRB:         docker-compose exec ruby-repl irb
-  • Bash shell:       docker-compose exec ruby-scripts bash
-  • Run Sinatra app:  docker-compose exec sinatra-web ruby ruby/tutorials/sinatra/1-hello-sinatra/app.rb
-  • Connect to DB:    docker-compose exec postgres psql -U postgres -d sinatra_dev
-  • Redis CLI:        docker-compose exec redis redis-cli
+  Ruby:
+    • Run a script:     docker-compose exec ruby-scripts ruby scripts/hello.rb
+    • Open IRB:         docker-compose exec ruby-repl irb
+    • Bash shell:       docker-compose exec ruby-scripts bash
+    • Run Sinatra app:  docker-compose exec sinatra-web ruby ruby/tutorials/sinatra/1-hello-sinatra/app.rb
+
+  Dart:
+    • Run a script:     docker-compose exec dart-scripts dart run scripts/hello.dart
+    • Open Dart REPL:   docker-compose exec dart-repl dart repl
+    • Bash shell:       docker-compose exec dart-scripts bash
+
+  Database:
+    • Connect to DB:    docker-compose exec postgres psql -U postgres -d sinatra_dev
+    • Redis CLI:        docker-compose exec redis redis-cli
 
 📝 Next Steps:
-  1. Check the Tilt UI for service status
-  2. Start with /ruby/tutorials/1-Getting-Started
-  3. Try Sinatra tutorials in /ruby/tutorials/sinatra
-  4. Explore hands-on labs in /ruby/labs/sinatra
+  Ruby:
+    1. Start with /ruby/tutorials/1-Getting-Started
+    2. Try Sinatra tutorials in /ruby/tutorials/sinatra
+    3. Explore hands-on labs in /ruby/labs/sinatra
+
+  Dart:
+    1. Start with /dart/tutorials/1-Getting-Started
+    2. Explore Dart examples and exercises
 
 Happy learning! 🎉
 """)
