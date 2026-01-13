@@ -1,6 +1,6 @@
-# Ruby Development Environment
-# This Dockerfile creates a development environment for learning Ruby
-# It includes Ruby 3.4.7 and common development tools
+# Multi-language Development Environment
+# This Dockerfile creates a development environment for learning Ruby and Dart
+# It includes Ruby 3.4.7, Dart SDK, and common development tools
 
 FROM ruby:3.4.7-slim
 
@@ -55,8 +55,24 @@ RUN gem install memory_profiler benchmark-ips stackprof rubocop
 ENV RUBYOPT="-W0"
 ENV BUNDLE_PATH="/usr/local/bundle"
 
+# Install Dart SDK
+# Download and install Dart from the official repository
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    wget \
+    gnupg \
+    && wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/dart.gpg \
+    && echo 'deb [signed-by=/usr/share/keyrings/dart.gpg arch=amd64] https://storage.googleapis.com/download.dartlang.org/linux/debian stable main' | tee /etc/apt/sources.list.d/dart_stable.list \
+    && apt-get update \
+    && apt-get install -y dart \
+    && rm -rf /var/lib/apt/lists/*
+
+# Add Dart to PATH
+ENV PATH="/usr/lib/dart/bin:${PATH}"
+ENV PATH="/root/.pub-cache/bin:${PATH}"
+
 # Create directories for tutorials, labs, and scripts
-RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/scripts
+RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/dart/tutorials /app/dart/labs /app/dart/reading /app/scripts
 
 # Copy the repository content
 COPY . /app/

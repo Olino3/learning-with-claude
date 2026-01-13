@@ -100,6 +100,45 @@ services:
       - postgres
       - redis
 
+  # Container for running Dart scripts
+  # Use this for executing .dart files and running applications
+  dart-scripts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dart-scripts
+    volumes:
+      # Mount the entire repository for live code updates
+      - .:/app
+      # Persist Dart package cache
+      - dart-pub-cache:/root/.pub-cache
+    working_dir: /app
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    networks:
+      - ruby-network
+
+  # Interactive Dart REPL container
+  # Use this for experimenting with Dart code interactively
+  dart-repl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dart-repl
+    volumes:
+      # Mount the entire repository for access to code examples
+      - .:/app
+      # Persist Dart package cache
+      - dart-pub-cache:/root/.pub-cache
+    working_dir: /app
+    # Start with an interactive Dart shell
+    command: dart repl
+    stdin_open: true
+    tty: true
+    networks:
+      - ruby-network
+
   # PostgreSQL database for Sinatra labs
   postgres:
     image: postgres:16-alpine
@@ -142,6 +181,9 @@ volumes:
     driver: local
   # Separate volume for advanced labs
   ruby-advanced-bundle:
+    driver: local
+  # Dart pub cache persistence
+  dart-pub-cache:
     driver: local
   # PostgreSQL data persistence
   postgres-data:
