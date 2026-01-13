@@ -6,7 +6,7 @@ Welcome to Dart's null safety tutorial! This is one of Dart's most powerful feat
 
 By the end of this tutorial, you will:
 - Understand nullable vs non-nullable types
-- Master null-aware operators (??,'??, ?., !)
+- Master null-aware operators (??, ??=, ?., !)
 - Use late variables effectively
 - Apply the required keyword
 - Understand flow analysis
