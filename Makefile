@@ -108,7 +108,7 @@ dart-shell:
 # Start interactive Dart REPL
 dart-repl:
 	@echo "Starting Dart REPL..."
-	@echo "Type 'exit' or press Ctrl+D to quit the REPL"
+	@echo "Type ':quit' or press Ctrl+D to quit the REPL"
 	docker-compose exec dart-scripts dart repl
 
 # Run a specific Dart script
