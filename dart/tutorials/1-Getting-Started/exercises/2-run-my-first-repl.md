@@ -167,7 +167,7 @@ numbers.where((n) => n > 2).toList()
 When you're done experimenting, exit the REPL by typing:
 
 ```dart
-exit
+:quit
 ```
 
 Or press `Ctrl+D`
