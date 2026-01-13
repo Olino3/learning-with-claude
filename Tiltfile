@@ -65,7 +65,7 @@ dc_resource('dart-repl',
     labels=['dart-interactive'],
     links=[
         link('https://dart.dev/guides', 'Dart Documentation'),
-        link('https://dart.dev/tools/dart-repl', 'Dart REPL Guide')
+        link('https://dart.dev/tools/dart-tool#dart-repl', 'Dart REPL Guide')
     ]
 )
 
