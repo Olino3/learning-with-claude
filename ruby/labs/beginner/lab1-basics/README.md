@@ -13,7 +13,44 @@ By the end of this lab, you'll understand:
 - Ruby's string interpolation
 - Method chaining basics
 
-## 📋 What You'll Build
+## � Running the Lab
+
+### Step-by-Step Learning (Recommended)
+
+Follow the progressive steps in this README to build the book library system incrementally. Each step builds on the previous one.
+
+**Estimated Time**: 1-2 hours
+
+### Quick Start with Make
+
+Run the starter code:
+```bash
+make beginner-lab NUM=1
+```
+
+This runs `starter.rb` which provides a template to start coding.
+
+### Run the Solution
+
+To see the complete working solution:
+```bash
+# View the solution file
+cat ruby/labs/beginner/lab1-basics/solution.rb
+
+# Or run it directly
+make run-script SCRIPT=ruby/labs/beginner/lab1-basics/solution.rb
+```
+
+### How to Practice
+
+1. **Read each step** in this README
+2. **Write the code** in `starter.rb` (or create your own file)
+3. **Test your code** by running `make beginner-lab NUM=1`
+4. **Compare with solution** in `solution.rb` if you get stuck
+
+---
+
+## �📋 What You'll Build
 
 A book library system with:
 

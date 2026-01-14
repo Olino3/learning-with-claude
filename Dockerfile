@@ -20,6 +20,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     less \
     sqlite3 \
     libsqlite3-dev \
+    pkg-config \
     postgresql-client \
     libpq-dev \
     redis-tools \

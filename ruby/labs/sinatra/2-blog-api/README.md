@@ -37,41 +37,41 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
-### Option 1: Progressive Building (Recommended)
+### Step-by-Step Guide (Recommended)
 
-Follow the step-by-step guide to build the API incrementally:
+Start from scratch and build the API incrementally through 9 steps:
 
-👉 **[Follow the Progressive Steps Guide →](STEPS.md)**
+👉 **[Start with Step 1 →](steps/1/README.md)**
 
-This guide breaks the lab into 9 manageable steps:
-1. Basic API Setup
-2. Add Database with ActiveRecord
-3. User Model with Authentication
-4. JWT Authentication
-5. Post Model and CRUD
-6. Comments System
-7. Tagging System
-8. Pagination
-9. Error Handling
+Each step builds on the previous one:
+1. Basic API Setup (20 min)
+2. Add Database with ActiveRecord (25 min)
+3. User Model with Authentication (30 min)
+4. JWT Authentication (35 min)
+5. Post Model and CRUD (30 min)
+6. Comments System (25 min)
+7. Tagging System (20 min)
+8. Pagination (15 min)
+9. Error Handling (15 min)
 
-### Option 2: Run Complete Application
+**Total Time**: ~3-4 hours
+
+### Quick Start with Make
 
 ```bash
-# Install dependencies
-gem install sinatra activerecord pg jwt bcrypt
-
-# Set up PostgreSQL database
-createdb blog_api_dev
-
-# Run migrations (will be created automatically on first run)
-# Or use the provided setup script
-
-# Run the application
-cd ruby/labs/sinatra/2-blog-api
-ruby app.rb
-
-# API will be available at http://localhost:4567
+make sinatra-lab NUM=2
 ```
+
+This command:
+- Starts PostgreSQL and the application in Docker
+- Opens the API at http://localhost:4567
+- Follow [Step 1](steps/1/README.md) to begin building
+
+### Run Complete Solution
+
+To see the finished API:
+
+👉 **[View Solution Guide →](solution/README.md)**
 
 ## 🎓 Features Implemented
 

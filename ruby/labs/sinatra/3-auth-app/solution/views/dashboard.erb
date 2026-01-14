@@ -1,0 +1,112 @@
+<div class="dashboard">
+  <div class="page-header">
+    <h1>Welcome, <%= h(current_user.name) %>! 👋</h1>
+    <p class="subtitle">Here's your personal dashboard</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <div class="stat-label">Member Since</div>
+        <div class="stat-value"><%= format_date(current_user.created_at) %></div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🔐</div>
+      <div class="stat-content">
+        <div class="stat-label">Last Login</div>
+        <div class="stat-value">
+          <%= current_user.last_login_at ? time_ago_in_words(current_user.last_login_at) : 'First login' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📧</div>
+      <div class="stat-content">
+        <div class="stat-label">Email</div>
+        <div class="stat-value"><%= h(current_user.email) %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-section">
+      <h2>Quick Actions</h2>
+      <div class="action-list">
+        <a href="/profile" class="action-item">
+          <span class="action-icon">👤</span>
+          <span class="action-content">
+            <strong>View Profile</strong>
+            <small>See your account information</small>
+          </span>
+          <span class="action-arrow">→</span>
+        </a>
+
+        <a href="/profile/edit" class="action-item">
+          <span class="action-icon">✏️</span>
+          <span class="action-content">
+            <strong>Edit Profile</strong>
+            <small>Update your information</small>
+          </span>
+          <span class="action-arrow">→</span>
+        </a>
+
+        <a href="/logout" class="action-item">
+          <span class="action-icon">🚪</span>
+          <span class="action-content">
+            <strong>Logout</strong>
+            <small>Sign out of your account</small>
+          </span>
+          <span class="action-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <h2>Account Security</h2>
+      <div class="security-status">
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          <span>Password is encrypted with BCrypt</span>
+        </div>
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          <span>Session is secure</span>
+        </div>
+        <div class="security-item">
+          <span class="security-icon">✓</span>
+          <span>CSRF protection enabled</span>
+        </div>
+        <% if current_user.remember_token %>
+          <div class="security-item">
+            <span class="security-icon">✓</span>
+            <span>"Remember me" is active</span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="security-tip">
+        <strong>Security Tip:</strong> Always logout when using shared computers.
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h2>About This Lab</h2>
+    <p>
+      This authentication system demonstrates secure user management with Sinatra.
+      It includes registration, login, session management, protected routes, and
+      security features like BCrypt password hashing and CSRF protection.
+    </p>
+    <div class="tech-badges">
+      <span class="badge">BCrypt Password Hashing</span>
+      <span class="badge">Session Management</span>
+      <span class="badge">CSRF Protection</span>
+      <span class="badge">Remember Me</span>
+      <span class="badge">Protected Routes</span>
+    </div>
+  </div>
+</div>

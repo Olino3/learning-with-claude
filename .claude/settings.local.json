@@ -3,7 +3,13 @@
     "allow": [
       "Bash(docker compose:*)",
       "Bash(make run-script:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(for i in 2 3 4 5 6 7 8)",
+      "Bash(do cp /home/olino3/git/learning-with-claude/ruby/labs/sinatra/3-auth-app/steps/step-01/public/css/style.css /home/olino3/git/learning-with-claude/ruby/labs/sinatra/3-auth-app/steps/step-0$i/public/css/)",
+      "Bash(done)",
+      "Bash(for:*)",
+      "Bash(do cp /home/olino3/git/learning-with-claude/ruby/labs/sinatra/4-realtime-chat/steps/step-01/public/css/style.css /home/olino3/git/learning-with-claude/ruby/labs/sinatra/4-realtime-chat/steps/step-0$i/public/css/)",
+      "Bash(do cp /home/olino3/git/learning-with-claude/ruby/labs/sinatra/4-realtime-chat/steps/step-01/views/*.erb /home/olino3/git/learning-with-claude/ruby/labs/sinatra/4-realtime-chat/steps/step-0$i/views/)"
     ]
   },
   "enableAllProjectMcpServers": true,

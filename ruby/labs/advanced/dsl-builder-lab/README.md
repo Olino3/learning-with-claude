@@ -16,30 +16,59 @@ This lab demonstrates:
 ```
 dsl-builder-lab/
 ├── README.md (this file)
-├── lib/
-│   ├── config_dsl.rb      # Configuration DSL implementation
-│   ├── route_mapper.rb    # Route mapping DSL (Rails-style)
-│   └── query_builder.rb   # SQL query builder DSL
-├── examples/
-│   ├── config_example.rb  # Configuration DSL usage
-│   ├── routes_example.rb  # Route mapping examples
-│   └── query_example.rb   # Query builder examples
-└── dsl_demo.rb            # Main demo application
+├── STEPS.md                   # Step-by-step build guide
+├── solution/                  # Complete working solution
+│   ├── RUN.md                 # How to run the solution
+│   ├── dsl_demo.rb            # Main demo application
+│   └── lib/
+│       ├── config_dsl.rb      # Configuration DSL implementation
+│       ├── route_mapper.rb    # Route mapping DSL (Rails-style)
+│       └── query_builder.rb   # SQL query builder DSL
+└── steps/                     # Step-by-step implementation
+    ├── step-01/               # Intro to DSLs and instance_eval
+    ├── step-02/               # Config DSL basic structure
+    ├── step-03/               # Nested configuration blocks
+    ├── step-04/               # Route Mapper basic routes
+    ├── step-05/               # Resources and namespaces
+    ├── step-06/               # Query Builder chaining
+    ├── step-07/               # WHERE conditions
+    ├── step-08/               # Aggregate functions
+    └── step-09/               # Advanced method_missing
 ```
 
 ## 🚀 Running the Lab
 
+### Quick Start
+
+Run the complete DSL demo:
+
 ```bash
-cd ruby/labs/advanced/dsl-builder-lab
-ruby dsl_demo.rb
+make advanced-lab NUM=1
 ```
 
-Or run individual examples:
+### Learning Approaches
+
+**Option 1: Study Complete System** (Quick Overview)
+- Run the complete system with `make advanced-lab NUM=1`
+- Review the code in `solution/dsl_demo.rb` and `solution/lib/` directory
+- See all DSL patterns working together
+
+**Option 2: Progressive Building** (Recommended for Learning)
+- Follow the step-by-step guide in the `steps/` directory
+- Each step introduces new DSL concepts
+- Run each step's demo: `ruby steps/step-01/step_demo.rb`
+- Steps: instance_eval basics → Config DSL → Route Mapper → Query Builder
+
+**Option 3: Read Solution Guide**
+- Check [solution/README.md](solution/README.md) for detailed implementation notes
+- Review code organization and patterns used
+
+### Manual Execution
+
+If you prefer to run manually:
 
 ```bash
-ruby examples/config_example.rb
-ruby examples/routes_example.rb
-ruby examples/query_example.rb
+docker compose exec ruby-env ruby ruby/labs/advanced/dsl-builder-lab/solution/dsl_demo.rb
 ```
 
 ## 🎓 Concepts Demonstrated

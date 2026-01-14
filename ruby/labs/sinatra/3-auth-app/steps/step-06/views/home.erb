@@ -1,0 +1,12 @@
+<div class="hero">
+  <h1>Welcome to Auth App</h1>
+  <p class="lead">A secure authentication system built with Sinatra.</p>
+  <div class="hero-actions">
+    <% if logged_in? %>
+      <a href="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+    <% else %>
+      <a href="/register" class="btn btn-primary btn-lg">Get Started</a>
+      <a href="/login" class="btn btn-secondary btn-lg">Login</a>
+    <% end %>
+  </div>
+</div>

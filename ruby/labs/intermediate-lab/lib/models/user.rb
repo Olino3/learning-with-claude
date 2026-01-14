@@ -17,7 +17,8 @@ module BlogSystem
 
     # Validation rules (Tutorial 14: Metaprogramming DSL)
     validates :name, presence: true, length: { min: 2 }
-    validates :email, presence: true, ->(email) { email.include?("@") }
+    validates :email, presence: true
+    validates :email, ->(email) { email.include?("@") }
 
     def initialize(name:, email:, bio: nil)
       super()  # Call Timestampable#initialize

@@ -14,19 +14,58 @@ Build a high-performance concurrent task processing system using threads, Ractor
 
 ```
 concurrent-processor-lab/
-├── README.md
-├── lib/
-│   ├── worker_pool.rb     # Thread-based worker pool
-│   ├── ractor_processor.rb  # Ractor-based parallel processor
-│   └── fiber_scheduler.rb # Fiber-based task scheduler
-└── concurrent_demo.rb     # Main demo
+├── README.md (this file)
+├── STEPS.md                   # Step-by-step build guide
+├── solution/                  # Complete working solution
+│   ├── RUN.md                 # How to run the solution
+│   ├── concurrent_demo.rb     # Main demo application
+│   └── lib/
+│       ├── worker_pool.rb     # Thread-based worker pool
+│       ├── ractor_processor.rb  # Ractor-based parallel processor
+│       └── fiber_scheduler.rb # Fiber-based task scheduler
+└── steps/                     # Step-by-step implementation
+    ├── step-01/               # Basic Thread Pool
+    ├── step-02/               # Thread Safety with Mutex
+    ├── step-03/               # Result Collection
+    ├── step-04/               # Ractor Basics
+    ├── step-05/               # Ractor Message Passing
+    ├── step-06/               # Fiber Basics
+    └── step-07/               # Fiber Scheduler
 ```
 
 ## 🚀 Running the Lab
 
+### Quick Start
+
+Run the complete concurrent processor demo:
+
 ```bash
-cd ruby/labs/advanced/concurrent-processor-lab
-ruby concurrent_demo.rb
+make advanced-lab NUM=2
+```
+
+### Learning Approaches
+
+**Option 1: Study Complete System** (Quick Overview)
+- Run the complete system with `make advanced-lab NUM=2`
+- Review the code in `solution/concurrent_demo.rb` and `solution/lib/` directory
+- See threads, ractors, and fibers working together
+
+**Option 2: Progressive Building** (Recommended for Learning)
+- Follow the step-by-step guide in the `steps/` directory
+- Each step introduces new concurrency concepts
+- Run each step's demo: `ruby steps/step-01/step_demo.rb`
+- Steps: Thread Pool → Mutexes → Ractors → Fibers
+
+**Option 3: Read Solution Guide**
+- Check [solution/README.md](solution/README.md) for detailed implementation notes
+- Review concurrency patterns and thread safety approaches
+
+### Manual Execution
+
+If you prefer to run manually:
+
+```bash
+docker compose exec ruby-env ruby ruby/labs/advanced/concurrent-processor-lab/solution/concurrent_demo.rb
 ```
 
 ## 🐍 For Python Developers

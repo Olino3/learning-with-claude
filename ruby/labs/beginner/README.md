@@ -1,6 +1,65 @@
 # Beginner Ruby Labs
 
-Welcome to the beginner Ruby labs! These hands-on exercises will help you build a solid foundation in Ruby programming.
+Progressive hands-on labs to learn Ruby fundamentals through building real projects.
+
+## 📚 Lab Overview
+
+| Lab | Topic | Project | Time | Difficulty |
+|-----|-------|---------|------|------------|
+| **Lab 1** | [Ruby Basics & OOP](lab1-basics/README.md) | Book Library System | 1-2h | ⭐ Beginner |
+| **Lab 2** | [Collections & Iteration](lab2-collections/README.md) | Contact Manager | 1.5-2.5h | ⭐⭐ Beginner+ |
+| **Lab 3** | [Methods & Modules](lab3-methods-modules/README.md) | Calculator with Modules | 2-3h | ⭐⭐ Intermediate |
+
+## 🚀 Quick Start
+
+### Run a Lab
+
+```bash
+# Lab 1: Ruby Basics
+make beginner-lab NUM=1
+
+# Lab 2: Collections
+make beginner-lab NUM=2
+
+# Lab 3: Methods & Modules
+make beginner-lab NUM=3
+```
+
+### Alternative: Run Manually
+
+```bash
+# Run any Ruby file
+make run-script SCRIPT=ruby/labs/beginner/lab1-basics/solution.rb
+```
+
+## 📖 Recommended Learning Path
+
+1. **Start with Lab 1** if you're new to Ruby or coming from Python
+2. **Progress to Lab 2** to master Ruby's powerful collection methods
+3. **Complete Lab 3** to learn modular design and advanced methods
+
+Each lab includes:
+- ✅ Clear learning objectives
+- ✅ Step-by-step instructions
+- ✅ Python comparisons (for Python developers)
+- ✅ Complete working solutions
+- ✅ Practice exercises
+
+## 💡 Learning Tips
+
+- **Code along** with each step—don't just read!
+- **Experiment** with the examples in IRB: `make repl`
+- **Compare** your code with the solutions
+- **Take breaks** between labs to let concepts sink in
+
+## 🎯 After Completing These Labs
+
+Move on to more advanced topics:
+- **Sinatra Labs**: Build web applications → [Start here](../sinatra/1-todo-app/README.md)
+- **Intermediate Lab**: Blog system → [Start here](../intermediate-lab/README.md)
+- **Advanced Labs**: DSLs, metaprogramming → [Start here](../advanced/README.md)
+
+---
 
 ## 🎯 Overview
 

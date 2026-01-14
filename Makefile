@@ -1,5 +1,6 @@
 .PHONY: help up down restart logs build clean shell repl run-script \
         sinatra-shell sinatra-start sinatra-stop sinatra-logs sinatra-tutorial sinatra-lab \
+        beginner-lab intermediate-lab advanced-lab \
         db-console redis-cli status \
         dart-shell dart-repl run-dart
 
@@ -20,6 +21,11 @@ help:
 	@echo "  make repl            - Start an interactive Ruby REPL (IRB)"
 	@echo "  make run-script      - Run a Ruby script"
 	@echo "                         Usage: make run-script SCRIPT=scripts/hello.rb"
+	@echo "  make beginner-lab    - Run a beginner lab (1-3)"
+	@echo "                         Usage: make beginner-lab NUM=1"
+	@echo "  make intermediate-lab - Run the intermediate lab (Blog System)"
+	@echo "  make advanced-lab    - Run an advanced lab (1-4)"
+	@echo "                         Usage: make advanced-lab NUM=1"
 	@echo ""
 	@echo "🎯 Dart Commands:"
 	@echo "  make dart-shell      - Open a bash shell in dart-env container"
@@ -37,6 +43,7 @@ help:
 	@echo "                         Usage: make sinatra-tutorial NUM=1"
 	@echo "  make sinatra-lab     - Run a Sinatra lab by number"
 	@echo "                         Usage: make sinatra-lab NUM=1"
+	@echo "  make websocket-server - Start WebSocket server (for lab 4)"
 	@echo ""
 	@echo "🗄️  Database Commands:"
 	@echo "  make db-console      - Open PostgreSQL interactive console"
@@ -49,10 +56,16 @@ help:
 	@echo "  make clean           - Remove containers and volumes"
 	@echo ""
 	@echo "📖 Quick Start Guides:"
-	@echo "  Ruby Basics:    Start with ruby/tutorials/1-Getting-Started/"
-	@echo "  Sinatra Web:    Start with ruby/tutorials/sinatra/1-hello-sinatra/"
-	@echo "  Sinatra Labs:   Practice with ruby/labs/sinatra/1-todo-app/"
-	@echo "  Dart Basics:    Start with dart/tutorials/1-Getting-Started/"
+	@echo "  Ruby Basics:       Start with ruby/tutorials/1-Getting-Started/"
+	@echo "  Beginner Labs:     Practice with ruby/labs/beginner/lab1-basics/"
+	@echo "                     Run with: make beginner-lab NUM=1"
+	@echo "  Intermediate Lab:  Build a blog system → make intermediate-lab"
+	@echo "  Advanced Labs:     Master advanced concepts with ruby/labs/advanced/"
+	@echo "                     Run with: make advanced-lab NUM=1"
+	@echo "  Sinatra Web:       Start with ruby/tutorials/sinatra/1-hello-sinatra/"
+	@echo "  Sinatra Labs:      Practice with ruby/labs/sinatra/1-todo-app/"
+	@echo "                     Run with: make sinatra-lab NUM=1"
+	@echo "  Dart Basics:       Start with dart/tutorials/1-Getting-Started/"
 	@echo ""
 	@echo "🌐 Web Application Ports (when running Sinatra):"
 	@echo "  http://localhost:4567  - Default Sinatra port"
@@ -232,6 +245,14 @@ sinatra-logs:
 	@echo "Viewing sinatra-web logs (Ctrl+C to exit)..."
 	docker compose logs -f sinatra-web
 
+# Start WebSocket server (for real-time chat lab)
+websocket-server:
+	@echo "🔌 Starting WebSocket server for real-time chat lab..."
+	@echo "📡 Server will run on ws://localhost:9292"
+	@echo "💡 Press Ctrl+C to stop"
+	@echo ""
+	docker compose exec -w /app/ruby/labs/sinatra/4-realtime-chat/solution sinatra-web ruby chat_server.rb
+
 # Run a Sinatra tutorial by number
 # Usage: make sinatra-tutorial NUM=1
 sinatra-tutorial:
@@ -299,11 +320,17 @@ endif
 		ls -d ruby/labs/sinatra/*/ | sed 's/ruby\/labs\/sinatra\//  /g'; \
 		exit 1; \
 	fi; \
-	MAIN_FILE=$$(ls $$LAB_DIR/app.rb 2>/dev/null | head -1); \
+	SOLUTION_DIR="$$LAB_DIR/solution"; \
+	if [ -d "$$SOLUTION_DIR" ]; then \
+		WORK_DIR="$$SOLUTION_DIR"; \
+	else \
+		WORK_DIR="$$LAB_DIR"; \
+	fi; \
+	MAIN_FILE=$$(ls $$WORK_DIR/app.rb 2>/dev/null | head -1); \
 	if [ -z "$$MAIN_FILE" ]; then \
-		echo "❌ No app.rb found in $$LAB_DIR"; \
+		echo "❌ No app.rb found in $$WORK_DIR"; \
 		echo "Available files:"; \
-		ls $$LAB_DIR/*.rb 2>/dev/null; \
+		ls $$WORK_DIR/*.rb 2>/dev/null; \
 		exit 1; \
 	fi; \
 	echo "🧪 Starting Lab $(NUM): $$LAB_DIR"; \
@@ -311,9 +338,109 @@ endif
 	echo "🌐 Access at: http://localhost:4567"; \
 	echo "💡 Press Ctrl+C to stop the server"; \
 	echo "📖 Read the lab guide: $$LAB_DIR/README.md"; \
-	echo "📝 Follow the steps: $$LAB_DIR/STEPS.md"; \
+	echo "📝 Follow step-by-step: $$LAB_DIR/steps/1/README.md"; \
 	echo ""; \
-	docker compose exec -w /app/$$LAB_DIR sinatra-web rackup -o 0.0.0.0 -p 4567
+	if [ "$(NUM)" = "4" ]; then \
+		echo "🔌 Starting WebSocket server (chat_server.rb) on port 9292..."; \
+		docker compose exec -w /app/$$WORK_DIR -d sinatra-web ruby chat_server.rb; \
+		sleep 2; \
+		echo "🌐 Starting web server (app.rb) on port 4567..."; \
+		echo ""; \
+		docker compose exec -w /app/$$WORK_DIR sinatra-web ruby app.rb -o 0.0.0.0; \
+	else \
+		docker compose exec -w /app/$$WORK_DIR sinatra-web ruby app.rb -o 0.0.0.0; \
+	fi
+
+# Run a beginner lab by number
+# Usage: make beginner-lab NUM=1
+beginner-lab:
+ifndef NUM
+	@echo "❌ Error: Please specify a lab number"
+	@echo "Usage: make beginner-lab NUM=1"
+	@echo ""
+	@echo "Available labs:"
+	@echo "  1 - Ruby Basics & OOP (Book Library)"
+	@echo "  2 - Collections & Iteration (Contact Manager)"
+	@echo "  3 - Methods & Modules (Calculator)"
+	@exit 1
+endif
+	@LAB_DIR=$$(ls -d ruby/labs/beginner/lab$(NUM)-* 2>/dev/null | head -1); \
+	if [ -z "$$LAB_DIR" ]; then \
+		echo "❌ Error: Lab $(NUM) not found"; \
+		echo "Available labs:"; \
+		ls -d ruby/labs/beginner/*/ | sed 's/ruby\/labs\/beginner\///g'; \
+		exit 1; \
+	fi; \
+	SOLUTION_FILE="$$LAB_DIR/solution.rb"; \
+	STARTER_FILE="$$LAB_DIR/starter.rb"; \
+	if [ -f "$$SOLUTION_FILE" ]; then \
+		MAIN_FILE="$$SOLUTION_FILE"; \
+		FILE_TYPE="solution"; \
+	elif [ -f "$$STARTER_FILE" ]; then \
+		MAIN_FILE="$$STARTER_FILE"; \
+		FILE_TYPE="starter"; \
+	else \
+		echo "❌ No solution.rb or starter.rb found in $$LAB_DIR"; \
+		exit 1; \
+	fi; \
+	echo "🧪 Running Beginner Lab $(NUM): $$LAB_DIR"; \
+	echo "📂 Running: $$FILE_TYPE.rb"; \
+	echo "📖 Read the lab guide: $$LAB_DIR/README.md"; \
+	echo "💡 Tip: Edit the $$FILE_TYPE.rb file and run again to test your changes"; \
+	echo ""; \
+	docker compose exec ruby-env ruby $$MAIN_FILE
+# Run the intermediate lab (Blog System)
+# Usage: make intermediate-lab
+intermediate-lab:
+	@echo "🏛️ Running Intermediate Lab: Blog Management System";
+	@echo "📚 Concepts: Closures, Object Model, Mixins, Metaprogramming";
+	@echo "📂 Location: ruby/labs/intermediate-lab";
+	@echo "📖 Read the lab guide: ruby/labs/intermediate-lab/README.md";
+	@echo "📝 Progressive steps: ruby/labs/intermediate-lab/STEPS.md";
+	@echo "";
+	docker compose exec ruby-env ruby ruby/labs/intermediate-lab/blog_system.rb
+
+# Run an advanced lab by number
+# Usage: make advanced-lab NUM=1
+advanced-lab:
+ifndef NUM
+	@echo "❌ Error: Please specify a lab number"
+	@echo "Usage: make advanced-lab NUM=1"
+	@echo ""
+	@echo "Available labs:"
+	@echo "  1 - DSL Builder (Metaprogramming & DSLs)"
+	@echo "  2 - Concurrent Task Processor (Threads, Ractors, Fibers)"
+	@echo "  3 - Performance Optimizer (Profiling & Benchmarking)"
+	@echo "  4 - Mini Framework (Design Patterns & Architecture)"
+	@exit 1
+endif
+	@if [ "$(NUM)" = "1" ]; then \
+		LAB_DIR="ruby/labs/advanced/dsl-builder-lab/solution"; \
+		LAB_NAME="DSL Builder"; \
+		LAB_FILE="dsl_demo.rb"; \
+	elif [ "$(NUM)" = "2" ]; then \
+		LAB_DIR="ruby/labs/advanced/concurrent-processor-lab/solution"; \
+		LAB_NAME="Concurrent Task Processor"; \
+		LAB_FILE="concurrent_demo.rb"; \
+	elif [ "$(NUM)" = "3" ]; then \
+		LAB_DIR="ruby/labs/advanced/performance-optimizer-lab/solution"; \
+		LAB_NAME="Performance Optimizer"; \
+		LAB_FILE="performance_demo.rb"; \
+	elif [ "$(NUM)" = "4" ]; then \
+		LAB_DIR="ruby/labs/advanced/mini-framework-lab/solution"; \
+		LAB_NAME="Mini Framework"; \
+		LAB_FILE="framework_demo.rb"; \
+	else \
+		echo "❌ Error: Lab $(NUM) not found"; \
+		echo "Available labs: 1-4"; \
+		exit 1; \
+	fi; \
+	echo "🚀 Running Advanced Lab $(NUM): $$LAB_NAME"; \
+	echo "📂 Location: $$LAB_DIR"; \
+	echo "📖 Read the lab guide: $${LAB_DIR%/solution}/README.md"; \
+	echo "📝 Solution guide: $$LAB_DIR/README.md"; \
+	echo ""; \
+	docker compose exec ruby-env ruby $$LAB_DIR/$$LAB_FILE
 
 # ============================================================================
 # Database Commands

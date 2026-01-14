@@ -11,7 +11,36 @@ Build a calculator with utility modules to learn method design and code reusabil
 - Method visibility (public, private, protected)
 - Module composition patterns
 
-## 📋 What You'll Build
+## � Running the Lab
+
+### Step-by-Step Learning (Recommended)
+
+Follow the progressive steps in this README to build the calculator with modules incrementally.
+
+**Estimated Time**: 2-3 hours
+
+### Quick Start with Make
+
+Run the complete solution:
+```bash
+make beginner-lab NUM=3
+```
+
+This runs `solution.rb` which demonstrates all module patterns.
+
+### How to Practice
+
+1. **Create your own file** (e.g., `my_calculator.rb`) in this directory
+2. **Follow each step** to build the calculator and modules
+3. **Test your code** with:
+   ```bash
+   make run-script SCRIPT=ruby/labs/beginner/lab3-methods-modules/my_calculator.rb
+   ```
+4. **Compare with** `solution.rb` for reference
+
+---
+
+## �📋 What You'll Build
 
 A calculator system with:
 - `Calculator` class with basic operations

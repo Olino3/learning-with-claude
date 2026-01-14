@@ -11,7 +11,36 @@ By the end of this lab, you'll understand:
 - The difference between symbols and strings
 - Hash manipulation and transformation
 
-## 📋 What You'll Build
+## � Running the Lab
+
+### Step-by-Step Learning (Recommended)
+
+Follow the progressive steps in this README to build the contact management system incrementally.
+
+**Estimated Time**: 1.5-2.5 hours
+
+### Quick Start with Make
+
+Run the complete solution:
+```bash
+make beginner-lab NUM=2
+```
+
+This runs `solution.rb` which demonstrates all concepts.
+
+### How to Practice
+
+1. **Create your own file** (e.g., `my_contacts.rb`) in this directory
+2. **Follow each step** in this README to build the system
+3. **Test your code** with:
+   ```bash
+   make run-script SCRIPT=ruby/labs/beginner/lab2-collections/my_contacts.rb
+   ```
+4. **Compare with** `solution.rb` when complete
+
+---
+
+## �📋 What You'll Build
 
 A contact management system with:
 - `Contact` class to represent individual contacts

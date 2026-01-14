@@ -2,6 +2,8 @@
 
 This guide breaks down the blog management system into progressive steps. Build the system incrementally, learning new concepts at each step.
 
+> 💡 **Want to see the complete system first?** Run `make intermediate-lab` to execute the finished application, then return here to build it step-by-step.
+
 ## 🎯 Overview
 
 You'll build a complete blog management system by following these 6 progressive steps:

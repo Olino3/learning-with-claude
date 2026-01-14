@@ -1,0 +1,146 @@
+<div class="page-header">
+  <h2>Edit Task</h2>
+  <a href="/tasks" class="btn btn-secondary">← Back to Tasks</a>
+</div>
+
+<div class="form-container">
+  <form action="/tasks/<%= @task.id %>" method="post" class="task-form">
+    <input type="hidden" name="_method" value="put">
+
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input type="text" id="title" name="title" class="form-control"
+             value="<%= h(@task.title) %>"
+             placeholder="Enter task title"
+             required autofocus>
+      <%= error_for(@task, :title) %>
+      <small class="form-text">Required. Between 2-100 characters.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" class="form-control"
+                rows="4" placeholder="Enter task description (optional)"><%= h(@task.description || '') %></textarea>
+      <%= error_for(@task, :description) %>
+      <small class="form-text">Optional. Up to 500 characters.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="category_id">Category</label>
+      <select id="category_id" name="category_id" class="form-control">
+        <option value="">-- No Category --</option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>"
+                  <%= 'selected' if @task.category_id == category.id %>>
+            <%= h(category.name) %>
+          </option>
+        <% end %>
+      </select>
+      <small class="form-text">Organize your task into a category.</small>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        ✓ Update Task
+      </button>
+      <a href="/tasks" class="btn btn-secondary">
+        Cancel
+      </a>
+    </div>
+  </form>
+
+  <div class="danger-zone">
+    <h3>Danger Zone</h3>
+    <p>Once you delete a task, there is no going back. Please be certain.</p>
+    <form action="/tasks/<%= @task.id %>" method="post" style="display: inline;">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger"
+              onclick="return confirm('Are you sure you want to delete this task? This action cannot be undone.')">
+        🗑️ Delete Task
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="task-info">
+  <h3>Task Information</h3>
+  <div class="info-grid">
+    <div class="info-item">
+      <strong>Status:</strong>
+      <%= task_status_badge(@task) %>
+    </div>
+    <div class="info-item">
+      <strong>Category:</strong>
+      <%= category_badge(@task.category) %>
+    </div>
+    <div class="info-item">
+      <strong>Created:</strong>
+      <%= format_date(@task.created_at) %>
+    </div>
+    <div class="info-item">
+      <strong>Last Updated:</strong>
+      <%= format_date(@task.updated_at) %>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <h4>Quick Actions</h4>
+    <form action="/tasks/<%= @task.id %>/toggle" method="post" style="display: inline;">
+      <button type="submit" class="btn btn-sm <%= @task.completed ? 'btn-warning' : 'btn-success' %>">
+        <%= @task.completed ? '↶ Mark as Incomplete' : '✓ Mark as Complete' %>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .danger-zone {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: #fff5f5;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+  }
+
+  .danger-zone h3 {
+    color: #dc3545;
+    margin-top: 0;
+  }
+
+  .task-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .task-info h3 {
+    margin-top: 0;
+    color: #343a40;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .info-item {
+    padding: 0.5rem;
+  }
+
+  .quick-actions {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .quick-actions h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+</style>

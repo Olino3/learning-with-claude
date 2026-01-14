@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth App - Sinatra Lab 3</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/">🔐 Auth App</a>
+      </div>
+      <div class="navbar-menu">
+        <% if authenticated? %>
+          <a href="/dashboard">Dashboard</a>
+          <a href="/profile">Profile</a>
+          <span class="navbar-user">👤 <%= h(current_user.name) %></span>
+          <a href="/logout" class="btn btn-secondary">Logout</a>
+        <% else %>
+          <a href="/login">Login</a>
+          <a href="/register" class="btn btn-primary">Register</a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <% if flash[:success] %>
+      <div class="alert alert-success">
+        ✓ <%= h(flash[:success]) %>
+      </div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div class="alert alert-error">
+        ✗ <%= h(flash[:error]) %>
+      </div>
+    <% end %>
+
+    <% if flash[:warning] %>
+      <div class="alert alert-warning">
+        ⚠ <%= h(flash[:warning]) %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Built with <strong>Sinatra</strong> |
+        Lab 3: Authentication & Sessions |
+        <a href="https://github.com/sinatra/sinatra" target="_blank">Learn More</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-dismiss alerts after 5 seconds
+    setTimeout(() => {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => {
+        alert.style.opacity = '0';
+        setTimeout(() => alert.remove(), 300);
+      });
+    }, 5000);
+  </script>
+</body>
+</html>

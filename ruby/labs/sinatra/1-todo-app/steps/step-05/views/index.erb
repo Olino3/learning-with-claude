@@ -1,0 +1,36 @@
+<h2>My Tasks (<%= @tasks.count %>)</h2>
+
+<% if @tasks.empty? %>
+  <div class="empty-state">
+    <p>No tasks yet! <a href="/tasks/new">Create your first task</a></p>
+  </div>
+<% else %>
+  <div class="tasks-list">
+    <% @tasks.each do |task| %>
+      <div class="task-card <%= 'completed' if task.completed %>">
+        <div class="task-content">
+          <h3 class="task-title <%= 'completed' if task.completed %>">
+            <%= h(task.title) %>
+          </h3>
+          <% if task.description && !task.description.empty? %>
+            <p class="task-description"><%= h(task.description) %></p>
+          <% end %>
+          <div class="task-meta">
+            <span class="badge <%= task.completed ? 'badge-success' : 'badge-warning' %>">
+              <%= task.completed ? '✓ Completed' : '○ Active' %>
+            </span>
+            <% if task.category %>
+              <span class="badge" style="background-color: <%= task.category.color %>">
+                <%= h(task.category.name) %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="action-section">
+  <a href="/tasks/new" class="btn btn-primary">+ Create New Task</a>
+</div>

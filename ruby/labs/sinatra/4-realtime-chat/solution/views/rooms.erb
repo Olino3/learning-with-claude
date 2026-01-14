@@ -1,0 +1,81 @@
+<div class="max-w-7xl mx-auto px-4 py-12">
+  <!-- Page Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-slate-900 mb-3 flex items-center justify-center">
+      <i class="fas fa-door-open text-primary mr-3"></i>
+      Chat Rooms
+    </h1>
+    <p class="text-xl text-slate-600">Choose a room to start chatting with others</p>
+  </div>
+
+  <!-- Rooms Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
+    <% @rooms.each do |room| %>
+      <a href="/rooms/<%= room.id %>" class="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border-2 border-transparent hover:border-primary">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                <i class="fas fa-hashtag text-2xl text-white"></i>
+              </div>
+              <h2 class="text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors">
+                <%= h(room.name) %>
+              </h2>
+            </div>
+            <i class="fas fa-arrow-right text-primary opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all"></i>
+          </div>
+          <p class="text-slate-600 mb-6 min-h-[3rem]"><%= h(room.description) %></p>
+          <div class="flex items-center space-x-4 text-sm text-slate-500">
+            <span class="flex items-center space-x-2">
+              <i class="fas fa-comments text-primary"></i>
+              <span><%= room.messages.count %> messages</span>
+            </span>
+            <span class="flex items-center space-x-2">
+              <i class="fas fa-calendar text-primary"></i>
+              <span>Created <%= format_date(room.created_at) %></span>
+            </span>
+          </div>
+        </div>
+        <div class="h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+      </a>
+    <% end %>
+  </div>
+
+  <!-- Info Section -->
+  <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl p-8 border border-primary/20">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+      <i class="fas fa-info-circle text-primary mr-3"></i>
+      How to Use
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex items-start space-x-3">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-1">Join a Room</h4>
+          <p class="text-slate-600">Click on any room card to enter the conversation</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-3">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-1">Send Messages</h4>
+          <p class="text-slate-600">Type your message and press Enter to send instantly</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-3">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-1">Real-time Updates</h4>
+          <p class="text-slate-600">See messages appear instantly for all users in the room</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-3">
+        <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</div>
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-1">See Who's Online</h4>
+          <p class="text-slate-600">View all active users in the room sidebar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
