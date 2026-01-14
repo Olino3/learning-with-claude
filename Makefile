@@ -16,14 +16,14 @@ help:
 	@echo "  make status          - Show status of all containers"
 	@echo ""
 	@echo "📦 Ruby Commands:"
-	@echo "  make shell           - Open a bash shell in ruby-scripts container"
+	@echo "  make shell           - Open a bash shell in ruby-env container"
 	@echo "  make repl            - Start an interactive Ruby REPL (IRB)"
 	@echo "  make run-script      - Run a Ruby script"
 	@echo "                         Usage: make run-script SCRIPT=scripts/hello.rb"
 	@echo ""
 	@echo "🎯 Dart Commands:"
-	@echo "  make dart-shell      - Open a bash shell in dart-scripts container"
-	@echo "  make dart-repl       - Start an interactive Dart REPL"
+	@echo "  make dart-shell      - Open a bash shell in dart-env container"
+	@echo "  make dart-repl       - Open interactive Dart shell"
 	@echo "  make run-dart        - Run a Dart script"
 	@echo "                         Usage: make run-dart SCRIPT=scripts/hello.dart"
 	@echo ""
@@ -125,16 +125,16 @@ clean:
 # Ruby Commands
 # ============================================================================
 
-# Open bash shell in ruby-scripts container
+# Open bash shell in ruby-env container
 shell:
-	@echo "Opening bash shell in ruby-scripts container..."
-	docker compose exec ruby-scripts bash
+	@echo "Opening bash shell in ruby-env container..."
+	docker compose exec ruby-env bash
 
 # Start interactive Ruby REPL
 repl:
 	@echo "Starting Ruby REPL (IRB)..."
 	@echo "Type 'exit' to quit the REPL"
-	docker compose exec ruby-scripts irb
+	docker compose exec ruby-env irb
 
 # Run a specific Ruby script
 # Usage: make run-script SCRIPT=scripts/hello.rb
@@ -145,22 +145,31 @@ ifndef SCRIPT
 	@exit 1
 endif
 	@echo "Running $(SCRIPT)..."
-	docker compose exec ruby-scripts ruby $(SCRIPT)
+	docker compose exec ruby-env ruby $(SCRIPT)
 
 # ============================================================================
 # Dart Commands
 # ============================================================================
 
-# Open bash shell in dart-scripts container
+# Open bash shell in dart-env container
 dart-shell:
-	@echo "Opening bash shell in dart-scripts container..."
-	docker compose exec dart-scripts bash
+	@echo "Opening bash shell in dart-env container..."
+	docker compose exec dart-env bash
 
-# Start interactive Dart REPL
+# Start interactive Dart shell
+# Note: Dart doesn't have a built-in REPL like Ruby's IRB
+# This opens a bash shell where you can run Dart scripts interactively
 dart-repl:
-	@echo "Starting Dart REPL..."
-	@echo "Type ':quit' or press Ctrl+D to quit the REPL"
-	docker compose exec dart-scripts dart repl
+	@echo "Opening an interactive bash shell in the dart-env container..."
+	@echo ""
+	@echo "💡 Try these commands:"
+	@echo "   dart run <script.dart>    - Run a Dart script"
+	@echo "   dart create <project>     - Create a new Dart project"
+	@echo "   dart --version            - Check Dart version"
+	@echo ""
+	@echo "Type 'exit' to quit the shell"
+	@echo ""
+	docker compose exec dart-env bash
 
 # Run a specific Dart script
 # Usage: make run-dart SCRIPT=scripts/hello.dart
@@ -171,7 +180,7 @@ ifndef SCRIPT
 	@exit 1
 endif
 	@echo "Running $(SCRIPT)..."
-	docker compose exec dart-scripts dart run $(SCRIPT)
+	docker compose exec dart-env dart run $(SCRIPT)
 
 # ============================================================================
 # Sinatra Web Development Commands

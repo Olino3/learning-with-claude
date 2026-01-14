@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(docker compose:*)",
-      "Bash(make run-script:*)"
+      "Bash(make run-script:*)",
+      "Bash(find:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

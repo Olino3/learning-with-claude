@@ -1,11 +1,11 @@
 services:
-  # Container for running Ruby scripts
-  # Use this for executing .rb files, running applications, and advanced labs
-  ruby-scripts:
+  # Unified Ruby container for scripts, REPL, and development
+  # Use this for executing .rb files, running applications, and interactive Ruby (IRB)
+  ruby-env:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ruby-scripts
+    container_name: ruby-env
     volumes:
       # Mount the entire repository for live code updates
       - .:/app
@@ -29,26 +29,6 @@ services:
       # Better garbage collection stats for profiling
       - RUBY_GC_HEAP_GROWTH_FACTOR=1.1
       - RUBY_GC_HEAP_INIT_SLOTS=10000
-
-  # Interactive Ruby REPL container
-  # Use this for experimenting with Ruby code interactively
-  ruby-repl:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: ruby-repl
-    volumes:
-      # Mount the entire repository for access to code examples
-      - .:/app
-      # Persist gem installations
-      - ruby-bundle:/usr/local/bundle
-    working_dir: /app
-    # Start with an interactive Ruby shell (IRB)
-    command: irb
-    stdin_open: true
-    tty: true
-    networks:
-      - ruby-network
 
   # Sinatra web application container
   # Use this for running Sinatra tutorials and labs
@@ -79,13 +59,15 @@ services:
       - postgres
       - redis
 
-  # Container for running Dart scripts
-  # Use this for executing .dart files and running applications
-  dart-scripts:
+  # Unified Dart container for scripts and interactive development
+  # Use this for executing .dart files and interactive shell access
+  # Note: Dart doesn't have a built-in REPL like Ruby's IRB
+  # Use 'make dart-shell' to get a bash shell for running Dart scripts
+  dart-env:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dart-scripts
+    container_name: dart-env
     volumes:
       # Mount the entire repository for live code updates
       - .:/app
@@ -93,26 +75,6 @@ services:
       - dart-pub-cache:/root/.pub-cache
     working_dir: /app
     command: tail -f /dev/null
-    stdin_open: true
-    tty: true
-    networks:
-      - ruby-network
-
-  # Interactive Dart REPL container
-  # Use this for experimenting with Dart code interactively
-  dart-repl:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: dart-repl
-    volumes:
-      # Mount the entire repository for access to code examples
-      - .:/app
-      # Persist Dart package cache
-      - dart-pub-cache:/root/.pub-cache
-    working_dir: /app
-    # Start with an interactive Dart shell
-    command: dart repl
     stdin_open: true
     tty: true
     networks:

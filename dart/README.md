@@ -37,16 +37,15 @@ tilt up
 ```
 
 The environment provides:
-- **dart-scripts** container: For running Dart scripts and applications
-- **dart-repl** container: Interactive Dart interpreter
-- Dart SDK with common packages pre-installed
+- **dart-env** container: For running Dart scripts and applications
+- Dart SDK with common packages pre-installed (via pubspec.yaml)
 - Live code reloading via Tilt
 
 **Common Commands:**
 ```bash
-make shell                                    # Open bash shell
-make repl                                     # Start Dart REPL
-make run-script SCRIPT=scripts/hello.dart     # Run a script
+make dart-shell                               # Open bash shell
+make dart-repl                                # Start interactive shell
+make run-dart SCRIPT=scripts/hello.dart       # Run a script
 ```
 
 For detailed instructions, see [Tutorial 1: Getting Started](/dart/tutorials/1-Getting-Started/README.md)

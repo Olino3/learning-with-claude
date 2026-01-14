@@ -34,7 +34,7 @@ make repl
 Or use Docker Compose directly:
 
 ```bash
-docker-compose exec ruby-scripts irb
+docker compose exec ruby-env irb
 ```
 
 You should see a prompt like:

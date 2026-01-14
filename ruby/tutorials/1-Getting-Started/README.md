@@ -62,12 +62,11 @@ make up-docker
 
 ### Understanding the Containers
 
-The development environment includes two containers:
+The development environment includes a unified Ruby container:
 
-1. **ruby-scripts**: For running Ruby scripts and applications
-2. **ruby-repl**: For interactive Ruby experimentation with IRB
+- **ruby-env**: For running Ruby scripts, IRB, and applications
 
-Both containers have:
+The container has:
 - Ruby 3.4.7 installed
 - Common gems (bundler, pry, irb, rspec, sinatra)
 - Access to all your code via volume mounts

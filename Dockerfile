@@ -46,9 +46,10 @@ RUN --mount=type=cache,target=/usr/local/bundle/cache,sharing=locked \
     find /usr/local/lib/ruby/gems -name "*.c" -delete 2>/dev/null || true && \
     find /usr/local/lib/ruby/gems -name "*.o" -delete 2>/dev/null || true
 
-# Install Dart SDK
-# Download and install Dart from the official repository
-RUN apt-get update && apt-get install -y \
+# Install Dart SDK with cache mount for efficiency
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y \
     apt-transport-https \
     wget \
     gnupg \
@@ -61,6 +62,13 @@ RUN apt-get update && apt-get install -y \
 # Add Dart to PATH
 ENV PATH="/usr/lib/dart/bin:${PATH}"
 ENV PATH="/root/.pub-cache/bin:${PATH}"
+
+# Copy pubspec.yaml for Dart package management (similar to Gemfile for Ruby)
+COPY pubspec.yaml ./
+
+# Install Dart packages with cache mount for faster builds
+RUN --mount=type=cache,target=/root/.pub-cache,sharing=locked \
+    dart pub get
 
 # Create directories for tutorials, labs, and scripts
 RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/dart/tutorials /app/dart/labs /app/dart/reading /app/scripts

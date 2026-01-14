@@ -91,10 +91,10 @@ Run labs in the containerized environment:
 
 ```bash
 # Start the containers
-docker-compose up -d ruby-scripts
+docker compose up -d ruby-env
 
 # Enter the container
-docker-compose exec ruby-scripts bash
+docker compose exec ruby-env bash
 
 # Navigate and run
 cd ruby/labs/advanced/dsl-builder-lab
@@ -170,7 +170,7 @@ Each lab includes extension challenges:
 
 ## 🔧 Development Environment
 
-The advanced labs use the ruby-scripts container with enhanced capabilities:
+The advanced labs use the ruby-env container with enhanced capabilities:
 
 **Features**:
 - Increased resources (4 CPU, 2GB RAM)

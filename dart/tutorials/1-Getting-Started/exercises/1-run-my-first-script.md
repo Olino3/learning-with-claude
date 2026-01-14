@@ -47,7 +47,7 @@ Platform: linux
 **Method 2: Using Docker Compose Directly**
 
 ```bash
-docker-compose exec dart-scripts dart run scripts/hello.dart
+docker compose exec dart-env dart run scripts/hello.dart
 ```
 
 **Method 3: Inside the Container**

@@ -62,13 +62,13 @@ make up-docker
 
 ### Understanding the Containers
 
-The development environment includes two Dart containers:
+The development environment includes a unified Dart container:
 
-1. **dart-scripts**: For running Dart scripts and applications
-2. **dart-repl**: For interactive Dart experimentation with the Dart REPL
+- **dart-env**: For running Dart scripts and interactive experimentation
 
-Both containers have:
+The container has:
 - Latest stable Dart SDK installed
+- Common packages pre-installed (via pubspec.yaml)
 - Access to all your code via volume mounts
 - Shared pub cache for efficient package management
 

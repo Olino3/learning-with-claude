@@ -163,8 +163,8 @@ When running Sinatra applications, these ports are available:
 │                    Docker Compose                            │
 ├─────────────────────────────────────────────────────────────┤
 │  ┌─────────────────────────────┐  ┌─────────────────────┐  │
-│  │       ruby-scripts          │  │     ruby-repl       │  │
-│  │  (Scripts, Apps, Labs)      │  │       (IRB)         │  │
+│  │         ruby-env            │  │       dart-env      │  │
+│  │  (Scripts, IRB, Apps)       │  │  (Scripts, Shell)   │  │
 │  │  + Profiling & Performance  │  │                     │  │
 │  └─────────────────────────────┘  └─────────────────────┘  │
 │                                                              │
