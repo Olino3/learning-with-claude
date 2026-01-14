@@ -14,12 +14,9 @@ require_relative 'lib/models/tag'
 # Configure Sinatra
 set :port, 4567
 set :bind, '0.0.0.0'
-set :database_file, 'config/database.yml'
 
-# For development, use SQLite if PostgreSQL is not available
-if ENV['RACK_ENV'] != 'production'
-  set :database, { adapter: 'sqlite3', database: 'blog_api.db' }
-end
+# Use SQLite for development (no database.yml needed)
+set :database, { adapter: 'sqlite3', database: 'blog_api.db' }
 
 # Create tables if they don't exist
 ActiveRecord::Schema.define do

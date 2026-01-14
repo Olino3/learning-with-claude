@@ -85,16 +85,16 @@ cd ruby/labs/advanced/dsl-builder-lab
 ruby dsl_demo.rb
 ```
 
-### Using Advanced Environment
+### Using Docker Environment
 
-For advanced features and isolation:
+Run labs in the containerized environment:
 
 ```bash
-# Start the advanced container
-docker-compose up -d ruby-advanced
+# Start the containers
+docker-compose up -d ruby-scripts
 
 # Enter the container
-docker-compose exec ruby-advanced bash
+docker-compose exec ruby-scripts bash
 
 # Navigate and run
 cd ruby/labs/advanced/dsl-builder-lab
@@ -170,14 +170,14 @@ Each lab includes extension challenges:
 
 ## 🔧 Development Environment
 
-The advanced labs use an enhanced Docker environment:
+The advanced labs use the ruby-scripts container with enhanced capabilities:
 
 **Features**:
 - Increased resources (4 CPU, 2GB RAM)
-- Separate gem bundle for isolation
 - YJIT enabled for performance
 - GC tuning for profiling
 - Profiling tools pre-installed
+- Full Ruby development environment
 
 **Tools Available**:
 - `memory_profiler` - Memory usage analysis

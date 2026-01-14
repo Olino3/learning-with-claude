@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   # Container for running Ruby scripts
-  # Use this for executing .rb files and running applications
+  # Use this for executing .rb files, running applications, and advanced labs
   ruby-scripts:
     build:
       context: .
@@ -17,8 +15,20 @@ services:
     command: tail -f /dev/null
     stdin_open: true
     tty: true
+    # Increased resources for performance profiling and concurrency labs
+    cpus: 4
+    mem_limit: 2g
+    # Additional capabilities for profiling and debugging
+    cap_add:
+      - SYS_PTRACE
     networks:
       - ruby-network
+    environment:
+      # Enable YJIT for performance optimization
+      - RUBY_YJIT_ENABLE=1
+      # Better garbage collection stats for profiling
+      - RUBY_GC_HEAP_GROWTH_FACTOR=1.1
+      - RUBY_GC_HEAP_INIT_SLOTS=10000
 
   # Interactive Ruby REPL container
   # Use this for experimenting with Ruby code interactively
@@ -39,37 +49,6 @@ services:
     tty: true
     networks:
       - ruby-network
-
-  # Advanced labs container with isolated environment
-  # Use this for running advanced labs that require C extensions, profiling, or concurrency
-  ruby-advanced:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: ruby-advanced
-    volumes:
-      # Mount the entire repository
-      - .:/app
-      # Separate bundle for advanced labs to avoid conflicts
-      - ruby-advanced-bundle:/usr/local/bundle
-    working_dir: /app
-    command: tail -f /dev/null
-    stdin_open: true
-    tty: true
-    # Increased resources for performance profiling and concurrency labs
-    cpus: 4
-    mem_limit: 2g
-    # Additional capabilities for profiling and debugging
-    cap_add:
-      - SYS_PTRACE
-    networks:
-      - ruby-network
-    environment:
-      # Enable YJIT for performance optimization tutorials
-      - RUBY_YJIT_ENABLE=1
-      # Better garbage collection stats for profiling
-      - RUBY_GC_HEAP_GROWTH_FACTOR=1.1
-      - RUBY_GC_HEAP_INIT_SLOTS=10000
 
   # Sinatra web application container
   # Use this for running Sinatra tutorials and labs
@@ -178,9 +157,6 @@ services:
 volumes:
   # Shared volume for gem installations
   ruby-bundle:
-    driver: local
-  # Separate volume for advanced labs
-  ruby-advanced-bundle:
     driver: local
   # Dart pub cache persistence
   dart-pub-cache:

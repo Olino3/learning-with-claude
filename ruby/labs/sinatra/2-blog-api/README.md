@@ -37,6 +37,25 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
+### Option 1: Progressive Building (Recommended)
+
+Follow the step-by-step guide to build the API incrementally:
+
+👉 **[Follow the Progressive Steps Guide →](STEPS.md)**
+
+This guide breaks the lab into 9 manageable steps:
+1. Basic API Setup
+2. Add Database with ActiveRecord
+3. User Model with Authentication
+4. JWT Authentication
+5. Post Model and CRUD
+6. Comments System
+7. Tagging System
+8. Pagination
+9. Error Handling
+
+### Option 2: Run Complete Application
+
 ```bash
 # Install dependencies
 gem install sinatra activerecord pg jwt bcrypt

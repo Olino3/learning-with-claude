@@ -7,9 +7,11 @@ FROM ruby:3.4.7-slim
 # Set working directory
 WORKDIR /app
 
-# Install essential build tools and dependencies
+# Install essential build tools and dependencies in a single layer
 # These are needed for gems with native extensions and general development
-RUN apt-get update && apt-get install -y \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y \
     build-essential \
     git \
     curl \
@@ -21,39 +23,28 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     libpq-dev \
     redis-tools \
+    procps \
+    libyaml-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# Install commonly used gems for learning
-# These will be available in all containers
-RUN gem install bundler pry irb rspec
-
-# Install Sinatra and related web development gems
-RUN gem install sinatra sinatra-contrib thin puma \
-    rack rack-test webrick \
-    tilt erubis
-
-# Install database gems for Sinatra tutorials
-RUN gem install sqlite3 sequel activerecord pg
-
-# Install authentication and security gems
-RUN gem install bcrypt rack-protection
-
-# Install WebSocket support for real-time apps
-RUN gem install faye-websocket eventmachine
-
-# Install testing gems
-RUN gem install rack-test minitest capybara
-
-# Install advanced gems for profiling, performance, and concurrency
-# memory_profiler - Memory usage profiling
-# benchmark-ips - Iterations per second benchmarking
-# stackprof - CPU profiling
-# rubocop - Code quality and style checking
-RUN gem install memory_profiler benchmark-ips stackprof rubocop
 
 # Set environment variables for better Ruby experience
 ENV RUBYOPT="-W0"
 ENV BUNDLE_PATH="/usr/local/bundle"
+ENV BUNDLE_JOBS=4
+ENV BUNDLE_RETRY=3
+
+# Copy Gemfile first for better layer caching
+# This layer only rebuilds when Gemfile changes
+COPY Gemfile* ./
+
+# Install all gems using Bundler with cache mount for much faster builds
+# The cache mount persists gem downloads between builds
+RUN --mount=type=cache,target=/usr/local/bundle/cache,sharing=locked \
+    --mount=type=cache,target=/root/.bundle/cache,sharing=locked \
+    bundle config set --local system 'true' && \
+    bundle install --jobs=4 --retry=3 && \
+    find /usr/local/lib/ruby/gems -name "*.c" -delete 2>/dev/null || true && \
+    find /usr/local/lib/ruby/gems -name "*.o" -delete 2>/dev/null || true
 
 # Install Dart SDK
 # Download and install Dart from the official repository
@@ -74,7 +65,8 @@ ENV PATH="/root/.pub-cache/bin:${PATH}"
 # Create directories for tutorials, labs, and scripts
 RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/dart/tutorials /app/dart/labs /app/dart/reading /app/scripts
 
-# Copy the repository content
+# Copy the repository content last
+# This ensures gem installation layers aren't invalidated by code changes
 COPY . /app/
 
 # Set the default command to keep container running

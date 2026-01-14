@@ -5,6 +5,7 @@ Build a simple book library system to learn Ruby's core object-oriented features
 ## 🎯 Learning Objectives
 
 By the end of this lab, you'll understand:
+
 - How to define classes and create objects
 - Instance variables and methods
 - Class variables and class methods
@@ -15,6 +16,7 @@ By the end of this lab, you'll understand:
 ## 📋 What You'll Build
 
 A book library system with:
+
 - `Book` class to represent individual books
 - `Library` class to manage a collection of books
 - Ability to add, remove, and search for books
@@ -42,6 +44,7 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 book = Book.new("The Ruby Way", "Hal Fulton", "978-0321714633")
 puts book.title  # => "The Ruby Way"
@@ -49,6 +52,7 @@ puts book.author # => "Hal Fulton"
 ```
 
 **🐍 Python Equivalent**:
+
 ```python
 class Book:
     def __init__(self, title, author, isbn):
@@ -83,12 +87,14 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 book = Book.new("The Ruby Way", "Hal Fulton", "978-0321714633")
 puts book  # => "The Ruby Way" by Hal Fulton (ISBN: 978-0321714633)
 ```
 
 **💡 Ruby Notes**:
+
 - `to_s` is automatically called when printing an object
 - String interpolation with `#{}` is Ruby's way of formatting strings
 - Use `""` for interpolation (not `''`)
@@ -127,6 +133,7 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 book = Book.new("The Ruby Way", "Hal Fulton", "978-0321714633")
 puts book.matches_title?("ruby")    # => true
@@ -163,6 +170,7 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 library = Library.new("City Central Library")
 book1 = Book.new("The Ruby Way", "Hal Fulton", "978-0321714633")
@@ -174,6 +182,7 @@ puts "Total books: #{library.book_count}"  # => Total books: 2
 ```
 
 **💡 Ruby Notes**:
+
 - `attr_reader` creates only getter methods (read-only)
 - `<<` is the array append operator (like Python's `append()`)
 - Arrays start empty and grow dynamically
@@ -227,6 +236,7 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 library = Library.new("City Central Library")
 library.add_book(Book.new("The Ruby Way", "Hal Fulton", "978-0321714633"))
@@ -240,6 +250,7 @@ results.each { |book| puts "  - #{book}" }
 ```
 
 **💡 Ruby Notes**:
+
 - `select` filters an array (like Python's list comprehension with `if`)
 - Blocks `{ |item| ... }` are like Python's lambda functions
 - `each_with_index` is like Python's `enumerate()`
@@ -312,6 +323,7 @@ end
 ```
 
 **Test it**:
+
 ```ruby
 lib1 = Library.new("City Central")
 lib1.add_book(Book.new("The Ruby Way", "Hal Fulton", "978-0321714633"))
@@ -327,6 +339,7 @@ lib1.statistics
 ```
 
 **💡 Ruby Notes**:
+
 - `@@variable` is a class variable (shared across all instances)
 - `self.method_name` defines a class method (like Python's `@classmethod`)
 - `map(&:method)` is shorthand for `map { |item| item.method }`
@@ -339,6 +352,7 @@ lib1.statistics
 Now put it all together! Create a complete working program.
 
 **Task**: Write a program that:
+
 1. Creates two libraries
 2. Adds at least 3 books to each library
 3. Lists all books in each library

@@ -5,6 +5,7 @@ Welcome to the Ruby Labs! This comprehensive collection of hands-on labs will ta
 ## 🎯 Learning Philosophy
 
 These labs follow a **progressive learning approach**:
+
 - **Build, Don't Just Read**: Type the code yourself, experiment, and modify
 - **Step-by-Step**: Each lab is broken into small, manageable steps
 - **Practical Projects**: Learn by building real applications
@@ -14,6 +15,7 @@ These labs follow a **progressive learning approach**:
 ## 📚 Complete Learning Path
 
 ### Level 1: Beginner Labs (Foundation)
+
 **Prerequisites**: Basic programming knowledge
 **Duration**: ~3-4 hours total
 
@@ -26,6 +28,7 @@ Build a solid foundation in Ruby fundamentals:
 | **[Lab 3: Methods & Modules](beginner/lab3-methods-modules/README.md)** | Parameters, Modules, Reusability | Scientific Calculator | 60min |
 
 **🎓 What You'll Learn**:
+
 - Ruby syntax and fundamentals
 - Object-oriented programming
 - Collections and enumerable methods
@@ -36,12 +39,14 @@ Build a solid foundation in Ruby fundamentals:
 ---
 
 ### Level 2: Intermediate Lab (Real-World Application)
+
 **Prerequisites**: Completed beginner labs
 **Duration**: ~2-3 hours
 
 Build a complete blog management system that integrates all intermediate concepts:
 
 **[Blog Management System](intermediate-lab/README.md)** - A comprehensive application demonstrating:
+
 - **Mixins**: Shared behavior with modules (Timestampable, Validatable, Sluggable)
 - **Closures**: Validation rules with lambdas and procs
 - **Metaprogramming**: Dynamic finder methods and DSL creation
@@ -49,6 +54,7 @@ Build a complete blog management system that integrates all intermediate concept
 - **Error Handling**: Custom exceptions and retry logic
 
 **🔍 Progressive Steps**: Follow the [Step-by-Step Guide](intermediate-lab/STEPS.md) to build the system incrementally:
+
 1. Basic Models (User, Post, Comment)
 2. Add Timestamps with Modules
 3. Add Validation with Lambdas
@@ -57,6 +63,7 @@ Build a complete blog management system that integrates all intermediate concept
 6. Add Query Builder (Method Chaining)
 
 **🎓 What You'll Learn**:
+
 - How Rails and similar frameworks work internally
 - Production-ready Ruby patterns
 - Advanced object-oriented design
@@ -67,6 +74,7 @@ Build a complete blog management system that integrates all intermediate concept
 ---
 
 ### Level 3: Advanced Labs (Master Level)
+
 **Prerequisites**: Completed intermediate lab
 **Duration**: ~6-8 hours total
 
@@ -82,6 +90,7 @@ Build production-quality mini applications demonstrating advanced patterns:
 Each lab includes a **[STEPS.md]** guide for progressive building!
 
 **🎓 What You'll Learn**:
+
 - Building production-quality Ruby applications
 - Advanced metaprogramming and DSLs
 - Concurrent and parallel processing
@@ -124,6 +133,7 @@ ruby solution.rb
 ### 3. Follow the Steps
 
 Each lab provides:
+
 - **📖 README.md**: Overview, learning objectives, and step-by-step instructions
 - **📝 STEPS.md**: Progressive building guide (intermediate & advanced labs)
 - **🎯 starter.rb**: Template to start coding (beginner labs)
@@ -180,19 +190,23 @@ Every lab includes Python comparisons! Here's what you'll discover:
 ## 💡 Lab Features
 
 ### Progressive Steps
+
 Every lab is broken down into manageable steps with:
+
 - ✅ Clear objectives for each step
 - 💡 Ruby-specific tips and tricks
 - 🐍 Python comparisons
 - ✅ Checkpoint lists
 
 ### Hands-On Learning
+
 - **Build incrementally**: Add features step by step
 - **Test frequently**: Run code after each step
 - **Experiment**: Modify code to see what happens
 - **Solutions provided**: Reference when stuck
 
 ### Real-World Focus
+
 - **Production patterns**: Learn industry best practices
 - **Complete applications**: Build working systems
 - **Practical skills**: Applicable to real projects
@@ -211,6 +225,7 @@ Every lab is broken down into manageable steps with:
 4. **Experiment** - Modify the code, break things, fix them.
 
 5. **Use IRB** - Test small snippets interactively:
+
    ```bash
    irb
    > "hello".upcase
@@ -226,14 +241,17 @@ Every lab is broken down into manageable steps with:
 ## 🛠️ Technical Requirements
 
 ### Required
+
 - Ruby 3.0+ (check: `ruby --version`)
 - Text editor or IDE
 
 ### Recommended
+
 - Ruby 3.1+ for best experience
 - Docker (for advanced labs with special dependencies)
 
 ### Installation
+
 ```bash
 # macOS (using Homebrew)
 brew install ruby
@@ -250,16 +268,19 @@ ruby --version
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [Official Ruby Docs](https://ruby-doc.org/)
 - [Ruby Style Guide](https://rubystyle.guide/)
 - [Ruby Weekly Newsletter](https://rubyweekly.com/)
 
 ### Books
+
 - "Eloquent Ruby" by Russ Olsen
 - "The Well-Grounded Rubyist" by David A. Black
 - "Metaprogramming Ruby" by Paolo Perrotta
 
 ### Online
+
 - [Try Ruby](https://try.ruby-lang.org/) - Interactive tutorial
 - [Ruby Koans](http://rubykoans.com/) - Learn by testing
 - [Exercism Ruby Track](https://exercism.org/tracks/ruby)
@@ -269,6 +290,7 @@ ruby --version
 ## 🎯 What's Next After Labs?
 
 After completing these labs, you'll be ready for:
+
 - **Ruby on Rails**: Build full web applications
 - **Ruby gems**: Create and publish your own gems
 - **Open source**: Contribute to Ruby projects
@@ -280,6 +302,7 @@ After completing these labs, you'll be ready for:
 ## 🤝 Contributing
 
 Found an issue or have a suggestion?
+
 - Open an issue on GitHub
 - Submit a pull request
 - Share your solutions
@@ -297,6 +320,7 @@ These labs are part of the learning-with-claude repository and are freely availa
 👉 **Start with**: [Beginner Lab 1: Ruby Basics & OOP](beginner/lab1-basics/README.md)
 
 Or jump to your level:
+
 - [Beginner Labs](beginner/README.md)
 - [Intermediate Lab](intermediate-lab/README.md)
 - [Advanced Labs](advanced/README.md)

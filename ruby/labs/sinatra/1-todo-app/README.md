@@ -35,6 +35,24 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
+### Option 1: Progressive Building (Recommended for Beginners)
+
+Follow the step-by-step guide to build the app incrementally:
+
+👉 **[Follow the Progressive Steps Guide →](STEPS.md)**
+
+This guide breaks the lab into 8 manageable steps:
+1. Basic Sinatra Setup
+2. Add Database
+3. Create Models
+4. List Tasks with Templates
+5. Create Tasks
+6. Update & Delete Tasks
+7. Add Flash Messages
+8. Add Filtering
+
+### Option 2: Run Complete Application
+
 ```bash
 # Install dependencies
 gem install sinatra sequel sqlite3

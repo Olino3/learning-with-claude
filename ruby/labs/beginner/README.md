@@ -11,9 +11,11 @@ These labs are designed for developers new to Ruby (especially those with Python
 Complete these labs in order - each builds on concepts from the previous one:
 
 ### Lab 1: Ruby Basics & Object-Oriented Programming
+
 **Focus**: Classes, Instances, and Methods
 
 Build a simple book library system to learn:
+
 - Creating classes and objects
 - Instance variables and methods
 - Class variables and class methods
@@ -27,9 +29,11 @@ Build a simple book library system to learn:
 ---
 
 ### Lab 2: Collections & Iteration
+
 **Focus**: Arrays, Hashes, and Enumerable
 
 Build a contact management system to learn:
+
 - Working with arrays and hashes
 - Iterating with `each`, `map`, `select`, `reject`
 - Understanding blocks and yield
@@ -43,9 +47,11 @@ Build a contact management system to learn:
 ---
 
 ### Lab 3: Methods & Modules
+
 **Focus**: Method Design and Code Reusability
 
 Build a calculator with utilities to learn:
+
 - Method parameters and return values
 - Keyword arguments and default values
 - Variable-length argument lists (*args)

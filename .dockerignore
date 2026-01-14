@@ -29,6 +29,36 @@ Thumbs.db
 # Logs
 *.log
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+todos.db
+
 # Temporary files
 tmp/
 temp/
+*.tmp
+
+# Ruby/Bundle cache
+.bundle
+vendor/bundle
+.cache
+
+# Coverage and test reports
+coverage/
+.coverage
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node modules (if any)
+node_modules/
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
