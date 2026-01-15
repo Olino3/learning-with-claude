@@ -37,11 +37,19 @@ RUN python -m venv $VIRTUAL_ENV
 COPY requirements.txt ./
 
 # Install Python packages with cache mount for faster builds
-# Note: Build will fail if any package installation fails (proper production behavior)
-# This ensures all dependencies are correctly installed before container is used
+# NOTE: For this educational repo we *gracefully* handle installation failures
+# so the Docker image can still be built for demos. You can retry inside the
+# running container with: make python-install
 RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+    /bin/sh -c ' \
+      if ! pip install --upgrade pip; then \
+        echo "WARNING: Failed to upgrade pip (demo environment)."; \
+      fi; \
+      if ! pip install -r requirements.txt; then \
+        echo "WARNING: Failed to install Python packages from requirements.txt."; \
+        echo "You can retry inside the container with: make python-install"; \
+      fi \
+    '
 
 # Create directories for tutorials, labs, and scripts
 RUN mkdir -p /app/python/tutorials /app/python/labs /app/python/reading /app/scripts
