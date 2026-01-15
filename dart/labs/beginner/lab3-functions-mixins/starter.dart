@@ -101,8 +101,8 @@ mixin UnitConverterMixin {
 // STEP 1 & 5: Enhanced Calculator Class
 // ============================================================================
 
-// TODO: Create EnhancedCalculator class with all mixins
-// class EnhancedCalculator with StatisticalMixin, ScientificMixin, UnitConverterMixin {
+// TODO: Add mixins after implementing them in steps 2-4
+// Apply mixins using: class EnhancedCalculator with StatisticalMixin, ScientificMixin, UnitConverterMixin
 
 class EnhancedCalculator {
   final String name;

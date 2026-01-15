@@ -498,9 +498,9 @@ void main() {
   print('Doubled: $doubled');
   
   // Function composition: double then add 5
-  final double10 = (double x) => x * 2;
+  final doubleValue = (double x) => x * 2;
   final add5 = (double x) => x + 5;
-  final doubleAndAdd5 = calc.compose(add5, double10);  // Note: f(g(x))
+  final doubleAndAdd5 = calc.compose(add5, doubleValue);  // Note: f(g(x))
   print('Compose(add5, double): ${doubleAndAdd5(3)}');  // (3*2)+5 = 11
   
   // Partial application
