@@ -217,18 +217,39 @@ Merge and combine multiple streams:
 import 'dart:async';
 
 void main() async {
-  // Stream.merge - Combine multiple streams
+  // Manual merge - Combine multiple streams
   var stream1 = Stream.periodic(Duration(milliseconds: 100), (i) => 'A$i').take(5);
   var stream2 = Stream.periodic(Duration(milliseconds: 150), (i) => 'B$i').take(5);
   
-  // Events from both streams interleaved
-  await StreamGroup.merge([stream1, stream2]).forEach(print);
+  // Events from both streams interleaved (manual implementation)
+  await mergeStreams([stream1, stream2]).forEach(print);
   
   // Zip streams - pair corresponding elements
   await zipStreams();
   
   // Switch to latest stream
   await switchStream();
+}
+
+// Helper function to merge streams
+Stream<T> mergeStreams<T>(List<Stream<T>> streams) {
+  var controller = StreamController<T>();
+  var remaining = streams.length;
+  
+  for (var stream in streams) {
+    stream.listen(
+      controller.add,
+      onError: controller.addError,
+      onDone: () {
+        remaining--;
+        if (remaining == 0) {
+          controller.close();
+        }
+      },
+    );
+  }
+  
+  return controller.stream;
 }
 
 Future<void> zipStreams() async {

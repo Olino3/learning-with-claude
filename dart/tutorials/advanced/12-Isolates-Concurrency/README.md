@@ -131,10 +131,13 @@ Future<String> fetchDataFromNetwork() async {
 
 ## 📝 Using compute() for Simple Parallel Tasks
 
-The easiest way to run parallel computations:
+The easiest way to run parallel computations (note: `compute()` is from Flutter's foundation library; for pure Dart, use manual isolate spawning):
 
 ```dart
 import 'dart:isolate';
+
+// For Flutter applications:
+// import 'package:flutter/foundation.dart';
 
 // Top-level or static function required for compute()
 int expensiveComputation(int n) {
@@ -145,19 +148,42 @@ int expensiveComputation(int n) {
   return sum;
 }
 
+// Pure Dart alternative without Flutter's compute():
+Future<int> runInIsolate(int n) async {
+  var receivePort = ReceivePort();
+  await Isolate.spawn(_isolateComputation, receivePort.sendPort);
+  
+  var sendPort = await receivePort.first as SendPort;
+  var responsePort = ReceivePort();
+  
+  sendPort.send([n, responsePort.sendPort]);
+  return await responsePort.first as int;
+}
+
+void _isolateComputation(SendPort sendPort) {
+  var receivePort = ReceivePort();
+  sendPort.send(receivePort.sendPort);
+  
+  receivePort.listen((message) {
+    var n = message[0] as int;
+    var replyPort = message[1] as SendPort;
+    replyPort.send(expensiveComputation(n));
+  });
+}
+
 Future<void> main() async {
   print('Starting computation...');
   
-  // Run in separate isolate
-  var result = await compute(expensiveComputation, 1000000000);
+  // Using manual isolate (works in pure Dart)
+  var result = await runInIsolate(1000000);
   
   print('Result: $result');
   
   // Can run multiple in parallel
   var results = await Future.wait([
-    compute(expensiveComputation, 1000000),
-    compute(expensiveComputation, 2000000),
-    compute(expensiveComputation, 3000000),
+    runInIsolate(1000000),
+    runInIsolate(2000000),
+    runInIsolate(3000000),
   ]);
   
   print('Multiple results: $results');

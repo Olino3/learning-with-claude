@@ -46,10 +46,11 @@ class Repository<T extends Entity> {
   }
   
   T? findById(String id) {
-    return _items.firstWhere(
-      (item) => item.id == id,
-      orElse: () => null as T,
-    );
+    try {
+      return _items.firstWhere((item) => item.id == id);
+    } catch (e) {
+      return null;
+    }
   }
 }
 
