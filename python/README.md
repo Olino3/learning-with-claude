@@ -38,7 +38,7 @@ tilt up
 
 The environment provides:
 - **python-env** container: For running Python scripts, Python REPL, and applications
-- Python 3.12 with common packages pre-installed
+- Python 3.13 with common packages pre-installed
 - Virtual environment for isolated dependency management
 - Live code reloading via Tilt
 

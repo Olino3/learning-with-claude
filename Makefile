@@ -597,33 +597,33 @@ endif
 
 # Open bash shell in python-env container
 python-shell:
-@echo "Opening bash shell in python-env container..."
-docker compose exec python-env bash
+	@echo "Opening bash shell in python-env container..."
+	docker compose exec python-env bash
 
 # Start interactive Python REPL
 python-repl:
-@echo "Starting Python REPL..."
-@echo "Type 'exit()' to quit the REPL"
-docker compose exec python-env python
+	@echo "Starting Python REPL..."
+	@echo "Type 'exit()' to quit the REPL"
+	docker compose exec python-env python
 
 # Run a specific Python script
 # Usage: make run-python SCRIPT=scripts/hello.py
 run-python:
 ifndef SCRIPT
-@echo "Error: Please specify a script to run"
-@echo "Usage: make run-python SCRIPT=scripts/hello.py"
-@exit 1
+	@echo "Error: Please specify a script to run"
+	@echo "Usage: make run-python SCRIPT=scripts/hello.py"
+	@exit 1
 endif
-@echo "Running $(SCRIPT)..."
-docker compose exec python-env python $(SCRIPT)
+	@echo "Running $(SCRIPT)..."
+	docker compose exec python-env python $(SCRIPT)
 
 # Install Python dependencies from requirements.txt
 python-install:
-@echo "Installing Python dependencies from requirements.txt..."
-docker compose exec python-env pip install -r requirements.txt
-@echo "✅ Dependencies installed!"
+	@echo "Installing Python dependencies from requirements.txt..."
+	docker compose exec python-env pip install -r requirements.txt
+	@echo "✅ Dependencies installed!"
 
 # Run Python tests with pytest
 python-test:
-@echo "Running Python tests with pytest..."
-docker compose exec python-env pytest python/ -v
+	@echo "Running Python tests with pytest..."
+	docker compose exec python-env pytest python/ -v

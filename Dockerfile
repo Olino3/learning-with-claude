@@ -1,6 +1,6 @@
 # Multi-language Development Environment
 # This Dockerfile creates a development environment for learning Ruby, Dart, and Python
-# It includes Ruby 3.4.7, Dart SDK, Python 3.12, and common development tools
+# It includes Ruby 3.4.7, Dart SDK, Python 3.13, and common development tools
 
 FROM ruby:3.4.7-slim
 
@@ -26,8 +26,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     redis-tools \
     procps \
     libyaml-dev \
-    python3.12 \
-    python3.12-venv \
+    python3.13 \
+    python3.13-venv \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
@@ -87,12 +87,12 @@ RUN --mount=type=cache,target=/root/.pub-cache,sharing=locked \
 
 # Install Python and create virtual environment
 # Set up Python virtual environment in /opt/venv
-ENV PYTHON_VERSION="3.12"
+ENV PYTHON_VERSION="3.13"
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Create virtual environment
-RUN python3.12 -m venv $VIRTUAL_ENV
+RUN python3.13 -m venv $VIRTUAL_ENV
 
 # Copy requirements.txt for Python package management
 COPY requirements.txt ./

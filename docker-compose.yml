@@ -85,7 +85,7 @@ services:
   python-env:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.python
     container_name: python-env
     volumes:
       # Mount the entire repository for live code updates
