@@ -35,16 +35,40 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
+### Step-by-Step Guide (Recommended)
+
+Start from scratch and build the todo app incrementally through 8 steps:
+
+👉 **[Start with Step 1 →](steps/1/README.md)**
+
+Each step builds on the previous one:
+1. Basic Sinatra Setup (15 min)
+2. Add Database (20 min)
+3. Create Models (25 min)
+4. List Tasks with Templates (30 min)
+5. Create Tasks (25 min)
+6. Update & Delete Tasks (30 min)
+7. Add Flash Messages (15 min)
+8. Add Filtering (20 min)
+
+**Total Time**: ~3 hours
+
+### Quick Start with Make
+
 ```bash
-# Install dependencies
-gem install sinatra sequel sqlite3
-
-# Run the application
-cd ruby/labs/sinatra/1-todo-app
-ruby app.rb
-
-# Visit http://localhost:4567
+make sinatra-lab NUM=1
 ```
+
+This command:
+- Starts the application in Docker
+- Opens the app at http://localhost:4567
+- Follow [Step 1](steps/1/README.md) to begin building
+
+### Run Complete Solution
+
+To see the finished application:
+
+👉 **[View Solution Guide →](solution/README.md)**
 
 ## 🎓 Features Implemented
 

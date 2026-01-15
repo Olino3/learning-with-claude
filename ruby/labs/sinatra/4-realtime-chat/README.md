@@ -1,5 +1,16 @@
 # Sinatra Lab 4: Real-time Chat with WebSockets
 
+<!-- TODO: Update this lab from EventMachine to async gem and Falcon server
+     See Tutorial 23 for modern async patterns: ruby/tutorials/advanced/23-WebSockets-Network-Programming/
+     Migration involves:
+     - Replace EventMachine with async gem
+     - Replace Faye-WebSocket with async-websocket
+     - Replace thin server with falcon
+     - Update chat_server.rb to use Async blocks instead of EM.run
+     - Update client-side code if needed
+     - Update all documentation and steps
+-->
+
 A real-time chat application demonstrating WebSocket communication, asynchronous programming, and real-time features with Sinatra.
 
 ## 🎯 Learning Objectives
@@ -40,19 +51,40 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
+### Step-by-Step Guide (Recommended)
+
+Start from scratch and build the real-time chat app incrementally through 7 steps:
+
+👉 **[Start with Step 1 →](steps/1/README.md)**
+
+Each step builds on the previous one:
+1. Basic Sinatra Setup (20 min)
+2. Add Database for Persistence (25 min)
+3. WebSocket Server Setup (35 min)
+4. Client-Side WebSocket (30 min)
+5. Message Broadcasting Improvements (25 min)
+6. Multiple Rooms Enhancement (30 min)
+7. User Presence Tracking (35 min)
+
+**Total Time**: ~4-5 hours
+
+### Quick Start with Make
+
 ```bash
-# Install dependencies
-gem install sinatra sequel sqlite3 faye-websocket eventmachine thin redcarpet
-
-# Run the WebSocket server (in one terminal)
-ruby chat_server.rb
-
-# Run the web application (in another terminal)
-cd ruby/labs/sinatra/4-realtime-chat
-ruby app.rb
-
-# Visit http://localhost:4567
+make sinatra-lab NUM=4
 ```
+
+This command:
+- Starts both the web app and WebSocket server in Docker
+- Opens the app at http://localhost:4567
+- WebSocket server runs automatically on port 9292
+- Follow [Step 1](steps/1/README.md) to begin building
+
+### Run Complete Solution
+
+To see the finished application:
+
+👉 **[View Solution Guide →](solution/README.md)**
 
 ## 🎓 Features Implemented
 

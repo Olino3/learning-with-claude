@@ -1,0 +1,140 @@
+<div class="page-header">
+  <h2>My Tasks</h2>
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number"><%= @total_count %></div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @active_count %></div>
+      <div class="stat-label">Active</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @completed_count %></div>
+      <div class="stat-label">Completed</div>
+    </div>
+    <div class="stat-card progress-stat">
+      <%= progress_bar(completion_percentage(@completed_count, @total_count)) %>
+    </div>
+  </div>
+</div>
+
+<div class="filters-section">
+  <div class="filter-group">
+    <strong>Filter:</strong>
+    <%= filter_link('All', 'all') %>
+    <%= filter_link('Active', 'active') %>
+    <%= filter_link('Completed', 'completed') %>
+  </div>
+
+  <% if @categories.any? %>
+    <div class="filter-group">
+      <strong>Category:</strong>
+      <a href="/tasks" class="category-link <%= 'active' unless params[:category] %>">
+        All Categories
+      </a>
+      <% @categories.each do |category| %>
+        <%= category_filter_link(category) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="search-group">
+    <form action="/tasks" method="get" class="search-form">
+      <input type="text" name="search" placeholder="Search tasks..."
+             value="<%= h(params[:search] || '') %>" class="search-input">
+      <button type="submit" class="btn btn-secondary">Search</button>
+      <% if params[:search] %>
+        <a href="/tasks" class="btn btn-secondary">Clear</a>
+      <% end %>
+    </form>
+  </div>
+</div>
+
+<% if @tasks.empty? %>
+  <div class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3>No tasks found</h3>
+    <p>
+      <% if params[:search] || params[:category] || @filter != 'all' %>
+        Try adjusting your filters or <a href="/tasks">view all tasks</a>.
+      <% else %>
+        Get started by <a href="/tasks/new">creating your first task</a>!
+      <% end %>
+    </p>
+  </div>
+<% else %>
+  <div class="tasks-list">
+    <% @tasks.each do |task| %>
+      <div class="task-card <%= task_row_class(task) %>">
+        <div class="task-checkbox">
+          <form action="/tasks/<%= task.id %>/toggle" method="post" style="display: inline;">
+            <input type="checkbox" <%= 'checked' if task.completed %>
+                   onchange="this.form.submit()" id="task-<%= task.id %>">
+            <label for="task-<%= task.id %>"></label>
+          </form>
+        </div>
+
+        <div class="task-content">
+          <div class="task-header">
+            <h3 class="task-title <%= 'completed' if task.completed %>">
+              <%= h(task.title) %>
+            </h3>
+            <div class="task-badges">
+              <%= task_status_badge(task) %>
+              <%= category_badge(task.category) %>
+            </div>
+          </div>
+
+          <% if task.description && !task.description.empty? %>
+            <p class="task-description">
+              <%= h(task.description) %>
+            </p>
+          <% end %>
+
+          <div class="task-meta">
+            <span class="meta-item">
+              🕒 Created <%= relative_date(task.created_at) %>
+            </span>
+            <% if task.updated_at != task.created_at %>
+              <span class="meta-item">
+                ✏️ Updated <%= relative_date(task.updated_at) %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="task-actions">
+          <a href="/tasks/<%= task.id %>/edit" class="btn btn-sm btn-secondary">
+            Edit
+          </a>
+          <form action="/tasks/<%= task.id %>" method="post" style="display: inline;">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-sm btn-danger"
+                    onclick="return confirm('Are you sure?')">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="tasks-summary">
+    <p>
+      Showing <%= pluralize(@tasks.length, 'task') %>
+      <% if @filter != 'all' %>
+        (<%= @filter %>)
+      <% end %>
+      <% if params[:category] %>
+        in <%= @categories.find { |c| c.id.to_s == params[:category] }&.name %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
+<div class="action-section">
+  <a href="/tasks/new" class="btn btn-primary btn-lg">
+    ➕ Create New Task
+  </a>
+</div>

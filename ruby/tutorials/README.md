@@ -257,7 +257,7 @@ Write idiomatic, clean Ruby code following community conventions.
 | 15 | Advanced Error Handling | Custom exceptions, retry patterns | ⭐⭐⭐ Intermediate |
 | 16 | Idiomatic Ruby | Enumerable, duck typing, patterns | ⭐⭐⭐ Intermediate |
 
-### Advanced Tutorials (17-22)
+### Advanced Tutorials (17-23)
 
 | # | Tutorial | Topics | Difficulty |
 |---|----------|--------|------------|
@@ -267,17 +267,19 @@ Write idiomatic, clean Ruby code following community conventions.
 | 20 | Advanced Functional Programming | Currying, lazy evaluation, method objects | ⭐⭐⭐⭐ Advanced |
 | 21 | Performance Profiling & Optimization | Benchmarking, profiling, optimization | ⭐⭐⭐⭐ Advanced |
 | 22 | Design Patterns (Ruby Edition) | Decorator, Service Objects, Singleton | ⭐⭐⭐⭐ Advanced |
+| 23 | WebSockets & Network Programming | TCP/UDP, async gem, WebSockets, Falcon | ⭐⭐⭐⭐⭐ Advanced |
 
 ---
 
 ## 🎓 Advanced Ruby Track
 
-The advanced tutorials (17-22) dive deep into Ruby's most powerful features - the techniques used by framework authors and library developers. These are for developers ready to:
+The advanced tutorials (17-23) dive deep into Ruby's most powerful features - the techniques used by framework authors and library developers. These are for developers ready to:
 
 - Build frameworks and DSLs
 - Optimize performance-critical code
 - Understand Ruby's internals
 - Write professional, production-ready Ruby
+- Build real-time, high-performance network applications
 
 ### Tutorial 17: Advanced Metaprogramming & DSLs
 **Status:** ✅ Complete
@@ -371,6 +373,28 @@ Apply design patterns the Ruby way.
 - Singleton pattern
 - Observer pattern with `Observable`
 - Factory and Builder patterns
+
+---
+
+### Tutorial 23: WebSockets & Modern Async Network Programming
+**Status:** ✅ Complete
+
+Master modern async I/O and real-time communication with WebSockets.
+
+👉 **[Start Tutorial 23](advanced/23-WebSockets-Network-Programming/README.md)**
+
+**You'll learn:**
+- TCP/UDP socket programming fundamentals
+- Modern async I/O with the `async` gem (Fiber-based)
+- WebSocket protocol internals (handshake, framing, masking)
+- Building WebSocket servers with `async-websocket`
+- Falcon server for high-performance async web apps
+- Real-time patterns (pub/sub, broadcasting)
+- Migrating from EventMachine to modern async
+
+**Prerequisites:** Complete [Tutorial 18: Concurrency and Parallelism](advanced/18-Concurrency-and-Parallelism/README.md) first, especially the Fibers section.
+
+**Related:** [Sinatra Lab 4: Realtime Chat](../labs/sinatra/4-realtime-chat/README.md) - Build a complete chat app (TODO: Update to async gem)
 
 ---
 

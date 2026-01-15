@@ -47,7 +47,7 @@ Platform: x86_64-linux
 **Method 2: Using Docker Compose Directly**
 
 ```bash
-docker-compose exec ruby-scripts ruby scripts/hello.rb
+docker compose exec ruby-env ruby scripts/hello.rb
 ```
 
 **Method 3: Inside the Container**

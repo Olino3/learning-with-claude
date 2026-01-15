@@ -1,0 +1,120 @@
+<div class="h-[calc(100vh-8rem)] max-w-7xl mx-auto px-4 py-6">
+  <div class="bg-white rounded-2xl shadow-xl overflow-hidden h-full flex">
+    <!-- Sidebar -->
+    <div class="w-80 bg-gradient-to-b from-slate-50 to-white border-r border-slate-200 flex flex-col">
+      <!-- Room Info -->
+      <div class="p-6 border-b border-slate-200 bg-gradient-to-r from-primary/10 to-secondary/10">
+        <div class="flex items-center space-x-3 mb-2">
+          <i class="fas fa-hashtag text-2xl text-primary"></i>
+          <h2 class="text-2xl font-bold text-slate-800"><%= h(@room.name) %></h2>
+        </div>
+        <p class="text-slate-600 text-sm"><%= h(@room.description) %></p>
+      </div>
+
+      <!-- Online Users -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">
+              <i class="fas fa-users mr-2"></i>Online Users
+            </h3>
+            <span id="user-count" class="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full">0</span>
+          </div>
+          <div id="users-list" class="space-y-2">
+            <div class="flex items-center space-x-2 text-slate-400 animate-pulse">
+              <i class="fas fa-circle-notch fa-spin"></i>
+              <span class="text-sm">Loading users...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connection Status -->
+        <div class="mt-6 pt-6 border-t border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">
+            <i class="fas fa-signal mr-2"></i>Connection
+          </h3>
+          <div id="connection-status" class="flex items-center space-x-2 p-3 rounded-lg bg-slate-100">
+            <span class="status-dot w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse"></span>
+            <span class="status-text text-sm font-medium text-slate-700">Connecting...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="p-6 border-t border-slate-200 bg-slate-50">
+        <a href="/rooms" class="flex items-center justify-center space-x-2 w-full bg-white hover:bg-slate-100 text-slate-700 font-medium py-3 px-4 rounded-lg transition-colors border border-slate-200">
+          <i class="fas fa-arrow-left"></i>
+          <span>All Rooms</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col">
+      <!-- Chat Header -->
+      <div class="p-6 border-b border-slate-200 bg-gradient-to-r from-white to-slate-50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-bold text-slate-800 flex items-center">
+              <i class="fas fa-hashtag text-primary mr-2"></i>
+              <%= h(@room.name) %>
+            </h1>
+            <p class="text-slate-500 text-sm mt-1"><%= h(@room.description) %></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Container -->
+      <div id="messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50">
+        <% @messages.each do |msg| %>
+          <div class="flex space-x-3 group hover:bg-white/50 rounded-lg p-3 transition-colors">
+            <div class="flex-shrink-0">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold">
+                <%= h(msg.username[0].upcase) %>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-baseline space-x-2">
+                <span class="font-semibold text-slate-900"><%= h(msg.username) %></span>
+                <span class="text-xs text-slate-400"><%= format_time(msg.created_at) %></span>
+              </div>
+              <p class="text-slate-700 mt-1 break-words"><%= h(msg.content) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Message Input -->
+      <div class="p-6 border-t border-slate-200 bg-white">
+        <form id="message-form" class="flex space-x-3">
+          <div class="flex-1">
+            <input type="text" id="message-input"
+                   class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                   placeholder="Type a message... (Press Enter to send)"
+                   autocomplete="off" autofocus>
+          </div>
+          <button type="submit" class="bg-primary hover:bg-secondary text-white font-medium px-6 py-3 rounded-lg transition-colors flex items-center space-x-2">
+            <i class="fas fa-paper-plane"></i>
+            <span>Send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/chat.js"></script>
+<script>
+  // Initialize chat with room data
+  const chatConfig = {
+    username: '<%= h(current_username) %>',
+    roomName: '<%= h(@room.name) %>',
+    roomId: <%= @room.id %>,
+    wsUrl: 'ws://localhost:9292'
+  };
+
+  // Start chat when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeChat(chatConfig);
+  });
+</script>

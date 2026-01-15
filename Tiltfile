@@ -1,5 +1,5 @@
-# Tiltfile for Ruby Learning Environment
-# This configures Tilt to manage the Ruby development containers
+# Tiltfile for Ruby & Dart Learning Environment
+# This configures Tilt to manage the multi-language development containers
 
 # Load the docker-compose configuration
 docker_compose('./docker-compose.yml')
@@ -11,38 +11,20 @@ watch_file('./dart/')
 watch_file('./scripts/')
 watch_file('./Dockerfile')
 
-# Configure the ruby-scripts container
-dc_resource('ruby-scripts',
-    labels=['development'],
+# Configure the ruby-env container (unified Ruby environment)
+dc_resource('ruby-env',
+    labels=['ruby-dev'],
     # Add helpful resource links
     links=[
         link('https://www.ruby-lang.org/en/documentation/', 'Ruby Documentation'),
+        link('https://ruby-doc.org/core-3.3.0/', 'Ruby Core API'),
         link('https://docs.docker.com/', 'Docker Documentation')
-    ]
-)
-
-# Configure the ruby-repl container
-dc_resource('ruby-repl',
-    labels=['interactive'],
-    # Add helpful resource links
-    links=[
-        link('https://www.ruby-lang.org/en/documentation/', 'Ruby Documentation'),
-        link('https://ruby-doc.org/core-3.3.0/', 'Ruby Core API')
-    ]
-)
-
-# Configure the ruby-advanced container
-dc_resource('ruby-advanced',
-    labels=['advanced'],
-    links=[
-        link('https://www.ruby-lang.org/en/documentation/', 'Ruby Documentation')
     ]
 )
 
 # Configure the sinatra-web container with port forwarding
 dc_resource('sinatra-web',
     labels=['web'],
-    port_forwards=['4567:4567', '9292:9292', '3000:3000'],
     links=[
         link('http://localhost:4567', 'Sinatra App (Default)'),
         link('http://localhost:9292', 'Rack App'),
@@ -51,33 +33,23 @@ dc_resource('sinatra-web',
     ]
 )
 
-# Configure the dart-scripts container
-dc_resource('dart-scripts',
+# Configure the dart-env container (unified Dart environment)
+dc_resource('dart-env',
     labels=['dart-dev'],
     links=[
         link('https://dart.dev/guides', 'Dart Documentation'),
-        link('https://api.dart.dev/', 'Dart API Reference')
-    ]
-)
-
-# Configure the dart-repl container
-dc_resource('dart-repl',
-    labels=['dart-interactive'],
-    links=[
-        link('https://dart.dev/guides', 'Dart Documentation'),
-        link('https://dart.dev/tools/dart-tool#dart-repl', 'Dart REPL Guide')
+        link('https://api.dart.dev/', 'Dart API Reference'),
+        link('https://dart.dev/tools/dart-tool', 'Dart CLI Tool')
     ]
 )
 
 # Configure database and cache services
 dc_resource('postgres',
     labels=['database'],
-    port_forwards=['5432:5432']
 )
 
 dc_resource('redis',
     labels=['cache'],
-    port_forwards=['6379:6379']
 )
 
 # Print helpful instructions when Tilt starts
@@ -90,18 +62,15 @@ print("""
 
 📦 Available Services:
   Ruby:
-    • ruby-scripts - For running Ruby scripts and applications
-    • ruby-repl    - Interactive Ruby interpreter (IRB)
-    • ruby-advanced - For advanced profiling and concurrency
-    • sinatra-web  - For running Sinatra web applications
+    • ruby-env    - For running Ruby scripts, IRB, and applications
+    • sinatra-web - For running Sinatra web applications
 
   Dart:
-    • dart-scripts - For running Dart scripts and applications
-    • dart-repl    - Interactive Dart REPL
+    • dart-env    - For running Dart scripts and applications
 
   Infrastructure:
-    • postgres     - PostgreSQL database (port 5432)
-    • redis        - Redis cache/session store (port 6379)
+    • postgres    - PostgreSQL database (port 5432)
+    • redis       - Redis cache/session store (port 6379)
 
 🌐 Web Application Ports:
   • http://localhost:4567 - Default Sinatra port
@@ -110,19 +79,18 @@ print("""
 
 🔧 Quick Commands:
   Ruby:
-    • Run a script:     docker-compose exec ruby-scripts ruby scripts/hello.rb
-    • Open IRB:         docker-compose exec ruby-repl irb
-    • Bash shell:       docker-compose exec ruby-scripts bash
-    • Run Sinatra app:  docker-compose exec sinatra-web ruby ruby/tutorials/sinatra/1-hello-sinatra/app.rb
+    • Run a script:     docker compose exec ruby-env ruby scripts/hello.rb
+    • Open IRB:         docker compose exec ruby-env irb
+    • Bash shell:       docker compose exec ruby-env bash
+    • Run Sinatra app:  docker compose exec sinatra-web ruby ruby/tutorials/sinatra/1-hello-sinatra/hello.rb
 
   Dart:
-    • Run a script:     docker-compose exec dart-scripts dart run scripts/hello.dart
-    • Open Dart REPL:   docker-compose exec dart-repl dart repl
-    • Bash shell:       docker-compose exec dart-scripts bash
+    • Run a script:     docker compose exec dart-env dart run scripts/hello.dart
+    • Bash shell:       docker compose exec dart-env bash
 
   Database:
-    • Connect to DB:    docker-compose exec postgres psql -U postgres -d sinatra_dev
-    • Redis CLI:        docker-compose exec redis redis-cli
+    • Connect to DB:    docker compose exec postgres psql -U postgres -d sinatra_dev
+    • Redis CLI:        docker compose exec redis redis-cli
 
 📝 Next Steps:
   Ruby:

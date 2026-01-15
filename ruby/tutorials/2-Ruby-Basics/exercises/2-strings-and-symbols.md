@@ -139,7 +139,6 @@ role = :admin
 status.class  # => Symbol
 
 # Symbols are immutable
-status.upcase  # NoMethodError! Symbols have limited methods
 status.to_s    # => "active" (convert to string)
 
 # Converting between strings and symbols
@@ -152,7 +151,6 @@ status.to_s    # => "active" (convert to string)
 "hello".object_id == "hello".object_id # => false (different objects!)
 
 # Check object IDs
-puts "Symbol :hello object_id: #{:hello.object_id}"
 puts "Symbol :hello object_id: #{:hello.object_id}"  # Same!
 puts "String 'hello' object_id: #{'hello'.object_id}"
 puts "String 'hello' object_id: #{'hello'.object_id}"  # Different!

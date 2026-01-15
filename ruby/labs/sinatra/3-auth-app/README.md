@@ -41,16 +41,40 @@ This lab demonstrates:
 
 ## 🚀 Running the Lab
 
+### Step-by-Step Guide (Recommended)
+
+Start from scratch and build the authentication app incrementally through 8 steps:
+
+👉 **[Start with Step 1 →](steps/1/README.md)**
+
+Each step builds on the previous one:
+1. Basic Web App Setup (20 min)
+2. Add Database (20 min)
+3. User Model with Validations (25 min)
+4. Registration with BCrypt (30 min)
+5. Login System (25 min)
+6. Protected Routes and Helpers (20 min)
+7. Remember Me Feature (30 min)
+8. User Profiles (35 min)
+
+**Total Time**: ~3-4 hours
+
+### Quick Start with Make
+
 ```bash
-# Install dependencies
-gem install sinatra sequel sqlite3 bcrypt
-
-# Run the application
-cd ruby/labs/sinatra/3-auth-app
-ruby app.rb
-
-# Visit http://localhost:4567
+make sinatra-lab NUM=3
 ```
+
+This command:
+- Starts the application in Docker
+- Opens the app at http://localhost:4567
+- Follow [Step 1](steps/1/README.md) to begin building
+
+### Run Complete Solution
+
+To see the finished application:
+
+👉 **[View Solution Guide →](solution/README.md)**
 
 ## 🎓 Features Implemented
 

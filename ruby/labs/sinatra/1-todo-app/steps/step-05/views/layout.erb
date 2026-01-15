@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <h1>📝 Todo App</h1>
+      <a href="/tasks/new" class="btn btn-primary">+ New Task</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <%= yield %>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Step 5: Create Tasks</p>
+    </div>
+  </footer>
+</body>
+</html>

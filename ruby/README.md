@@ -37,8 +37,7 @@ tilt up
 ```
 
 The environment provides:
-- **ruby-scripts** container: For running Ruby scripts and applications
-- **ruby-repl** container: Interactive Ruby interpreter (IRB)
+- **ruby-env** container: For running Ruby scripts, IRB, and applications
 - Ruby 3.4.7 with common gems pre-installed
 - Live code reloading via Tilt
 

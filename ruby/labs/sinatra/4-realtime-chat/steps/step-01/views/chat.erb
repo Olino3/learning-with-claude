@@ -1,0 +1,31 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Room: <%= h(@room_id.capitalize) %></h2>
+    <a href="/rooms" class="btn btn-secondary">Back to Rooms</a>
+  </div>
+
+  <div id="messages" class="messages">
+    <p class="info-message">Chat messages will appear here...</p>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="username" placeholder="Your name" value="Guest">
+    <input type="text" id="message" placeholder="Type a message...">
+    <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+  </div>
+</div>
+
+<script>
+  const ROOM_ID = '<%= @room_id %>';
+
+  function sendMessage() {
+    const message = document.getElementById('message').value;
+    const username = document.getElementById('username').value;
+    alert('Message sending not yet implemented. Message: ' + message);
+    document.getElementById('message').value = '';
+  }
+
+  document.getElementById('message').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>

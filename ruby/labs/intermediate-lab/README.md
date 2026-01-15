@@ -36,9 +36,33 @@ intermediate-lab/
 
 ## 🚀 Running the Lab
 
+### Quick Start
+
+Run the complete blog system:
+
 ```bash
-cd ruby/labs/intermediate-lab
-ruby blog_system.rb
+make intermediate-lab
+```
+
+### Learning Approaches
+
+**Option 1: Study Complete System** (Quick Overview)
+- Run the complete system with `make intermediate-lab`
+- Review the code in `blog_system.rb` and `lib/` directory
+- See all concepts working together
+
+**Option 2: Progressive Building** (Recommended for Learning)
+- Follow the step-by-step guide: **[STEPS.md](STEPS.md)**
+- Build the system incrementally over 6 steps
+- Each step introduces new intermediate Ruby concepts
+- Steps: Basic Models → Timestamps → Validation → Slugs → Metaprogramming → Query Builder
+
+### Manual Execution
+
+If you prefer to run manually:
+
+```bash
+docker compose exec ruby-env ruby ruby/labs/intermediate-lab/blog_system.rb
 ```
 
 ## 🎓 Concepts Demonstrated

@@ -34,8 +34,10 @@ make dart-repl
 Or use Docker Compose directly:
 
 ```bash
-docker-compose exec dart-scripts dart repl
+docker compose exec dart-env bash
 ```
+
+Note: Dart doesn't have a built-in REPL like some languages. You'll be dropped into a bash shell where you can run Dart scripts interactively.
 
 You should see a prompt like:
 

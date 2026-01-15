@@ -1,0 +1,82 @@
+<div class="page-header">
+  <h2>My Tasks (<%= @tasks.count %><%= " of #{@total_count}" if @filtered %>)</h2>
+</div>
+
+<!-- Search & Filters -->
+<div class="filters-section">
+  <form action="/tasks" method="get" class="search-form">
+    <input type="text" name="q" value="<%= h(params[:q]) %>"
+           placeholder="Search tasks..." class="form-control">
+    <button type="submit" class="btn btn-primary">Search</button>
+    <% if @filtered %>
+      <a href="/tasks" class="btn btn-secondary">Clear</a>
+    <% end %>
+  </form>
+
+  <div class="filter-buttons">
+    <span class="filter-label">Status:</span>
+    <%= filter_link('All', { status: '' }) %>
+    <%= filter_link('Active', { status: 'active' }) %>
+    <%= filter_link('Completed', { status: 'completed' }) %>
+  </div>
+
+  <div class="filter-buttons">
+    <span class="filter-label">Category:</span>
+    <%= filter_link('All', { category: '' }) %>
+    <% @categories.each do |cat| %>
+      <%= filter_link(cat.name, { category: cat.id.to_s }) %>
+    <% end %>
+  </div>
+</div>
+
+<% if @tasks.empty? %>
+  <div class="empty-state">
+    <% if @filtered %>
+      <p>No tasks match your filters. <a href="/tasks">Show all tasks</a></p>
+    <% else %>
+      <p>No tasks yet! <a href="/tasks/new">Create your first task</a></p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="tasks-list">
+    <% @tasks.each do |task| %>
+      <div class="task-card <%= 'completed' if task.completed %>">
+        <div class="task-checkbox">
+          <form action="/tasks/<%= task.id %>/toggle" method="post">
+            <input type="checkbox" <%= 'checked' if task.completed %>
+                   onchange="this.form.submit()">
+          </form>
+        </div>
+
+        <div class="task-content">
+          <h3 class="task-title <%= 'completed' if task.completed %>">
+            <%= h(task.title) %>
+          </h3>
+          <% if task.description && !task.description.empty? %>
+            <p class="task-description"><%= h(task.description) %></p>
+          <% end %>
+          <div class="task-meta">
+            <span class="badge <%= task.completed ? 'badge-success' : 'badge-warning' %>">
+              <%= task.completed ? '✓ Completed' : '○ Active' %>
+            </span>
+            <% if task.category %>
+              <span class="badge" style="background-color: <%= task.category.color %>">
+                <%= h(task.category.name) %>
+              </span>
+            <% end %>
+            <span class="task-date"><%= task.created_at.strftime('%b %d') %></span>
+          </div>
+        </div>
+
+        <div class="task-actions">
+          <a href="/tasks/<%= task.id %>/edit" class="btn btn-sm btn-secondary">Edit</a>
+          <form action="/tasks/<%= task.id %>" method="post" style="display: inline;">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn btn-sm btn-danger"
+                    onclick="return confirm('Delete this task?')">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

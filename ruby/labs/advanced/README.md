@@ -18,7 +18,7 @@ Build powerful Domain Specific Languages:
 
 **Concepts**: `instance_eval`, `method_missing`, `define_method`, method chaining
 
-👉 **[Start Lab 1](dsl-builder-lab/README.md)**
+👉 **[Start Lab 1](dsl-builder-lab/README.md)** | Run with: `make advanced-lab NUM=1`
 
 ---
 
@@ -32,7 +32,7 @@ Build high-performance concurrent processors:
 
 **Concepts**: Threads, Mutexes, Ractors, Fibers, thread safety
 
-👉 **[Start Lab 2](concurrent-processor-lab/README.md)**
+👉 **[Start Lab 2](concurrent-processor-lab/README.md)** | Run with: `make advanced-lab NUM=2`
 
 ---
 
@@ -46,7 +46,7 @@ Master performance analysis and optimization:
 
 **Concepts**: Benchmark, memory profiling, optimization patterns
 
-👉 **[Start Lab 3](performance-optimizer-lab/README.md)**
+👉 **[Start Lab 3](performance-optimizer-lab/README.md)** | Run with: `make advanced-lab NUM=3`
 
 ---
 
@@ -61,7 +61,7 @@ Build a minimal web framework:
 
 **Concepts**: Singleton, Factory, Service Objects, Decorator, Builder
 
-👉 **[Start Lab 4](mini-framework-lab/README.md)**
+👉 **[Start Lab 4](mini-framework-lab/README.md)** | Run with: `make advanced-lab NUM=4`
 
 ---
 
@@ -75,30 +75,34 @@ Build a minimal web framework:
 
 ### Running Labs
 
-Each lab can be run independently:
+#### Quick Start with Make Commands
+
+Run any lab with a simple make command:
 
 ```bash
-# Navigate to a lab
-cd ruby/labs/advanced/dsl-builder-lab
+# Lab 1: DSL Builder
+make advanced-lab NUM=1
 
-# Run the demo
-ruby dsl_demo.rb
+# Lab 2: Concurrent Task Processor
+make advanced-lab NUM=2
+
+# Lab 3: Performance Optimizer
+make advanced-lab NUM=3
+
+# Lab 4: Mini Framework
+make advanced-lab NUM=4
 ```
 
-### Using Advanced Environment
+#### Alternative: Manual Execution
 
-For advanced features and isolation:
+If you prefer to run manually:
 
 ```bash
-# Start the advanced container
-docker-compose up -d ruby-advanced
+# Start the containers
+docker compose up -d ruby-env
 
-# Enter the container
-docker-compose exec ruby-advanced bash
-
-# Navigate and run
-cd ruby/labs/advanced/dsl-builder-lab
-ruby dsl_demo.rb
+# Run a specific lab
+docker compose exec ruby-env ruby ruby/labs/advanced/dsl-builder-lab/solution/dsl_demo.rb
 ```
 
 ## 📖 Lab Structure
@@ -108,11 +112,15 @@ Each lab follows a consistent structure:
 ```
 lab-name/
 ├── README.md          # Lab objectives and instructions
-├── lib/               # Implementation files
-│   ├── component1.rb
-│   └── component2.rb
-├── examples/          # Usage examples (some labs)
-└── demo.rb            # Main demonstration
+├── solution/          # Complete working implementation
+│   ├── README.md      # Solution guide and implementation notes
+│   ├── *_demo.rb      # Main demonstration file
+│   └── lib/           # Implementation modules
+├── steps/             # Progressive step-by-step implementations
+│   ├── step-01/       # Each step with its own demo
+│   ├── step-02/
+│   └── ...
+└── *_demo.rb          # Entry point (some labs)
 ```
 
 ## 🎓 Learning Path
@@ -170,14 +178,14 @@ Each lab includes extension challenges:
 
 ## 🔧 Development Environment
 
-The advanced labs use an enhanced Docker environment:
+The advanced labs use the ruby-env container with enhanced capabilities:
 
 **Features**:
 - Increased resources (4 CPU, 2GB RAM)
-- Separate gem bundle for isolation
 - YJIT enabled for performance
 - GC tuning for profiling
 - Profiling tools pre-installed
+- Full Ruby development environment
 
 **Tools Available**:
 - `memory_profiler` - Memory usage analysis

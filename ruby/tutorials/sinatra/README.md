@@ -2,6 +2,26 @@
 
 Progressive tutorials for learning Sinatra web development, designed for intermediate and advanced Python engineers familiar with Flask, Django, and FastAPI.
 
+## 🚀 Quick Start
+
+The easiest way to run these tutorials is using the provided make commands:
+
+```bash
+# From the repository root, start the development environment
+make up-docker
+
+# Run any tutorial by number (1-8)
+make sinatra-tutorial NUM=1    # Hello Sinatra
+make sinatra-tutorial NUM=2    # Routes and Parameters
+make sinatra-tutorial NUM=3    # Templates and Views
+# ... etc
+
+# Access the running app at http://localhost:4567
+# Press Ctrl+C to stop the server
+```
+
+See all available commands with `make help`.
+
 ## 🎯 What is Sinatra?
 
 Sinatra is a lightweight, elegant web framework for Ruby. Think of it as Ruby's equivalent to Flask - minimalist, flexible, and perfect for everything from microservices to small web applications.

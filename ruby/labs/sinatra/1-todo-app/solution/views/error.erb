@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h2>Error</h2>
+</div>
+
+<div class="error-container">
+  <div class="error-icon">⚠️</div>
+  <h3>Something went wrong</h3>
+  <p><%= @error %></p>
+  <a href="/tasks" class="btn btn-primary">← Back to Tasks</a>
+</div>
+
+<style>
+  .error-container {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .error-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .error-container h3 {
+    color: #dc3545;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-container p {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
+</style>
