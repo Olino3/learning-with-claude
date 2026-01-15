@@ -1,6 +1,9 @@
 # Dart & Flutter Development Environment
 # This Dockerfile creates a dedicated Dart and Flutter development environment
 # It includes Dart SDK and Flutter for web development
+# We intentionally use debian:bookworm-slim (same base as the Ruby/Python images)
+# so we can install the Dart SDK from the official apt repo and Flutter from git,
+# keeping all language containers aligned on Debian Bookworm for this educational setup.
 
 FROM debian:bookworm-slim
 
