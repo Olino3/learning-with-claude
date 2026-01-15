@@ -7,7 +7,7 @@ Progressive hands-on labs to learn Dart fundamentals through building real proje
 | Lab | Topic | Project | Time | Difficulty |
 |-----|-------|---------|------|------------|
 | **Lab 1** | [Dart Basics & OOP](lab1-basics/README.md) | Book Library System | 1-2h | ⭐ Beginner |
-| **Lab 2** | Collections & Iteration | Contact Manager *(Coming Soon)* | 1.5-2.5h | ⭐⭐ Beginner+ |
+| **Lab 2** | [Collections & Iteration](lab2-collections/README.md) | Contact Manager | 1.5-2.5h | ⭐⭐ Beginner+ |
 | **Lab 3** | Functions & Mixins | Calculator with Mixins *(Coming Soon)* | 2-3h | ⭐⭐ Intermediate |
 
 ## 🚀 Quick Start
@@ -18,8 +18,8 @@ Progressive hands-on labs to learn Dart fundamentals through building real proje
 # Lab 1: Dart Basics
 make dart-beginner-lab NUM=1
 
-# Lab 2: Collections (Coming Soon)
-# make dart-beginner-lab NUM=2
+# Lab 2: Collections & Iteration
+make dart-beginner-lab NUM=2
 
 # Lab 3: Functions & Mixins (Coming Soon)
 # make dart-beginner-lab NUM=3

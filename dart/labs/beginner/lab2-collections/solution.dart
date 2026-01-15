@@ -84,6 +84,9 @@ class ContactManager {
     final grouped = <String, List<Contact>>{};
     
     for (final contact in _contacts.values) {
+      // Skip contacts with empty names
+      if (contact.name.isEmpty) continue;
+      
       final initial = contact.name[0].toUpperCase();
       grouped.putIfAbsent(initial, () => []).add(contact);
     }
@@ -149,7 +152,8 @@ class ContactManager {
 
   /// Sort contacts by name (using cascade notation)
   List<Contact> sortedByName() {
-    return allContacts..sort((a, b) => a.name.compareTo(b.name));
+    // Create a copy to avoid mutating the original list
+    return [...allContacts]..sort((a, b) => a.name.compareTo(b.name));
   }
 
   /// List all contacts sorted by name
