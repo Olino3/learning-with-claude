@@ -410,7 +410,7 @@ Write production-ready, idiomatic Dart code following best practices.
 |---|----------|--------|------------|
 | 11 | Advanced Generics & Type System | Generic constraints, variance, type casting | ⭐⭐⭐ Intermediate |
 | 12 | Mixins & Extension Methods | Mixin composition, extension methods | ⭐⭐⭐ Intermediate |
-| 13 | Advanced Async Patterns | StreamController, Isolates, async generators | ⭐⭐⭐⭐ Intermediate |
+| 13 | Advanced Async Patterns | StreamController, Isolates, async generators | ⭐⭐⭐⭐ Advanced |
 | 14 | Reflection & Metadata | Annotations, code generation, dart:mirrors | ⭐⭐⭐ Intermediate |
 | 15 | Advanced Error Handling | Custom exceptions, Result types, Zones | ⭐⭐⭐ Intermediate |
 | 16 | Idiomatic Dart Patterns | Best practices, design patterns, style guide | ⭐⭐⭐ Intermediate |

@@ -390,7 +390,7 @@ import 'dart:mirrors';
 
 // This works in Dart VM but:
 // - Won't work in Flutter
-// - Won't work in dart2js (web)
+// - Won't work in dart2js (Dart-to-JavaScript compiler for web)
 // - Prevents tree-shaking (huge app size)
 // - Slower than direct calls
 // - No compile-time safety

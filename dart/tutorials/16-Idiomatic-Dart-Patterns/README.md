@@ -1480,12 +1480,9 @@ void main() async {
 
 See the exercises directory for hands-on practice:
 
-1. `exercises/1-factory-patterns.md` - Implement factory patterns and named constructors
-2. `exercises/2-builder-pattern.md` - Build a fluent API for query construction
-3. `exercises/3-immutability.md` - Create immutable data structures with copyWith
-4. `exercises/4-functional-patterns.md` - Apply map, fold, and higher-order functions
-5. `exercises/5-pattern-matching.md` - Use switch expressions and destructuring
-6. `exercises/6-idiomatic-refactoring.md` - Refactor code to be more idiomatic
+1. `exercises/1-builder-pattern.md` - Build a fluent API with type-safe builder pattern
+2. `exercises/2-immutable-data.md` - Create immutable data structures with copyWith
+3. `exercises/3-pattern-matching.md` - Use switch expressions and sealed classes
 
 ## 📚 What You Learned
 

@@ -639,12 +639,13 @@ class Box<T> {
 void processAnimals(List<Animal> animals) { }
 
 List<Dog> dogs = [Dog('Buddy')];
-// processAnimals(dogs);  // Compile error! List is invariant
+// processAnimals(dogs);  // Compile error! List is invariant in Dart
+// This prevents you from adding a Cat to a List<Dog> through the List<Animal> reference
 
 // Right - use covariant collections or explicit typing
 void processAnimals(List<Animal> animals) { }
 List<Animal> animals = <Animal>[Dog('Buddy')];
-processAnimals(animals);  // OK
+processAnimals(animals);  // OK - List is explicitly typed as List<Animal>
 ```
 
 ## 📖 Additional Resources

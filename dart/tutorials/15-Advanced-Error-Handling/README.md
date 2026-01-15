@@ -1545,11 +1545,9 @@ void main() async {
 
 See the exercises directory for hands-on practice:
 
-1. `exercises/1-custom-exceptions.md` - Build a domain-specific exception hierarchy
-2. `exercises/2-result-type.md` - Implement a Result type for a REST client
-3. `exercises/3-zone-error-handling.md` - Use zones for request isolation
-4. `exercises/4-retry-circuit-breaker.md` - Build resilient API client
-5. `exercises/5-error-reporting.md` - Implement comprehensive error tracking
+1. `exercises/1-custom-exceptions.md` - Build a custom exception hierarchy for banking
+2. `exercises/2-retry-pattern.md` - Implement retry logic with exponential backoff
+3. `exercises/3-circuit-breaker.md` - Build a circuit breaker pattern
 
 ## 📚 What You Learned
 
