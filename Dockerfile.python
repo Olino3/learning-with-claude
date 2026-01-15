@@ -7,8 +7,10 @@ FROM python:3.13-slim
 # Set working directory
 WORKDIR /app
 
-# Install essential build tools and dependencies
-RUN apt-get update && apt-get install -y \
+# Install essential build tools and dependencies with cache mount for efficiency
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y \
     build-essential \
     git \
     curl \
@@ -34,9 +36,10 @@ RUN python -m venv $VIRTUAL_ENV
 # Copy requirements.txt for Python package management
 COPY requirements.txt ./
 
-# Install Python packages (gracefully handle failures for demo purposes)
-RUN pip install --upgrade pip || true
-RUN pip install -r requirements.txt || echo "Warning: Some packages failed to install. Run 'make python-install' to retry."
+# Install Python packages with cache mount for faster builds
+RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
 
 # Create directories for tutorials, labs, and scripts
 RUN mkdir -p /app/python/tutorials /app/python/labs /app/python/reading /app/scripts
