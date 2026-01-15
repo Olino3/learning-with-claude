@@ -30,9 +30,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for better Ruby experience
-# RUBYOPT="-W0" disables warnings to reduce noise in learning environment
-# This helps beginners focus on core concepts without warning distractions
-ENV RUBYOPT="-W0"
+# RUBYOPT="-W1" keeps Ruby at its default warning level
+# This shows important warnings without overwhelming beginners with noise
+ENV RUBYOPT="-W1"
 ENV BUNDLE_PATH="/usr/local/bundle"
 ENV BUNDLE_JOBS=4
 ENV BUNDLE_RETRY=3
