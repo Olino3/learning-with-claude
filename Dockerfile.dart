@@ -37,6 +37,13 @@ ENV PATH="/usr/lib/dart/bin:${PATH}"
 ENV PATH="/root/.pub-cache/bin:${PATH}"
 
 # Install Flutter SDK for web development with cache mount for efficiency
+# NOTE: Flutter version is intentionally pinned for reproducible tutorials and labs.
+# Flutter releases frequent updates (including security and bug fixes). To update:
+#   1. Check the latest stable version at https://flutter.dev/docs/development/tools/sdk/releases
+#   2. Update FLUTTER_VERSION below to the new stable tag (e.g., "3.x.y")
+#   3. Rebuild the Docker image and run all Dart/Flutter tutorials, labs, and tests
+#      inside the container (see Makefile targets like `make dart-shell`) to verify
+#      that examples still work as expected.
 ENV FLUTTER_VERSION="3.24.5"
 ENV FLUTTER_HOME="/opt/flutter"
 RUN --mount=type=cache,target=/root/.cache/flutter,sharing=locked \
