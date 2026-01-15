@@ -13,7 +13,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/home/olino3/git/learning-with-claude"
+        "~/git/learning-with-claude"
       ]
     },
     "git": {
@@ -22,7 +22,7 @@
         "-y",
         "@modelcontextprotocol/server-git",
         "--repository",
-        "/home/olino3/git/learning-with-claude"
+        "~/git/learning-with-claude"
       ]
     },
     "sequential-thinking": {
