@@ -4,7 +4,7 @@ services:
   ruby-env:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ruby
     container_name: ruby-env
     volumes:
       # Mount the entire repository for live code updates
@@ -35,7 +35,7 @@ services:
   sinatra-web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ruby
     container_name: sinatra-web
     volumes:
       - .:/app
@@ -66,7 +66,7 @@ services:
   dart-env:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dart
     container_name: dart-env
     volumes:
       # Mount the entire repository for live code updates
@@ -110,7 +110,7 @@ services:
   flutter-web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dart
     container_name: flutter-web
     volumes:
       - .:/app

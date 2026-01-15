@@ -7,8 +7,10 @@ FROM python:3.13-slim
 # Set working directory
 WORKDIR /app
 
-# Install essential build tools and dependencies
-RUN apt-get update && apt-get install -y \
+# Install essential build tools and dependencies with cache mount for efficiency
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y \
     build-essential \
     git \
     curl \
@@ -34,9 +36,20 @@ RUN python -m venv $VIRTUAL_ENV
 # Copy requirements.txt for Python package management
 COPY requirements.txt ./
 
-# Install Python packages (gracefully handle failures for demo purposes)
-RUN pip install --upgrade pip || true
-RUN pip install -r requirements.txt || echo "Warning: Some packages failed to install. Run 'make python-install' to retry."
+# Install Python packages with cache mount for faster builds
+# NOTE: For this educational repo we *gracefully* handle installation failures
+# so the Docker image can still be built for demos. You can retry inside the
+# running container with: make python-install
+RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    /bin/sh -c ' \
+      if ! pip install --upgrade pip; then \
+        echo "WARNING: Failed to upgrade pip (demo environment)."; \
+      fi; \
+      if ! pip install -r requirements.txt; then \
+        echo "WARNING: Failed to install Python packages from requirements.txt."; \
+        echo "You can retry inside the container with: make python-install"; \
+      fi \
+    '
 
 # Create directories for tutorials, labs, and scripts
 RUN mkdir -p /app/python/tutorials /app/python/labs /app/python/reading /app/scripts
