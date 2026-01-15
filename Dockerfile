@@ -64,6 +64,17 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 ENV PATH="/usr/lib/dart/bin:${PATH}"
 ENV PATH="/root/.pub-cache/bin:${PATH}"
 
+# Install Flutter SDK for web development
+ENV FLUTTER_VERSION="3.24.5"
+ENV FLUTTER_HOME="/opt/flutter"
+RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME} \
+    && ${FLUTTER_HOME}/bin/flutter config --no-analytics \
+    && ${FLUTTER_HOME}/bin/flutter precache --web \
+    && ${FLUTTER_HOME}/bin/flutter doctor -v
+
+# Add Flutter to PATH
+ENV PATH="${FLUTTER_HOME}/bin:${PATH}"
+
 # Copy pubspec.yaml for Dart package management (similar to Gemfile for Ruby)
 COPY pubspec.yaml ./
 
