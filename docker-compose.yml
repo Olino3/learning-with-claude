@@ -80,6 +80,31 @@ services:
     networks:
       - ruby-network
 
+  # Flutter web application container
+  # Use this for running Flutter tutorials and labs
+  flutter-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flutter-web
+    volumes:
+      - .:/app
+      - dart-pub-cache:/root/.pub-cache
+    working_dir: /app
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    ports:
+      # Map host ports to container ports for web applications
+      - "8080:8080"  # Default Flutter web port
+      - "8081:8081"  # Alternative Flutter web port
+      - "8082:8082"  # Additional Flutter port
+    networks:
+      - ruby-network
+    environment:
+      - FLUTTER_WEB=true
+      - CHROME_EXECUTABLE=chromium
+
   # PostgreSQL database for Sinatra labs
   postgres:
     image: postgres:16-alpine

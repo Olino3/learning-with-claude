@@ -43,6 +43,17 @@ dc_resource('dart-env',
     ]
 )
 
+# Configure the flutter-web container with port forwarding
+dc_resource('flutter-web',
+    labels=['web'],
+    links=[
+        link('http://localhost:8080', 'Flutter App (Default)'),
+        link('http://localhost:8081', 'Alternative Flutter Port'),
+        link('http://localhost:8082', 'Additional Flutter Port'),
+        link('https://flutter.dev/docs', 'Flutter Documentation')
+    ]
+)
+
 # Configure database and cache services
 dc_resource('postgres',
     labels=['database'],
@@ -67,6 +78,7 @@ print("""
 
   Dart:
     • dart-env    - For running Dart scripts and applications
+    • flutter-web - For running Flutter web applications
 
   Infrastructure:
     • postgres    - PostgreSQL database (port 5432)
@@ -76,6 +88,8 @@ print("""
   • http://localhost:4567 - Default Sinatra port
   • http://localhost:9292 - Rack applications
   • http://localhost:3000 - Alternative web port
+  • http://localhost:8080 - Default Flutter web port
+  • http://localhost:8081 - Alternative Flutter port
 
 🔧 Quick Commands:
   Ruby:
@@ -87,6 +101,10 @@ print("""
   Dart:
     • Run a script:     docker compose exec dart-env dart run scripts/hello.dart
     • Bash shell:       docker compose exec dart-env bash
+
+  Flutter:
+    • Bash shell:       docker compose exec flutter-web bash
+    • Run Flutter app:  docker compose exec flutter-web flutter run -d web-server --web-port=8080
 
   Database:
     • Connect to DB:    docker compose exec postgres psql -U postgres -d sinatra_dev
@@ -101,6 +119,10 @@ print("""
   Dart:
     1. Start with /dart/tutorials/1-Getting-Started
     2. Explore Dart examples and exercises
+
+  Flutter:
+    1. Start with Flutter basics in /dart/labs/beginner
+    2. Build web applications with Flutter
 
 Happy learning! 🎉
 """)

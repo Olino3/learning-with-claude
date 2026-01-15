@@ -8,6 +8,130 @@ This is an **educational repository** teaching Ruby and Dart to developers (espe
 **Target Audience:** Developers transitioning from Python or learning from scratch
 **Structure:** Tutorials (progressive lessons) + Labs (hands-on projects)
 
+## Tech Stack
+
+**Ruby:**
+- Version: 3.4.7
+- Frameworks: Sinatra (web framework)
+- Testing: RSpec, Minitest, Rack-Test, Capybara
+- Linting: RuboCop
+- Database: PostgreSQL (via pg gem), SQLite3, Redis
+- ORM: ActiveRecord, Sequel
+- Security: BCrypt, JWT, Rack::Protection
+- WebSocket: Faye-WebSocket, EventMachine
+
+**Dart:**
+- Version: Latest stable
+- Testing: package:test
+- Package manager: pub
+
+**Infrastructure:**
+- Containerization: Docker & Docker Compose
+- Development Tool: Tilt (optional)
+- Databases: PostgreSQL 13+, Redis
+- Web Servers: Puma, Thin, WEBrick
+
+## Build, Test, and Lint Commands
+
+All commands run inside Docker containers. **Never** suggest installing Ruby/Dart locally.
+
+### Starting the Environment
+
+```bash
+make up-docker          # Start all containers
+make down               # Stop all containers
+make status             # Check container status
+make logs               # View all logs
+```
+
+### Ruby Environment
+
+```bash
+make shell              # Open bash in Ruby container
+make repl               # Start interactive Ruby (IRB)
+make run-script SCRIPT=path/to/file.rb   # Run a Ruby script
+
+# Example: Run a tutorial script
+make run-script SCRIPT=ruby/tutorials/1-Getting-Started/hello.rb
+```
+
+### Testing
+
+```bash
+# Run RSpec tests (inside Ruby container)
+make shell
+rspec spec/                              # Run all tests
+rspec spec/path/to/specific_spec.rb      # Run specific test file
+rspec spec/path/to/specific_spec.rb:42   # Run test at line 42
+```
+
+### Linting
+
+```bash
+# Run RuboCop (inside Ruby container)
+make shell
+rubocop                                  # Lint all Ruby files
+rubocop path/to/file.rb                 # Lint specific file
+rubocop -a                              # Auto-correct safe issues
+```
+
+### Sinatra Web Development
+
+```bash
+make sinatra-tutorial NUM=1             # Run tutorial 1-8
+make sinatra-lab NUM=1                  # Run lab 1-4
+make sinatra-start APP=path/to/app.rb   # Start custom Sinatra app
+make sinatra-stop                       # Stop running Sinatra app
+make sinatra-logs                       # View Sinatra logs
+
+# Web ports:
+# http://localhost:4567 - Default Sinatra
+# http://localhost:9292 - Rack apps
+# http://localhost:3000 - Alternative port
+```
+
+### Dart Environment
+
+```bash
+make dart-shell         # Open bash in Dart container
+make dart-repl          # Start Dart REPL
+make run-dart SCRIPT=path/to/file.dart   # Run Dart script
+```
+
+### Database Access
+
+```bash
+make db-console         # PostgreSQL psql console
+make redis-cli          # Redis CLI
+```
+
+## Workflow Steps
+
+### When Adding New Tutorial Content
+
+1. **Plan:** Understand the learning objective and difficulty level
+2. **Create:** Add files in appropriate tutorial/lab directory
+3. **Structure:** Follow two-track pattern (README.md + STEPS.md)
+4. **Test:** Run the code in the container to verify it works
+5. **Document:** Include Python comparisons and clear explanations
+6. **Commit:** Use meaningful messages like "Add Tutorial X: Topic"
+
+### When Modifying Existing Code
+
+1. **Understand:** Read the README and STEPS to understand the learning path
+2. **Preserve:** Keep TODO markers and educational structure intact
+3. **Test:** Verify changes work in the containerized environment
+4. **Lint:** Run RuboCop if modifying Ruby code
+5. **Validate:** Ensure difficulty level is appropriate for the tutorial
+
+### When Reviewing Code
+
+1. Check idiomatic usage (Ruby blocks, Dart null safety)
+2. Verify Python comparison comments are accurate
+3. Ensure containerized commands (not local installations)
+4. Confirm educational clarity over cleverness
+5. Validate progression matches tutorial level
+
 ## Code Suggestion Guidelines
 
 ### Match Tutorial Difficulty Level
@@ -310,3 +434,118 @@ Your suggestions are part of a learning journey. Prioritize:
 4. **Progression** (respect the learning level)
 
 Help developers become confident Ruby and Dart programmers! 🚀
+
+## Explicit Boundaries - DO NOT Touch
+
+**Files and Directories to Never Modify:**
+- `.git/` - Git internals
+- `.github/workflows/` - CI/CD configuration (unless explicitly tasked)
+- `docker-compose.yml` - Infrastructure config (unless explicitly tasked)
+- `Dockerfile` - Container definitions (unless explicitly tasked)
+- `Gemfile.lock`, `pubspec.lock` - Dependency lock files (auto-generated)
+- `.env` files - Environment variables and secrets
+- `todos.db` - Database files
+
+**Code to Preserve:**
+- `# TODO:` markers in exercise files (for student completion)
+- Checkpoint comments and expected output annotations
+- Step-by-step progression in STEPS.md files
+- Git commit history representing learning milestones
+
+**Actions to Avoid:**
+- Installing gems/packages directly (`gem install`, `pub add`) - use Gemfile/pubspec.yaml
+- Running commands outside containers
+- Modifying working solution code unless fixing a bug
+- Removing educational comments or Python comparisons
+- Changing tutorial difficulty levels arbitrarily
+- Suggesting production patterns in beginner tutorials
+
+## Security Guidelines
+
+**Always:**
+- Use `bcrypt` for password hashing (never plain text or MD5/SHA1)
+- Sanitize user input in web applications
+- Use parameterized queries to prevent SQL injection
+- Enable Rack::Protection in Sinatra apps
+- Use HTTPS in production examples
+- Store secrets in environment variables, never in code
+
+**Never:**
+- Commit API keys, tokens, or passwords
+- Use `eval()` or `instance_eval()` with user input
+- Disable CSRF protection without explaining why
+- Use `system()` or backticks with unsanitized input
+- Store sensitive data in cookies without encryption
+
+**In Examples:**
+- Use placeholder values: `YOUR_API_KEY`, `example.com`
+- Show `.env.example` files, not `.env` files
+- Demonstrate secure patterns even in simple tutorials
+- Add security comments when using authentication/authorization
+
+## Acceptance Criteria - Definition of "Done"
+
+Before considering a task complete:
+
+### For New Tutorials
+- [ ] Code runs successfully in Docker container
+- [ ] Includes Python comparison comments (if Ruby/Dart code)
+- [ ] Has clear learning objectives stated
+- [ ] Follows established file structure (README.md + optional STEPS.md)
+- [ ] Numbered examples with expected output
+- [ ] Matches appropriate difficulty level
+- [ ] Includes TODO markers for student exercises
+- [ ] References related tutorials when relevant
+
+### For Code Changes
+- [ ] Tested in containerized environment (`make shell`, then run)
+- [ ] Follows language idioms (not direct Python translation)
+- [ ] Linted (RuboCop for Ruby, if applicable)
+- [ ] Preserves educational structure (TODOs, checkpoints)
+- [ ] Maintains or improves clarity
+- [ ] Doesn't break existing tutorials/labs
+- [ ] Security best practices followed
+
+### For Documentation Updates
+- [ ] Accurate command examples
+- [ ] References correct file paths
+- [ ] Markdown properly formatted
+- [ ] Examples tested and verified
+- [ ] Clear and beginner-friendly language
+
+### For Lab Solutions
+- [ ] Complete working implementation
+- [ ] Error handling for edge cases
+- [ ] Security best practices demonstrated
+- [ ] Code organized in proper structure (lib/, spec/, etc.)
+- [ ] Tests included (RSpec for Ruby labs)
+- [ ] README with setup and usage instructions
+
+## Quick Reference Card
+
+**Repository Type:** Educational (Ruby & Dart learning materials)
+
+**Target Users:** Python developers learning Ruby/Dart
+
+**Key Patterns:**
+- Two-track learning: README.md (full solution) + STEPS.md (incremental)
+- TODO markers for student completion
+- Python comparison comments
+- Containerized development (Docker)
+- Progressive difficulty (beginner → intermediate → advanced)
+
+**Essential Commands:**
+```bash
+make up-docker                    # Start environment
+make shell                        # Ruby container
+make run-script SCRIPT=file.rb   # Run Ruby script
+make sinatra-tutorial NUM=1      # Sinatra tutorial
+rubocop                          # Lint (inside container)
+rspec                            # Test (inside container)
+```
+
+**Core Principles:**
+1. Clarity over cleverness
+2. Idioms over familiarity
+3. Education over brevity
+4. Security by default
