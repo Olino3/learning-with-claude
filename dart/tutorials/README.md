@@ -243,6 +243,8 @@ Learn file operations and text processing in Dart.
 
 ## 📊 Tutorial Overview
 
+### Beginner/Intermediate Tutorials (1-10)
+
 | # | Tutorial | Topics | Difficulty |
 |---|----------|--------|------------|
 | 1 | Getting Started | Environment setup, scripts, REPL | ⭐ Beginner |
@@ -255,6 +257,133 @@ Learn file operations and text processing in Dart.
 | 8 | Error Handling | Exceptions, try/catch | ⭐⭐ Intermediate |
 | 9 | Async Programming | Future, async/await, Stream | ⭐⭐⭐ Intermediate |
 | 10 | File I/O | Files, paths, text processing | ⭐⭐ Intermediate |
+
+### Advanced Tutorials (11-17)
+
+| # | Tutorial | Topics | Difficulty |
+|---|----------|--------|------------|
+| 11 | Advanced Generics & Type System | Bounded generics, variance, type inference | ⭐⭐⭐⭐ Advanced |
+| 12 | Isolates & Concurrency | True parallelism, message passing, worker pools | ⭐⭐⭐⭐⭐ Advanced |
+| 13 | Advanced Async Patterns | Stream transformers, reactive patterns, backpressure | ⭐⭐⭐⭐ Advanced |
+| 14 | Extension Methods & Mixins | Extension methods, advanced mixin patterns | ⭐⭐⭐⭐ Advanced |
+| 15 | Code Generation & Annotations | build_runner, json_serializable, custom generators | ⭐⭐⭐⭐ Advanced |
+| 16 | Advanced Patterns (Dart 3.0+) | Pattern matching, records, sealed classes | ⭐⭐⭐⭐⭐ Advanced |
+| 17 | Performance Optimization | Profiling, benchmarking, memory optimization | ⭐⭐⭐⭐ Advanced |
+
+---
+
+## 🎓 Advanced Dart Track
+
+The advanced tutorials (11-17) dive deep into Dart's most powerful features - the techniques used by framework authors and professional developers. These are for developers ready to:
+
+- Build high-performance applications
+- Master Dart's concurrency model
+- Understand and use Dart 3.0+ features
+- Optimize production code
+- Generate code for productivity
+
+### Tutorial 11: Advanced Generics & Type System
+**Status:** ✅ Complete
+
+Master Dart's sophisticated type system with bounded generics and variance.
+
+👉 **[Start Tutorial 11](advanced/11-Advanced-Generics-Type-System/README.md)**
+
+**You'll learn:**
+- Bounded type parameters with `extends`
+- Covariance and contravariance
+- Generic constraints and factory patterns
+- Type aliases and typedefs
+
+---
+
+### Tutorial 12: Isolates and Concurrency
+**Status:** ✅ Complete
+
+Understand Dart's isolate-based concurrency for true parallelism.
+
+👉 **[Start Tutorial 12](advanced/12-Isolates-Concurrency/README.md)**
+
+**You'll learn:**
+- Isolates for parallel execution
+- Message passing patterns
+- Worker pool implementation
+- When to use isolates vs async/await
+
+---
+
+### Tutorial 13: Advanced Async Patterns
+**Status:** ✅ Complete
+
+Master sophisticated async programming patterns and stream operations.
+
+👉 **[Start Tutorial 13](advanced/13-Advanced-Async-Patterns/README.md)**
+
+**You'll learn:**
+- Stream transformers and controllers
+- Reactive programming patterns
+- Backpressure handling
+- Retry and timeout patterns
+
+---
+
+### Tutorial 14: Extension Methods & Advanced Mixins
+**Status:** ✅ Complete
+
+Extend existing types and master advanced mixin patterns.
+
+👉 **[Start Tutorial 14](advanced/14-Extension-Methods-Mixins/README.md)**
+
+**You'll learn:**
+- Extension methods on any type
+- Generic extensions
+- Mixin constraints with `on` clause
+- Advanced composition patterns
+
+---
+
+### Tutorial 15: Code Generation & Annotations
+**Status:** ✅ Complete
+
+Use code generation to eliminate boilerplate and improve productivity.
+
+👉 **[Start Tutorial 15](advanced/15-Code-Generation-Annotations/README.md)**
+
+**You'll learn:**
+- Annotations and metadata
+- json_serializable for JSON handling
+- freezed for immutable classes
+- Creating custom code generators
+
+---
+
+### Tutorial 16: Advanced Patterns (Dart 3.0+)
+**Status:** ✅ Complete
+
+Master Dart 3.0+'s modern features including pattern matching and records.
+
+👉 **[Start Tutorial 16](advanced/16-Advanced-Patterns-Dart3/README.md)**
+
+**You'll learn:**
+- Pattern matching in switch
+- Records for lightweight data
+- Sealed classes for exhaustive checking
+- Class modifiers (base, final, interface)
+
+---
+
+### Tutorial 17: Performance Optimization
+**Status:** ✅ Complete
+
+Profile and optimize Dart code for maximum performance.
+
+👉 **[Start Tutorial 17](advanced/17-Performance-Optimization/README.md)**
+
+**You'll learn:**
+- Benchmarking and profiling
+- Memory optimization techniques
+- JIT vs AOT compilation
+- Lazy evaluation and caching
 
 ---
 
