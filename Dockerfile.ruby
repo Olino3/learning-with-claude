@@ -53,7 +53,7 @@ RUN --mount=type=cache,target=/usr/local/bundle/cache,sharing=locked \
 RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/scripts
 
 # Copy the repository content last
-# This ensures gem installation layers aren't invalidated by code changes
+# This keeps the repository code in a separate layer, so changing code doesn't trigger a full gem reinstall
 COPY . /app/
 
 # Set environment variables for performance optimization
