@@ -1,6 +1,6 @@
 # Multi-language Development Environment
-# This Dockerfile creates a development environment for learning Ruby and Dart
-# It includes Ruby 3.4.7, Dart SDK, and common development tools
+# This Dockerfile creates a development environment for learning Ruby, Dart, and Python
+# It includes Ruby 3.4.7, Dart SDK, Python 3.12, and common development tools
 
 FROM ruby:3.4.7-slim
 
@@ -26,6 +26,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     redis-tools \
     procps \
     libyaml-dev \
+    python3.12 \
+    python3.12-venv \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables for better Ruby experience
@@ -82,8 +85,25 @@ COPY pubspec.yaml ./
 RUN --mount=type=cache,target=/root/.pub-cache,sharing=locked \
     dart pub get
 
+# Install Python and create virtual environment
+# Set up Python virtual environment in /opt/venv
+ENV PYTHON_VERSION="3.12"
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Create virtual environment
+RUN python3.12 -m venv $VIRTUAL_ENV
+
+# Copy requirements.txt for Python package management
+COPY requirements.txt ./
+
+# Install Python packages with cache mount for faster builds
+RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
+
 # Create directories for tutorials, labs, and scripts
-RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/dart/tutorials /app/dart/labs /app/dart/reading /app/scripts
+RUN mkdir -p /app/ruby/tutorials /app/ruby/labs /app/ruby/reading /app/dart/tutorials /app/dart/labs /app/dart/reading /app/python/tutorials /app/python/labs /app/python/reading /app/scripts
 
 # Copy the repository content last
 # This ensures gem installation layers aren't invalidated by code changes

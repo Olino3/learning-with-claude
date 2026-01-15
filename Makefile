@@ -3,7 +3,8 @@
         beginner-lab intermediate-lab advanced-lab \
         db-console redis-cli status \
         dart-shell dart-repl run-dart \
-        flutter-shell flutter-run flutter-lab flutter-pub dart-beginner-lab
+        flutter-shell flutter-run flutter-lab flutter-pub dart-beginner-lab \
+        python-shell python-repl run-python python-install python-test
 
 # Default target
 help:
@@ -35,6 +36,14 @@ help:
 	@echo "                         Usage: make run-dart SCRIPT=scripts/hello.dart"
 	@echo "  make dart-beginner-lab - Run a Dart beginner lab (1-3)"
 	@echo "                         Usage: make dart-beginner-lab NUM=1"
+	@echo ""
+	@echo "🐍 Python Commands:"
+	@echo "  make python-shell    - Open a bash shell in python-env container"
+	@echo "  make python-repl     - Start Python REPL"
+	@echo "  make run-python      - Run a Python script"
+	@echo "                         Usage: make run-python SCRIPT=scripts/hello.py"
+	@echo "  make python-install  - Install Python dependencies from requirements.txt"
+	@echo "  make python-test     - Run Python tests with pytest"
 	@echo ""
 	@echo "🦋 Flutter Commands:"
 	@echo "  make flutter-shell   - Open a bash shell in flutter-web container"
@@ -77,6 +86,7 @@ help:
 	@echo "  Sinatra Labs:      Practice with ruby/labs/sinatra/1-todo-app/"
 	@echo "                     Run with: make sinatra-lab NUM=1"
 	@echo "  Dart Basics:       Start with dart/tutorials/1-Getting-Started/"
+	@echo "  Python Basics:     Start with python/tutorials/"
 	@echo ""
 	@echo "🌐 Web Application Ports (when running Sinatra):"
 	@echo "  http://localhost:4567  - Default Sinatra port"
@@ -104,6 +114,7 @@ up-docker:
 	@echo "🚀 Next steps:"
 	@echo "   Ruby: Run 'make shell' or 'make repl'"
 	@echo "   Dart: Run 'make dart-shell' or 'make dart-repl'"
+	@echo "   Python: Run 'make python-shell' or 'make python-repl'"
 	@echo "   Sinatra: Run 'make sinatra-tutorial NUM=1'"
 	@echo ""
 	@echo "🌐 Web ports available:"
@@ -579,3 +590,40 @@ endif
 	echo "💡 Tip: Edit the $$FILE_TYPE.dart file and run again to test your changes"; \
 	echo ""; \
 	docker compose exec dart-env dart run $$MAIN_FILE
+
+# ============================================================================
+# Python Commands
+# ============================================================================
+
+# Open bash shell in python-env container
+python-shell:
+@echo "Opening bash shell in python-env container..."
+docker compose exec python-env bash
+
+# Start interactive Python REPL
+python-repl:
+@echo "Starting Python REPL..."
+@echo "Type 'exit()' to quit the REPL"
+docker compose exec python-env python
+
+# Run a specific Python script
+# Usage: make run-python SCRIPT=scripts/hello.py
+run-python:
+ifndef SCRIPT
+@echo "Error: Please specify a script to run"
+@echo "Usage: make run-python SCRIPT=scripts/hello.py"
+@exit 1
+endif
+@echo "Running $(SCRIPT)..."
+docker compose exec python-env python $(SCRIPT)
+
+# Install Python dependencies from requirements.txt
+python-install:
+@echo "Installing Python dependencies from requirements.txt..."
+docker compose exec python-env pip install -r requirements.txt
+@echo "✅ Dependencies installed!"
+
+# Run Python tests with pytest
+python-test:
+@echo "Running Python tests with pytest..."
+docker compose exec python-env pytest python/ -v

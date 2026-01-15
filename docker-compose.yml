@@ -80,6 +80,31 @@ services:
     networks:
       - ruby-network
 
+  # Unified Python container for scripts, REPL, and development
+  # Use this for executing .py files, running applications, and interactive Python
+  python-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-env
+    volumes:
+      # Mount the entire repository for live code updates
+      - .:/app
+      # Persist pip cache
+      - python-pip-cache:/root/.cache/pip
+    working_dir: /app
+    command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    networks:
+      - ruby-network
+    environment:
+      # Python virtual environment
+      - VIRTUAL_ENV=/opt/venv
+      - PATH=/opt/venv/bin:/usr/local/bin:/usr/bin:/bin
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+
   # Flutter web application container
   # Use this for running Flutter tutorials and labs
   flutter-web:
@@ -147,6 +172,9 @@ volumes:
     driver: local
   # Dart pub cache persistence
   dart-pub-cache:
+    driver: local
+  # Python pip cache persistence
+  python-pip-cache:
     driver: local
   # PostgreSQL data persistence
   postgres-data:
