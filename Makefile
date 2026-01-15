@@ -2,7 +2,8 @@
         sinatra-shell sinatra-start sinatra-stop sinatra-logs sinatra-tutorial sinatra-lab \
         beginner-lab intermediate-lab advanced-lab \
         db-console redis-cli status \
-        dart-shell dart-repl run-dart
+        dart-shell dart-repl run-dart \
+        flutter-shell flutter-run flutter-lab flutter-pub dart-beginner-lab
 
 # Default target
 help:
@@ -32,6 +33,16 @@ help:
 	@echo "  make dart-repl       - Open interactive Dart shell"
 	@echo "  make run-dart        - Run a Dart script"
 	@echo "                         Usage: make run-dart SCRIPT=scripts/hello.dart"
+	@echo "  make dart-beginner-lab - Run a Dart beginner lab (1-3)"
+	@echo "                         Usage: make dart-beginner-lab NUM=1"
+	@echo ""
+	@echo "🦋 Flutter Commands:"
+	@echo "  make flutter-shell   - Open a bash shell in flutter-web container"
+	@echo "  make flutter-run     - Run a Flutter web app"
+	@echo "                         Usage: make flutter-run APP=dart/labs/beginner/lab1-basics"
+	@echo "  make flutter-lab     - Run a Flutter lab by number"
+	@echo "                         Usage: make flutter-lab NUM=1"
+	@echo "  make flutter-pub     - Install Flutter/Dart dependencies"
 	@echo ""
 	@echo "🌐 Sinatra Web Development:"
 	@echo "  make sinatra-shell   - Open a bash shell in sinatra-web container"
@@ -456,3 +467,115 @@ db-console:
 redis-cli:
 	@echo "Opening Redis CLI..."
 	docker compose exec redis redis-cli
+
+# ============================================================================
+# Flutter Web Development Commands
+# ============================================================================
+
+# Open bash shell in flutter-web container
+flutter-shell:
+	@echo "Opening bash shell in flutter-web container..."
+	@echo "💡 Tip: You can run Flutter apps with: flutter run -d web-server --web-port=8080"
+	docker compose exec flutter-web bash
+
+# Run a Flutter web application
+# Usage: make flutter-run APP=dart/labs/beginner/lab1-basics
+flutter-run:
+ifndef APP
+	@echo "Error: Please specify an app directory to run"
+	@echo "Usage: make flutter-run APP=dart/labs/beginner/lab1-basics"
+	@exit 1
+endif
+	@echo "Starting Flutter web application..."
+	@if [ ! -d "$(APP)" ]; then \
+		echo "❌ Error: Directory not found: $(APP)"; \
+		exit 1; \
+	fi; \
+	echo "📂 Running: $(APP)"; \
+	echo "🌐 Access at: http://localhost:8080"; \
+	echo "💡 Press Ctrl+C to stop the server"; \
+	echo ""; \
+	docker compose exec -w /app/$(APP) flutter-web flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0
+
+# Install Flutter/Dart dependencies
+flutter-pub:
+	@echo "Installing Flutter/Dart dependencies..."
+	docker compose exec flutter-web flutter pub get
+
+# Run a Flutter lab by number
+# Usage: make flutter-lab NUM=1
+flutter-lab:
+ifndef NUM
+	@echo "❌ Error: Please specify a lab number"
+	@echo "Usage: make flutter-lab NUM=1"
+	@echo ""
+	@echo "Available labs:"
+	@echo "  1 - Dart Basics & OOP (Book Library)"
+	@echo "  2 - Collections & Iteration (Contact Manager)"
+	@echo "  3 - Functions & Mixins (Calculator)"
+	@exit 1
+endif
+	@LAB_DIR=$$(ls -d dart/labs/beginner/lab$(NUM)-* 2>/dev/null | head -1); \
+	if [ -z "$$LAB_DIR" ]; then \
+		echo "❌ Error: Lab $(NUM) not found"; \
+		echo "Available labs:"; \
+		ls -d dart/labs/beginner/*/ 2>/dev/null | sed 's/dart\/labs\/beginner\///g' || echo "  No labs found yet"; \
+		exit 1; \
+	fi; \
+	SOLUTION_FILE="$$LAB_DIR/solution.dart"; \
+	STARTER_FILE="$$LAB_DIR/starter.dart"; \
+	if [ -f "$$SOLUTION_FILE" ]; then \
+		MAIN_FILE="$$SOLUTION_FILE"; \
+		FILE_TYPE="solution"; \
+	elif [ -f "$$STARTER_FILE" ]; then \
+		MAIN_FILE="$$STARTER_FILE"; \
+		FILE_TYPE="starter"; \
+	else \
+		echo "❌ No solution.dart or starter.dart found in $$LAB_DIR"; \
+		exit 1; \
+	fi; \
+	echo "🧪 Running Dart Beginner Lab $(NUM): $$LAB_DIR"; \
+	echo "📂 Running: $$FILE_TYPE.dart"; \
+	echo "📖 Read the lab guide: $$LAB_DIR/README.md"; \
+	echo "💡 Tip: Edit the $$FILE_TYPE.dart file and run again to test your changes"; \
+	echo ""; \
+	docker compose exec dart-env dart run $$MAIN_FILE
+
+# Run a Dart beginner lab by number (alias for consistency with Ruby)
+# Usage: make dart-beginner-lab NUM=1
+dart-beginner-lab:
+ifndef NUM
+	@echo "❌ Error: Please specify a lab number"
+	@echo "Usage: make dart-beginner-lab NUM=1"
+	@echo ""
+	@echo "Available labs:"
+	@echo "  1 - Dart Basics & OOP (Book Library)"
+	@echo "  2 - Collections & Iteration (Contact Manager)"
+	@echo "  3 - Functions & Mixins (Calculator)"
+	@exit 1
+endif
+	@LAB_DIR=$$(ls -d dart/labs/beginner/lab$(NUM)-* 2>/dev/null | head -1); \
+	if [ -z "$$LAB_DIR" ]; then \
+		echo "❌ Error: Lab $(NUM) not found"; \
+		echo "Available labs:"; \
+		ls -d dart/labs/beginner/*/ 2>/dev/null | sed 's/dart\/labs\/beginner\///g' || echo "  No labs found yet"; \
+		exit 1; \
+	fi; \
+	SOLUTION_FILE="$$LAB_DIR/solution.dart"; \
+	STARTER_FILE="$$LAB_DIR/starter.dart"; \
+	if [ -f "$$SOLUTION_FILE" ]; then \
+		MAIN_FILE="$$SOLUTION_FILE"; \
+		FILE_TYPE="solution"; \
+	elif [ -f "$$STARTER_FILE" ]; then \
+		MAIN_FILE="$$STARTER_FILE"; \
+		FILE_TYPE="starter"; \
+	else \
+		echo "❌ No solution.dart or starter.dart found in $$LAB_DIR"; \
+		exit 1; \
+	fi; \
+	echo "🧪 Running Dart Beginner Lab $(NUM): $$LAB_DIR"; \
+	echo "📂 Running: $$FILE_TYPE.dart"; \
+	echo "📖 Read the lab guide: $$LAB_DIR/README.md"; \
+	echo "💡 Tip: Edit the $$FILE_TYPE.dart file and run again to test your changes"; \
+	echo ""; \
+	docker compose exec dart-env dart run $$MAIN_FILE
