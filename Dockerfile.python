@@ -1,0 +1,52 @@
+# Python Development Environment
+# This Dockerfile creates a dedicated Python development environment
+# It includes Python 3.13 and common development tools
+
+FROM python:3.13-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install essential build tools and dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    curl \
+    vim \
+    nano \
+    less \
+    sqlite3 \
+    libsqlite3-dev \
+    pkg-config \
+    postgresql-client \
+    libpq-dev \
+    redis-tools \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up Python virtual environment in /opt/venv
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Create virtual environment
+RUN python -m venv $VIRTUAL_ENV
+
+# Copy requirements.txt for Python package management
+COPY requirements.txt ./
+
+# Install Python packages (gracefully handle failures for demo purposes)
+RUN pip install --upgrade pip || true
+RUN pip install -r requirements.txt || echo "Warning: Some packages failed to install. Run 'make python-install' to retry."
+
+# Create directories for tutorials, labs, and scripts
+RUN mkdir -p /app/python/tutorials /app/python/labs /app/python/reading /app/scripts
+
+# Copy the repository content
+COPY . /app/
+
+# Set Python environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Set the default command to keep container running
+CMD ["tail", "-f", "/dev/null"]

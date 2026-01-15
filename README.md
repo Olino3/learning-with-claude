@@ -45,29 +45,14 @@ This repository contains learning materials for various programming languages an
   - **`/ruby/reading`** - Reference materials
 
 - **`/dart`** - Dart programming tutorials, labs, and reading materials
-  - **`/dart/tutorials`** - Progressive learning tutorials (10 tutorials)
-  - **`/dart/labs`** - Hands-on practice projects
-  - **`/dart/reading`** - Reference materials
+  - **`/dart/tutorials`** - Step-by-step learning path
+  - **`/dart/labs`** - Practical exercises
+  - **`/dart/reading`** - Documentation and guides
 
-### Coming Soon 🚀
-
-We're expanding! The following languages and specialized learning paths are in development:
-
-#### Python
-- 🔬 **Data Science Path** - NumPy, Pandas, Matplotlib, Seaborn, Jupyter
-- 🏗️ **Data Engineering Path** - Apache Spark, Airflow, dbt, data pipelines
-- ⚡ **FastAPI** - Modern, fast web framework for building APIs
-- 🔄 **Celery** - Distributed task queue and async job processing
-- ☁️ **Cloud Native Path** - Docker, Kubernetes, microservices, serverless
-- 🤖 **Machine Learning** - scikit-learn, model training, evaluation
-- 🧠 **AI Engineering** - LLMs, RAG, AI agents, prompt engineering
-- 🗺️ **Geospatial** - GeoPandas, spatial analysis, mapping
-
-#### Go
-- 🚀 **Coming Soon** - Systems programming, concurrency, web services
-
-#### Rust
-- 🦀 **Coming Soon** - Systems programming, memory safety, performance
+- **`/python`** - Python programming tutorials, labs, and reading materials
+  - **`/python/tutorials`** - Progressive Python concepts
+  - **`/python/labs`** - Hands-on Python projects
+  - **`/python/reading`** - Python reference materials
 
 ## 🎯 Learning Paths
 
@@ -186,8 +171,18 @@ make run-script SCRIPT=path/to/file.rb   # Run a Ruby script
 
 ```bash
 make dart-shell        # Open a bash shell in Dart container
-make dart-repl         # Start interactive Dart REPL
+make dart-repl         # Open interactive Dart shell
 make run-dart SCRIPT=path/to/file.dart   # Run a Dart script
+```
+
+### Python Commands
+
+```bash
+make python-shell      # Open a bash shell in Python container
+make python-repl       # Start interactive Python REPL
+make run-python SCRIPT=path/to/file.py   # Run a Python script
+make python-install    # Install dependencies from requirements.txt
+make python-test       # Run Python tests with pytest
 ```
 
 ### Sinatra Commands
