@@ -2,6 +2,7 @@
 # This Dockerfile creates a dedicated Ruby development environment
 # It includes Ruby 3.4.7 and common development tools for web development
 
+# NOTE: Keep this Ruby version in sync with the `ruby` version specified in the Gemfile (currently ~> 3.4.7)
 FROM ruby:3.4.7-slim
 
 # Set working directory
