@@ -35,16 +35,45 @@ make clean         # Stop and remove all data (including databases)
 
 ## 📚 What's Inside
 
-This repository contains learning materials for various programming topics:
+This repository contains learning materials for various programming languages and technologies:
+
+### Currently Available
 
 - **`/ruby`** - Ruby programming tutorials, labs, and reading materials
-  - **`/ruby/tutorials`** - Progressive learning tutorials
+  - **`/ruby/tutorials`** - Progressive learning tutorials (23 tutorials)
   - **`/ruby/labs`** - Hands-on practice projects
   - **`/ruby/reading`** - Reference materials
 
+- **`/dart`** - Dart programming tutorials, labs, and reading materials
+  - **`/dart/tutorials`** - Progressive learning tutorials (10 tutorials)
+  - **`/dart/labs`** - Hands-on practice projects
+  - **`/dart/reading`** - Reference materials
+
+### Coming Soon 🚀
+
+We're expanding! The following languages and specialized learning paths are in development:
+
+#### Python
+- 🔬 **Data Science Path** - NumPy, Pandas, Matplotlib, Seaborn, Jupyter
+- 🏗️ **Data Engineering Path** - Apache Spark, Airflow, dbt, data pipelines
+- ⚡ **FastAPI** - Modern, fast web framework for building APIs
+- 🔄 **Celery** - Distributed task queue and async job processing
+- ☁️ **Cloud Native Path** - Docker, Kubernetes, microservices, serverless
+- 🤖 **Machine Learning** - scikit-learn, model training, evaluation
+- 🧠 **AI Engineering** - LLMs, RAG, AI agents, prompt engineering
+- 🗺️ **Geospatial** - GeoPandas, spatial analysis, mapping
+
+#### Go
+- 🚀 **Coming Soon** - Systems programming, concurrency, web services
+
+#### Rust
+- 🦀 **Coming Soon** - Systems programming, memory safety, performance
+
 ## 🎯 Learning Paths
 
-### Path 1: Ruby Fundamentals
+### Ruby Learning Paths
+
+#### Path 1: Ruby Fundamentals
 
 Start here if you're new to Ruby:
 
@@ -65,9 +94,9 @@ make run-script SCRIPT=scripts/hello.rb
 Follow the tutorials in order:
 1. [Getting Started](ruby/tutorials/1-Getting-Started/README.md)
 2. [Ruby Basics](ruby/tutorials/2-Ruby-Basics/README.md)
-3. Continue through tutorials 3-16...
+3. Continue through tutorials 3-23...
 
-### Path 2: Sinatra Web Development
+#### Path 2: Sinatra Web Development
 
 Start here if you want to build web applications with Ruby:
 
@@ -103,6 +132,33 @@ make sinatra-tutorial NUM=1
 | 3 | Authentication App | `make sinatra-lab NUM=3` |
 | 4 | Real-time Chat | `make sinatra-lab NUM=4` |
 
+### Dart Learning Paths
+
+#### Path 3: Dart Fundamentals
+
+Start here if you're new to Dart (especially designed for Python developers):
+
+```bash
+# 1. Start the environment
+make up-docker
+
+# 2. Open the Dart shell
+make dart-shell
+
+# 3. Start the Dart REPL to experiment
+make dart-repl
+
+# 4. Run your first Dart script
+make run-dart SCRIPT=dart/tutorials/1-Getting-Started/hello.dart
+```
+
+Follow the tutorials in order:
+1. [Getting Started](dart/tutorials/1-Getting-Started/README.md)
+2. [Dart Basics](dart/tutorials/2-Dart-Basics/README.md)
+3. Continue through tutorials 3-10...
+
+For more details, see the [Dart Learning Path](dart/README.md).
+
 ## 🛠️ Available Commands
 
 Run `make help` to see all available commands. Here are the most common ones:
@@ -124,6 +180,14 @@ make logs              # View all logs
 make shell             # Open a bash shell in Ruby container
 make repl              # Start interactive Ruby REPL (IRB)
 make run-script SCRIPT=path/to/file.rb   # Run a Ruby script
+```
+
+### Dart Commands
+
+```bash
+make dart-shell        # Open a bash shell in Dart container
+make dart-repl         # Start interactive Dart REPL
+make run-dart SCRIPT=path/to/file.dart   # Run a Dart script
 ```
 
 ### Sinatra Commands
@@ -234,6 +298,23 @@ ruby app.rb -o 0.0.0.0
 
 # Or run a specific app from outside
 make sinatra-start APP=ruby/labs/sinatra/1-todo-app/app.rb
+```
+
+### Workflow 4: Learning Dart Basics
+
+```bash
+# Start environment
+make up-docker
+
+# Experiment in the Dart REPL
+make dart-repl
+# >> print('Hello, Dart!');
+# >> var numbers = [1, 2, 3];
+# >> numbers.map((n) => n * 2).toList();
+# >> exit
+
+# Run tutorial exercises
+make run-dart SCRIPT=dart/tutorials/1-Getting-Started/hello.dart
 ```
 
 ## 📖 Learning Approach
