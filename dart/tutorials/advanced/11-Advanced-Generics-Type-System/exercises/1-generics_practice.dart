@@ -131,11 +131,12 @@ class Repository<T extends Entity> {
   }
   
   T? findById(String id) {
-    try {
-      return _items.firstWhere((item) => item.id == id);
-    } catch (e) {
-      return null;
+    for (var item in _items) {
+      if (item.id == id) {
+        return item;
+      }
     }
+    return null;
   }
   
   List<T> getAll() => List.unmodifiable(_items);

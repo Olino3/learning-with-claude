@@ -38,7 +38,8 @@ void main() {
 
 extension StringExtensions on String {
   bool get isEmail {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
+    // Simple email validation pattern
+    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(this);
   }
   
   String capitalize() {

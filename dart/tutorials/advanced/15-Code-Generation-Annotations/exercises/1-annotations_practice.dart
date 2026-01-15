@@ -81,7 +81,7 @@ class UserInput {
   final String name;
   
   @Required()
-  @Validate(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+  @Validate(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
   final String email;
   
   @MaxLength(20)
