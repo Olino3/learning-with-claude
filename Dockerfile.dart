@@ -36,10 +36,11 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 ENV PATH="/usr/lib/dart/bin:${PATH}"
 ENV PATH="/root/.pub-cache/bin:${PATH}"
 
-# Install Flutter SDK for web development
+# Install Flutter SDK for web development with cache mount for efficiency
 ENV FLUTTER_VERSION="3.24.5"
 ENV FLUTTER_HOME="/opt/flutter"
-RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME} \
+RUN --mount=type=cache,target=/root/.cache/flutter,sharing=locked \
+    git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME} \
     && ${FLUTTER_HOME}/bin/flutter config --no-analytics \
     && ${FLUTTER_HOME}/bin/flutter precache --web \
     && ${FLUTTER_HOME}/bin/flutter doctor -v
