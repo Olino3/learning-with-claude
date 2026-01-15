@@ -1,5 +1,16 @@
 # Sinatra Lab 4: Real-time Chat with WebSockets
 
+<!-- TODO: Update this lab from EventMachine to async gem and Falcon server
+     See Tutorial 23 for modern async patterns: ruby/tutorials/advanced/23-WebSockets-Network-Programming/
+     Migration involves:
+     - Replace EventMachine with async gem
+     - Replace Faye-WebSocket with async-websocket
+     - Replace thin server with falcon
+     - Update chat_server.rb to use Async blocks instead of EM.run
+     - Update client-side code if needed
+     - Update all documentation and steps
+-->
+
 A real-time chat application demonstrating WebSocket communication, asynchronous programming, and real-time features with Sinatra.
 
 ## 🎯 Learning Objectives

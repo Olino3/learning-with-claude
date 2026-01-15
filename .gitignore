@@ -36,7 +36,7 @@ pubspec.lock
 .pub/
 
 # IDE and Editor files
-.vscode/
+# .vscode/ - Now tracked for workspace settings
 .idea/
 *.swp
 *.swo

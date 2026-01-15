@@ -1,0 +1,64 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://learning:password@localhost:5432/learning_dev"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/olino3/git/learning-with-claude"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git",
+        "--repository",
+        "/home/olino3/git/learning-with-claude"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    }
+  },
+  "enableAllProjectMcpServers": true,
+  "allowedCommands": {
+    "bash": [
+      "docker-compose up -d",
+      "docker-compose down",
+      "docker-compose ps",
+      "docker exec -it ruby-dev bash",
+      "docker exec -it dart-env bash",
+      "make up",
+      "make down",
+      "make shell",
+      "make repl",
+      "make test",
+      "make run-script",
+      "make sinatra-tutorial",
+      "make status",
+      "make clean",
+      "ruby scripts/validate_exercise.rb",
+      "find . -name '*.rb'",
+      "find . -name '*.dart'",
+      "grep -r",
+      "ls -la",
+      "cat",
+      "head",
+      "tail",
+      "wc -l"
+    ]
+  }
+}
