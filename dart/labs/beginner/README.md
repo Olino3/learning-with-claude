@@ -7,8 +7,8 @@ Progressive hands-on labs to learn Dart fundamentals through building real proje
 | Lab | Topic | Project | Time | Difficulty |
 |-----|-------|---------|------|------------|
 | **Lab 1** | [Dart Basics & OOP](lab1-basics/README.md) | Book Library System | 1-2h | ⭐ Beginner |
-| **Lab 2** | [Collections & Iteration](lab2-collections/README.md) | Contact Manager | 1.5-2.5h | ⭐⭐ Beginner+ |
-| **Lab 3** | [Functions & Mixins](lab3-functions-mixins/README.md) | Calculator with Mixins | 2-3h | ⭐⭐ Intermediate |
+| **Lab 2** | Collections & Iteration | Contact Manager *(Coming Soon)* | 1.5-2.5h | ⭐⭐ Beginner+ |
+| **Lab 3** | Functions & Mixins | Calculator with Mixins *(Coming Soon)* | 2-3h | ⭐⭐ Intermediate |
 
 ## 🚀 Quick Start
 
@@ -18,11 +18,11 @@ Progressive hands-on labs to learn Dart fundamentals through building real proje
 # Lab 1: Dart Basics
 make dart-beginner-lab NUM=1
 
-# Lab 2: Collections
-make dart-beginner-lab NUM=2
+# Lab 2: Collections (Coming Soon)
+# make dart-beginner-lab NUM=2
 
-# Lab 3: Functions & Mixins
-make dart-beginner-lab NUM=3
+# Lab 3: Functions & Mixins (Coming Soon)
+# make dart-beginner-lab NUM=3
 ```
 
 ### Alternative: Run Manually
@@ -77,10 +77,11 @@ Build a simple book library system to learn:
 
 - Creating classes and objects
 - Instance variables and methods
-- Static variables and static methods
-- Inheritance basics
+- Constructors with named parameters
+- Getters and computed properties
 - String interpolation and basic I/O
 - Null safety fundamentals
+- Typed collections (List<T>)
 
 **Estimated Time**: 1-2 hours
 

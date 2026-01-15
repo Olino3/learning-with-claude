@@ -12,7 +12,7 @@ By the end of this lab, you'll understand:
 - Null safety basics
 - String interpolation
 - Collections (Lists) and iteration
-- Private members with `_underscore` convention
+- Arrow functions and functional programming basics
 
 ## 🏃 Running the Lab
 
