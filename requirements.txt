@@ -3,9 +3,9 @@
 
 # Web Frameworks
 flask==3.0.0
-fastapi==0.109.0
+fastapi==0.109.1  # Updated from 0.109.0 to fix ReDoS vulnerability
 uvicorn[standard]==0.27.0
-django==5.0.1
+django==5.1.14  # Updated from 5.0.1 to fix SQL injection and DoS vulnerabilities
 
 # Database
 sqlalchemy==2.0.25
@@ -37,4 +37,4 @@ click==8.1.7
 rich==13.7.0
 
 # Async utilities
-aiohttp==3.9.1
+aiohttp==3.13.3  # Updated from 3.9.1 to fix zip bomb, DoS, and directory traversal vulnerabilities
