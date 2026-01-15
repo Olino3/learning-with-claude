@@ -42,6 +42,16 @@ This repository contains learning materials for various programming topics:
   - **`/ruby/labs`** - Hands-on practice projects
   - **`/ruby/reading`** - Reference materials
 
+- **`/dart`** - Dart programming tutorials, labs, and reading materials
+  - **`/dart/tutorials`** - Step-by-step learning path
+  - **`/dart/labs`** - Practical exercises
+  - **`/dart/reading`** - Documentation and guides
+
+- **`/python`** - Python programming tutorials, labs, and reading materials
+  - **`/python/tutorials`** - Progressive Python concepts
+  - **`/python/labs`** - Hands-on Python projects
+  - **`/python/reading`** - Python reference materials
+
 ## 🎯 Learning Paths
 
 ### Path 1: Ruby Fundamentals
@@ -124,6 +134,24 @@ make logs              # View all logs
 make shell             # Open a bash shell in Ruby container
 make repl              # Start interactive Ruby REPL (IRB)
 make run-script SCRIPT=path/to/file.rb   # Run a Ruby script
+```
+
+### Dart Commands
+
+```bash
+make dart-shell        # Open a bash shell in Dart container
+make dart-repl         # Open interactive Dart shell
+make run-dart SCRIPT=path/to/file.dart   # Run a Dart script
+```
+
+### Python Commands
+
+```bash
+make python-shell      # Open a bash shell in Python container
+make python-repl       # Start interactive Python REPL
+make run-python SCRIPT=path/to/file.py   # Run a Python script
+make python-install    # Install dependencies from requirements.txt
+make python-test       # Run Python tests with pytest
 ```
 
 ### Sinatra Commands
