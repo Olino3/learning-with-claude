@@ -57,11 +57,19 @@ Future<void> combiningStreamsExample() async {
   var stream1 = Stream.fromIterable([1, 2, 3]);
   var stream2 = Stream.fromIterable([4, 5, 6]);
   
-  // Simple merge simulation
+  // Simple merge with proper completion tracking
   var controller = StreamController<int>();
+  var remaining = 2;
   
-  stream1.listen(controller.add);
-  stream2.listen(controller.add, onDone: () => controller.close());
+  void checkDone() {
+    remaining--;
+    if (remaining == 0) {
+      controller.close();
+    }
+  }
+  
+  stream1.listen(controller.add, onDone: checkDone);
+  stream2.listen(controller.add, onDone: checkDone);
   
   await controller.stream.forEach((n) => print("Merged: $n"));
 }

@@ -9,10 +9,10 @@ void main() async {
   print("ISOLATES AND CONCURRENCY PRACTICE");
   print("=" * 70);
 
-  // Example 1: Using compute for simple parallel task
-  print("\nExample 1: Using compute()");
+  // Example 1: Manual isolate (compute() requires Flutter)
+  print("\nExample 1: Manual Isolate for Factorial");
   print("Computing factorial in separate isolate...");
-  var result = await compute(factorial, 20);
+  var result = await runInIsolate(factorial, 20);
   print("Factorial(20) = $result");
 
   // Example 2: Basic isolate communication
@@ -42,7 +42,23 @@ void main() async {
   // Process multiple "images" in parallel using isolates
 }
 
-// Top-level function for compute()
+// Helper to run function in isolate (pure Dart alternative to Flutter's compute)
+Future<R> runInIsolate<T, R>(R Function(T) function, T argument) async {
+  var receivePort = ReceivePort();
+  await Isolate.spawn(_isolateRunner<T, R>, [receivePort.sendPort, function, argument]);
+  return await receivePort.first as R;
+}
+
+void _isolateRunner<T, R>(List<dynamic> args) {
+  var sendPort = args[0] as SendPort;
+  var function = args[1] as R Function(T);
+  var argument = args[2] as T;
+  
+  var result = function(argument);
+  sendPort.send(result);
+}
+
+// Top-level function for factorial
 int factorial(int n) {
   if (n <= 1) return 1;
   return n * factorial(n - 1);
