@@ -39,7 +39,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 ENV PATH="/usr/lib/dart/bin:${PATH}"
 ENV PATH="/root/.pub-cache/bin:${PATH}"
 
-# Install Flutter SDK for web development with cache mount for efficiency
+# Install Flutter SDK for web development
 # NOTE: Flutter version is intentionally pinned for reproducible tutorials and labs.
 # Flutter releases frequent updates (including security and bug fixes). To update:
 #   1. Check the latest stable version at https://flutter.dev/docs/development/tools/sdk/releases
@@ -49,8 +49,7 @@ ENV PATH="/root/.pub-cache/bin:${PATH}"
 #      that examples still work as expected.
 ENV FLUTTER_VERSION="3.24.5"
 ENV FLUTTER_HOME="/opt/flutter"
-RUN --mount=type=cache,target=/root/.cache/flutter,sharing=locked \
-    git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME} \
+RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git ${FLUTTER_HOME} \
     && ${FLUTTER_HOME}/bin/flutter config --no-analytics \
     && ${FLUTTER_HOME}/bin/flutter precache --web \
     && ${FLUTTER_HOME}/bin/flutter doctor -v
@@ -69,7 +68,7 @@ RUN --mount=type=cache,target=/root/.pub-cache,sharing=locked \
 RUN mkdir -p /app/dart/tutorials /app/dart/labs /app/dart/reading /app/scripts
 
 # Copy the repository content last
-# This ensures package installation layers aren't invalidated by code changes
+# This keeps the repository code in a separate layer, so changing code doesn't trigger a full package reinstall
 COPY . /app/
 
 # Set Flutter environment variables
