@@ -241,7 +241,155 @@ Learn file operations and text processing in Dart.
 
 ---
 
+### Tutorial 11: Advanced Generics and Type System
+**Status:** ✅ Complete
+
+Master Dart's powerful type system and advanced generics features.
+
+👉 **[Start Tutorial 11: Advanced Generics](11-Advanced-Generics-Type-System/README.md)**
+
+**You'll learn:**
+- Generic classes with type parameters and constraints
+- Type bounds with `extends`
+- Covariance and contravariance
+- Runtime type checking and casting
+- Generic type inference
+- Type-safe APIs and patterns
+
+**Key for Python developers:**
+- Dart's generics are enforced at compile time (unlike Python's optional hints)
+- Type bounds are more powerful than Python's TypeVar bounds
+- Runtime type information is preserved
+- Type safety prevents entire classes of bugs
+
+---
+
+### Tutorial 12: Mixins and Extension Methods
+**Status:** ✅ Complete
+
+Learn Dart's powerful composition features for code reuse.
+
+👉 **[Start Tutorial 12: Mixins & Extensions](12-Mixins-Extension-Methods/README.md)**
+
+**You'll learn:**
+- Creating and using mixins with `with`
+- Mixin constraints using `on`
+- Extension methods to add functionality
+- Generic extensions
+- Mixin ordering and conflict resolution
+- Practical patterns with mixins
+
+**Key for Python developers:**
+- Cleaner than Python's multiple inheritance (no MRO complexity)
+- Extension methods are safer than monkey patching
+- Mixins enable true composition over inheritance
+- More predictable than Python's method resolution order
+
+---
+
+### Tutorial 13: Advanced Async Patterns
+**Status:** ✅ Complete
+
+Master advanced asynchronous programming patterns in Dart.
+
+👉 **[Start Tutorial 13: Advanced Async](13-Advanced-Async-Patterns/README.md)**
+
+**You'll learn:**
+- StreamController for custom streams
+- Stream transformations and operators
+- Async generators with `async*` and `yield`
+- Completer for manual Future control
+- Isolates for true parallel processing
+- Broadcast vs single-subscription streams
+- Combining multiple streams
+
+**Key for Python developers:**
+- More integrated than Python's asyncio
+- Isolates provide true parallelism (no GIL!)
+- Streams are more powerful than async generators
+- Better tooling and language integration
+
+---
+
+### Tutorial 14: Reflection and Metadata
+**Status:** ✅ Complete
+
+Understand annotations, reflection, and code generation in Dart.
+
+👉 **[Start Tutorial 14: Reflection](14-Reflection-Metadata/README.md)**
+
+**You'll learn:**
+- Built-in and custom annotations
+- dart:mirrors for reflection (with caveats)
+- Runtime type information
+- Reflectable package
+- Code generation with build_runner
+- When to use reflection vs code generation
+
+**Key for Python developers:**
+- Code generation preferred over runtime reflection
+- Annotations more limited than Python decorators
+- Performance and tree-shaking considerations
+- Modern approach favors compile-time generation
+
+---
+
+### Tutorial 15: Advanced Error Handling and Debugging
+**Status:** ✅ Complete
+
+Master sophisticated error handling patterns and debugging techniques.
+
+👉 **[Start Tutorial 15: Error Handling](15-Advanced-Error-Handling/README.md)**
+
+**You'll learn:**
+- Custom exception hierarchies
+- Result/Either types for functional error handling
+- Stack trace manipulation
+- Zone-based error boundaries
+- Debugging techniques and tools
+- Retry patterns with exponential backoff
+- Circuit breaker pattern
+- Error logging and reporting
+
+**Key for Python developers:**
+- Similar exception model but more structured
+- Zones provide error boundaries (like Python's context managers)
+- Result types are functional alternative to exceptions
+- Better stack trace utilities than Python
+
+---
+
+### Tutorial 16: Idiomatic Dart Patterns and Best Practices
+**Status:** ✅ Complete
+
+Write production-ready, idiomatic Dart code following best practices.
+
+👉 **[Start Tutorial 16: Idiomatic Dart](16-Idiomatic-Dart-Patterns/README.md)**
+
+**You'll learn:**
+- Factory patterns and named constructors
+- Builder pattern with fluent APIs
+- Cascade notation advanced usage
+- Functional programming patterns
+- Immutability with final, const, copyWith
+- Null safety best practices
+- Collection patterns and operators
+- Pattern matching with switch expressions (Dart 3.0+)
+- Effective Dart style guide
+- Common anti-patterns to avoid
+
+**Key for Python developers:**
+- Different idioms than Python - embrace Dart's way
+- Named constructors are more powerful than @classmethod
+- Immutability patterns prevent bugs
+- Pattern matching more powerful than Python's match
+- Strong conventions lead to readable code
+
+---
+
 ## 📊 Tutorial Overview
+
+### Core Tutorials (1-10)
 
 | # | Tutorial | Topics | Difficulty |
 |---|----------|--------|------------|
@@ -255,6 +403,17 @@ Learn file operations and text processing in Dart.
 | 8 | Error Handling | Exceptions, try/catch | ⭐⭐ Intermediate |
 | 9 | Async Programming | Future, async/await, Stream | ⭐⭐⭐ Intermediate |
 | 10 | File I/O | Files, paths, text processing | ⭐⭐ Intermediate |
+
+### Intermediate Tutorials (11-16)
+
+| # | Tutorial | Topics | Difficulty |
+|---|----------|--------|------------|
+| 11 | Advanced Generics & Type System | Generic constraints, variance, type casting | ⭐⭐⭐ Intermediate |
+| 12 | Mixins & Extension Methods | Mixin composition, extension methods | ⭐⭐⭐ Intermediate |
+| 13 | Advanced Async Patterns | StreamController, Isolates, async generators | ⭐⭐⭐⭐ Advanced |
+| 14 | Reflection & Metadata | Annotations, code generation, dart:mirrors | ⭐⭐⭐ Intermediate |
+| 15 | Advanced Error Handling | Custom exceptions, Result types, Zones | ⭐⭐⭐ Intermediate |
+| 16 | Idiomatic Dart Patterns | Best practices, design patterns, style guide | ⭐⭐⭐ Intermediate |
 
 ---
 
