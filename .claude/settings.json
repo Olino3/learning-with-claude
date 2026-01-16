@@ -1,0 +1,148 @@
+{
+  // ============================================================
+  // Claude Settings for learning-with-claude Repository
+  // ============================================================
+  // Enable Plan Mode by Default
+  // Helps break down complex coding tasks into structured steps
+  "planMode": {
+    "enabled": true,
+    "autoActivate": true
+  },
+  // ============================================================
+  // Software Development Settings
+  // ============================================================
+  "development": {
+    // Code Generation Preferences
+    "codeStyle": {
+      "preferIdiomatic": true,
+      "includeComments": true,
+      "includePythonComparisons": true,
+      "verboseExplanations": true
+    },
+    // Language-Specific Settings
+    "languages": {
+      "ruby": {
+        "version": "3.4.7",
+        "preferBlocks": true,
+        "useSymbols": true,
+        "implicitReturns": true,
+        "linter": "rubocop"
+      },
+      "dart": {
+        "nullSafety": true,
+        "useNamedParameters": true,
+        "preferAsync": true
+      }
+    },
+    // Testing Preferences
+    "testing": {
+      "framework": "rspec",
+      "includeTests": true,
+      "coverEdgeCases": true
+    },
+    // Security-First Approach
+    "security": {
+      "enforceSecurePatterns": true,
+      "warnAboutInsecurePractices": true,
+      "requireInputSanitization": true
+    }
+  },
+  // ============================================================
+  // Workflow Optimization
+  // ============================================================
+  "workflow": {
+    // Educational Context Awareness
+    "tutorialMode": {
+      "enabled": true,
+      "preserveTODOs": true,
+      "maintainCheckpoints": true,
+      "respectDifficultyLevel": true
+    },
+    // File Organization
+    "fileManagement": {
+      "followTwoTrackPattern": true,
+      "maintainStepsFiles": true,
+      "preserveGitMilestones": true
+    },
+    // Container-First Development
+    "environment": {
+      "preferContainerCommands": true,
+      "noLocalInstallations": true,
+      "alwaysUseDockerCommands": true
+    },
+    // Documentation Standards
+    "documentation": {
+      "includeUsageExamples": true,
+      "addPythonComparisons": true,
+      "linkRelatedTutorials": true,
+      "clearLearningObjectives": true
+    }
+  },
+  // ============================================================
+  // Code Review and Quality Gates
+  // ============================================================
+  "quality": {
+    "checkpoints": {
+      "verifyContainerCompatibility": true,
+      "validateSecurityPractices": true,
+      "ensureEducationalClarity": true,
+      "matchDifficultyLevel": true
+    },
+    "acceptanceCriteria": {
+      "codeRunsInDocker": true,
+      "includesPythonComparisons": true,
+      "followsNamingConventions": true,
+      "preservesEducationalStructure": true
+    }
+  },
+  // ============================================================
+  // Response Formatting
+  // ============================================================
+  "formatting": {
+    "codeBlocks": {
+      "alwaysIncludeLanguage": true,
+      "addExecutionInstructions": true,
+      "showExpectedOutput": true
+    },
+    "explanations": {
+      "structure": "progressive",
+      "includeExamples": true,
+      "compareWithPython": true,
+      "linkToTutorials": true
+    }
+  },
+  // ============================================================
+  // Context Preferences
+  // ============================================================
+  "context": {
+    "targetAudience": "python-developers",
+    "learningApproach": "progressive",
+    "prioritizeClarity": true,
+    "educationOverBrevity": true
+  },
+  // ============================================================
+  // Guardrails and Boundaries
+  // ============================================================
+  "boundaries": {
+    "neverModify": [
+      ".git/",
+      ".github/workflows/",
+      "Gemfile.lock",
+      "pubspec.lock",
+      ".env",
+      "*.db"
+    ],
+    "preservePatterns": [
+      "# TODO:",
+      "Checkpoint comments",
+      "Expected output annotations",
+      "Git commit milestones"
+    ],
+    "avoidActions": [
+      "Direct gem/package installation",
+      "Commands outside containers",
+      "Removing educational comments",
+      "Arbitrary difficulty changes"
+    ]
+  }
+}

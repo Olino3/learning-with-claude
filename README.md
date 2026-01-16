@@ -49,6 +49,8 @@ This repository contains learning materials for various programming languages an
   - **`/dart/labs`** - Practical exercises
   - **`/dart/reading`** - Documentation and guides
 
+C### Coming Soon:
+
 - **`/python`** - Python programming tutorials, labs, and reading materials
   - **`/python/tutorials`** - Progressive Python concepts
   - **`/python/labs`** - Hands-on Python projects
@@ -97,25 +99,25 @@ make sinatra-tutorial NUM=1
 
 **Sinatra Tutorials (in order):**
 
-| # | Topic | Command |
-|---|-------|---------|
-| 1 | Hello Sinatra | `make sinatra-tutorial NUM=1` |
-| 2 | Routes & Parameters | `make sinatra-tutorial NUM=2` |
-| 3 | Templates & Views | `make sinatra-tutorial NUM=3` |
-| 4 | Forms & Input | `make sinatra-tutorial NUM=4` |
-| 5 | Working with Databases | `make sinatra-tutorial NUM=5` |
-| 6 | Sessions & Cookies | `make sinatra-tutorial NUM=6` |
-| 7 | Middleware & Filters | `make sinatra-tutorial NUM=7` |
-| 8 | RESTful APIs | `make sinatra-tutorial NUM=8` |
+| #   | Topic                  | Command                       |
+| --- | ---------------------- | ----------------------------- |
+| 1   | Hello Sinatra          | `make sinatra-tutorial NUM=1` |
+| 2   | Routes & Parameters    | `make sinatra-tutorial NUM=2` |
+| 3   | Templates & Views      | `make sinatra-tutorial NUM=3` |
+| 4   | Forms & Input          | `make sinatra-tutorial NUM=4` |
+| 5   | Working with Databases | `make sinatra-tutorial NUM=5` |
+| 6   | Sessions & Cookies     | `make sinatra-tutorial NUM=6` |
+| 7   | Middleware & Filters   | `make sinatra-tutorial NUM=7` |
+| 8   | RESTful APIs           | `make sinatra-tutorial NUM=8` |
 
 **Sinatra Labs (hands-on projects):**
 
-| # | Project | Command |
-|---|---------|---------|
-| 1 | Todo App | `make sinatra-lab NUM=1` |
-| 2 | Blog API | `make sinatra-lab NUM=2` |
-| 3 | Authentication App | `make sinatra-lab NUM=3` |
-| 4 | Real-time Chat | `make sinatra-lab NUM=4` |
+| #   | Project            | Command                  |
+| --- | ------------------ | ------------------------ |
+| 1   | Todo App           | `make sinatra-lab NUM=1` |
+| 2   | Blog API           | `make sinatra-lab NUM=2` |
+| 3   | Authentication App | `make sinatra-lab NUM=3` |
+| 4   | Real-time Chat     | `make sinatra-lab NUM=4` |
 
 ### Dart Learning Paths
 
@@ -207,13 +209,13 @@ make redis-cli         # Open Redis CLI
 
 When running Sinatra applications, these ports are available:
 
-| Port | Description | URL |
-|------|-------------|-----|
-| 4567 | Sinatra default | http://localhost:4567 |
+| Port | Description       | URL                   |
+| ---- | ----------------- | --------------------- |
+| 4567 | Sinatra default   | http://localhost:4567 |
 | 9292 | Rack applications | http://localhost:9292 |
-| 3000 | Alternative port | http://localhost:3000 |
-| 5432 | PostgreSQL | `localhost:5432` |
-| 6379 | Redis | `localhost:6379` |
+| 3000 | Alternative port  | http://localhost:3000 |
+| 5432 | PostgreSQL        | `localhost:5432`      |
+| 6379 | Redis             | `localhost:6379`      |
 
 ## 🏗️ Development Environment Architecture
 

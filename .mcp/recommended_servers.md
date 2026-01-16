@@ -37,7 +37,7 @@ All MCP servers are installed via `npx` (Node.js package runner). You don't need
     "args": [
       "-y",
       "@modelcontextprotocol/server-filesystem",
-      "/home/olino3/git/learning-with-claude"
+      "~git/learning-with-claude"
     ]
   }
 }
@@ -85,7 +85,7 @@ All MCP servers are installed via `npx` (Node.js package runner). You don't need
       "-y",
       "@modelcontextprotocol/server-git",
       "--repository",
-      "/home/olino3/git/learning-with-claude"
+      "~git/learning-with-claude"
     ]
   }
 }
