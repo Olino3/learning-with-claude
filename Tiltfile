@@ -14,6 +14,7 @@ watch_file('./Dockerfile')
 # Configure the ruby-env container (unified Ruby environment)
 dc_resource('ruby-env',
     labels=['ruby-dev'],
+    resource_deps=['postgres', 'redis'],
     # Add helpful resource links
     links=[
         link('https://www.ruby-lang.org/en/documentation/', 'Ruby Documentation'),
@@ -25,6 +26,7 @@ dc_resource('ruby-env',
 # Configure the sinatra-web container with port forwarding
 dc_resource('sinatra-web',
     labels=['web'],
+    resource_deps=['postgres', 'redis'],
     links=[
         link('http://localhost:4567', 'Sinatra App (Default)'),
         link('http://localhost:9292', 'Rack App'),
@@ -36,6 +38,7 @@ dc_resource('sinatra-web',
 # Configure the dart-env container (unified Dart environment)
 dc_resource('dart-env',
     labels=['dart-dev'],
+    resource_deps=['postgres', 'redis'],
     links=[
         link('https://dart.dev/guides', 'Dart Documentation'),
         link('https://api.dart.dev/', 'Dart API Reference'),
@@ -43,9 +46,21 @@ dc_resource('dart-env',
     ]
 )
 
+# Configure the python-env container (unified Python environment)
+dc_resource('python-env',
+    labels=['python-dev'],
+    resource_deps=['postgres', 'redis'],
+    links=[
+        link('https://docs.python.org/3/', 'Python Documentation'),
+        link('https://docs.python.org/3/library/', 'Python Standard Library'),
+        link('https://www.python.org/', 'Python.org')
+    ]
+)
+
 # Configure the flutter-web container with port forwarding
 dc_resource('flutter-web',
     labels=['web'],
+    resource_deps=['postgres', 'redis'],
     links=[
         link('http://localhost:8080', 'Flutter App (Default)'),
         link('http://localhost:8081', 'Alternative Flutter Port'),
@@ -80,6 +95,9 @@ print("""
     • dart-env    - For running Dart scripts and applications
     • flutter-web - For running Flutter web applications
 
+  Python:
+    • python-env  - For running Python scripts and applications
+
   Infrastructure:
     • postgres    - PostgreSQL database (port 5432)
     • redis       - Redis cache/session store (port 6379)
@@ -102,6 +120,11 @@ print("""
     • Run a script:     docker compose exec dart-env dart run scripts/hello.dart
     • Bash shell:       docker compose exec dart-env bash
 
+  Python:
+    • Run a script:     docker compose exec python-env python scripts/hello.py
+    • Open Python REPL: docker compose exec python-env python
+    • Bash shell:       docker compose exec python-env bash
+
   Flutter:
     • Bash shell:       docker compose exec flutter-web bash
     • Run Flutter app:  docker compose exec flutter-web flutter run -d web-server --web-port=8080
@@ -119,6 +142,10 @@ print("""
   Dart:
     1. Start with /dart/tutorials/1-Getting-Started
     2. Explore Dart examples and exercises
+
+  Python:
+    1. Start with /python/tutorials (if available)
+    2. Compare Python with Ruby and Dart implementations
 
   Flutter:
     1. Start with Flutter basics in /dart/labs/beginner
